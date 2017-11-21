@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="sqlserverTables" targetRuntime="MyBatis3">
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <!--<property name="beginningDelimiter" value=""/>-->
+        <!--<property name="endingDelimiter" value=""/>-->
+
+        <!-- 生成的pojo，将implements Serializable-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+
+
+        <!--<plugin type="com.cycredit.plugin.PaginationPlugin"></plugin>-->
+
+
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/unicredit?characterEncoding=utf8"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"-->
+        <!--connectionURL="jdbc:oracle:thin:@10.3.2.90:1521:dbtest"-->
+        <!--userId="dbtest"-->
+        <!--password="unicc1234">-->
+        <!--</jdbcConnection>-->
+
+
+        <!--
+        默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
+        true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal
+        -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--
+        生成model模型，对应的包路径，以及文件存放路径(targetProject)，targetProject可以指定具体的路径,如./src/main/java，
+        也可以使用“MAVEN”来自动生成，这样生成的代码会在target/generatord-source目录下
+        -->
+        <!--<javaModelGenerator targetPackage="com.joey.mybaties.test.pojo" targetProject="MAVEN">-->
+        <javaModelGenerator targetPackage="com.cycredit.dao.entity" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--对应的mapper.xml文件 -->
+        <sqlMapGenerator targetPackage="auto" targetProject="./src/main/resources/mapping">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+
+        </sqlMapGenerator>
+
+        <!-- 对应的Mapper接口类文件 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cycredit.dao.mapper"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--<table tableName="test" domainObjectName="Test"-->
+        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
+        <!--<property name="useActualColumnNames" value="false"/>-->
+        <!--&lt;!&ndash;<generatedKey column="id" identity="true" sqlStatement="Oracle"/>&ndash;&gt;-->
+        <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="credit_score" domainObjectName="CreditScore"-->
+        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
+        <!--<property name="useActualColumnNames" value="false"/>-->
+        <!--&lt;!&ndash;<generatedKey column="id" identity="true" sqlStatement="Oracle"/>&ndash;&gt;-->
+        <!--<columnOverride column="mapping_no" javaType="java.lang.Long"/>-->
+        <!--<columnOverride column="is_qianfei" javaType="java.lang.Boolean"/>-->
+
+        <!--<columnOverride column="create_time" javaType="java.util.Date"/>-->
+        <!--<columnOverride column="update_time" javaType="java.util.Date"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="identity_mapping" domainObjectName="IdentityMapping"-->
+        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
+        <!--<property name="useActualColumnNames" value="false"/>-->
+        <!--&lt;!&ndash;<generatedKey column="id" identity="true" sqlStatement="Oracle"/>&ndash;&gt;-->
+        <!--<columnOverride column="mapping_no" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <table tableName="user" domainObjectName="User"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+
+        </table>
+
+        <table tableName="user_token" domainObjectName="UserToken"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+
+        </table>
+        <table tableName="uni_memo" domainObjectName="UniMemo"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+
+        </table>
+        <table tableName="uni_memo_department" domainObjectName="UniMemoDepartment"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+
+        </table>
+
+        <table tableName="search_count" domainObjectName="SearchCount"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+
+        </table>
+
+        <table tableName="person_deal_result" domainObjectName="PersonDealResult"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+
+        </table>
+
+        <table tableName="enterprise_deal_result" domainObjectName="EnterpriseDealResult"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

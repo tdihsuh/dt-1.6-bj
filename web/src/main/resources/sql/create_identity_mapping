@@ -1,0 +1,4 @@
+CREATE OR REPLACE  TRIGGER TG1 BEFORE
+begin
+	select IDENTITY_MAPPING_SEQ.nextval into :New."mapping_no" from dual;
+end;

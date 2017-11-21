@@ -1,0 +1,67 @@
+<beans xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						   http://www.springframework.org/schema/tx
+						   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="initialSize" value="${jdbc.initialSize}"></property>
+        <property name="minIdle" value="${jdbc.minIdle}"/>
+        <property name="maxIdle" value="${jdbc.maxIdle}"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+
+        <!-- 最大活跃数 -->
+        <property name="validationQuery" value="select 1 from dual"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="numTestsPerEvictionRun" value="${jdbc.maxActive}"/>
+
+
+        <!-- 5 min 每5分钟检测空闲连接超过10分钟的连接-->
+        <property name="timeBetweenEvictionRunsMillis" value="30000"/>
+        <!-- 对象空闲多久后逐出, 当空闲时间>该值 且 空闲连接>最大空闲数 时直接逐出,不再根据MinEvictableIdleTimeMillis判断-->
+        <property name="minEvictableIdleTimeMillis" value="45000"/>
+        <property name="removeAbandonedTimeout">
+            <value>200</value>
+        </property>
+        <property name="removeAbandoned" value="true"/>
+
+    </bean>
+
+    <!-- transaction configuration -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 创建SqlSessionFactory，同时指定数据源 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath*:/mapping/**/**.xml"/>
+        <property name="typeAliasesPackage" value="com.cycredit.base.entity"/>
+
+    </bean>
+
+    <!-- 可通过注解控制事务 -->
+    <tx:annotation-driven/>
+
+
+    <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage"
+                  value="com.cycredit.dao.mapper.manual,com.cycredit.dao.mapper"/>
+    </bean>
+
+
+</beans>

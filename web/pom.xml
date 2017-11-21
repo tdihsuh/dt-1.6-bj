@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>cy-root</artifactId>
+        <groupId>com.cycreidt</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cy-web</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <project.name>web</project.name>
+
+        <targetProject>${basedir}/src/main/java</targetProject>
+        <org.slf4j.version>1.7.12</org.slf4j.version>
+        <logback.version>1.1.3</logback.version>
+        <!-- servlet-->
+        <javax.servlet.version>3.1.0</javax.servlet.version>
+        <!-- springVersion-->
+        <org.springframework.version>4.3.8.RELEASE</org.springframework.version>
+        <!-- guava-->
+        <guava.version>18.0</guava.version>
+        <!-- springCache-->
+        <aliyun.sdk.oss.version>2.0.2</aliyun.sdk.oss.version>
+
+        <mysql.version>5.1.9</mysql.version>
+        <jackson.version>2.8.7</jackson.version>
+        <swagger.version>2.7.0</swagger.version>
+        <commons-lang3.version>3.5</commons-lang3.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-codec.version>1.9</commons-codec.version>
+        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        <commons-beanutils.version>1.9.1</commons-beanutils.version>
+
+        <activiti.version>5.21.0</activiti.version>
+
+        <oracle.version>11.2.0.3</oracle.version>
+
+
+        <shiro.version>1.3.2</shiro.version>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <deploy.type>local</deploy.type>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>run</id>
+            <properties>
+                <deploy.type>run</deploy.type>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>dev</id>
+            <properties>
+                <deploy.type>dev</deploy.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev1</id>
+            <properties>
+                <deploy.type>dev1</deploy.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev2</id>
+            <properties>
+                <deploy.type>dev2</deploy.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev3</id>
+            <properties>
+                <deploy.type>dev3</deploy.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev4</id>
+            <properties>
+                <deploy.type>dev4</deploy.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>beta</id>
+            <properties>
+                <deploy.type>beta</deploy.type>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>beta1</id>
+            <properties>
+                <deploy.type>beta1</deploy.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>beta2</id>
+            <properties>
+                <deploy.type>beta2</deploy.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>beta3</id>
+            <properties>
+                <deploy.type>beta3</deploy.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <deploy.type>prod</deploy.type>
+            </properties>
+        </profile>
+    </profiles>
+
+
+    <dependencies>
+        <!-- core-->
+        <dependency>
+            <groupId>com.cycreidt</groupId>
+            <artifactId>cy-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cycreidt</groupId>
+            <artifactId>cy-swagger</artifactId>
+        </dependency>
+
+        <!-- module rule-->
+        <dependency>
+            <groupId>com.cycreidt</groupId>
+            <artifactId>cy-rule</artifactId>
+        </dependency>
+
+
+        <!-- module shiro-->
+        <dependency>
+            <groupId>com.cycreidt</groupId>
+            <artifactId>cy-shiro</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <finalName>cy-web</finalName>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources.${deploy.type}</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
+
+        <plugins>
+
+
+            <!--指定编译jdk版本-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+
+            <!--<plugin>-->
+            <!--<groupId>org.mybatis.maven</groupId>-->
+            <!--<artifactId>migrations-maven-plugin</artifactId>-->
+            <!--<version>1.1.3</version>-->
+            <!--<configuration>-->
+            <!--<repository>scripts/development</repository>-->
+            <!--</configuration>-->
+            <!--<dependencies>-->
+            <!--<dependency>-->
+            <!--<groupId>MySQL</groupId>-->
+            <!--<artifactId>mysql-connector-Java</artifactId>-->
+            <!--<version>${mysql.version}</version>-->
+            <!--<scope>runtime</scope>-->
+            <!--</dependency>-->
+            <!--</dependencies>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>migration-chack</id>-->
+            <!--<phase>test</phase>-->
+            <!--<goals>-->
+            <!--<goal>up</goal>-->
+            <!--<goal>pending</goal>-->
+            <!--</goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
+
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.5</version>
+                <configuration>
+                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+                <dependencies>
+                    <!-- 数据库驱动  -->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+
+                    <!--<dependency>-->
+                    <!--<groupId>com.oracle</groupId>-->
+                    <!--<artifactId>ojdbc6</artifactId>-->
+                    <!--<version>${oracle.version}</version>-->
+                    <!--</dependency>-->
+
+
+                    <dependency>
+                        <groupId>org.mybatis.generator</groupId>
+                        <artifactId>mybatis-generator-core</artifactId>
+                        <version>1.3.5</version>
+                    </dependency>
+
+                    <!--<dependency>-->
+                    <!--<groupId>com.cycredit.mybatis.plugins</groupId>-->
+                    <!--<artifactId>page-plugin</artifactId>-->
+                    <!--<version>0.1</version>-->
+                    <!--</dependency>-->
+                </dependencies>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <reportPlugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                        </plugin>
+                    </reportPlugins>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+
+    </build>
+
+
+</project>
