@@ -1,5 +1,6 @@
 package com.cycredit.app.controller.credit;
 
+import com.cycredit.base.utils.consts.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -33,36 +34,17 @@ public class CreditSearchController {
      * @param pid
      * @return
      */
-    @RequestMapping("/list")
-    @ApiOperation(notes = "暂存备忘录", httpMethod = "GET", value = "暂存备忘录")
-    @ApiImplicitParams(
-            {
-                    @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
-                    @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
-            })
-    public String add(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
-        return map.toString();
-    }
-
-
-    /**
-     * @param pid
-     * @return
-     */
-    @RequestMapping("/personDetail")
+    @RequestMapping(value = "/personDetail", produces = "application/json;charset=UTF-8")
     @ApiOperation(notes = "个人信用主体信息详情", httpMethod = "GET", value = "个人信用主体信息详情")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public String personDetail(String pid) {
+    public Object personDetail(String pid) {
         Map map = new HashMap();
         map.put("key", 123);
         map.put("value", "你好");
-        return map.toString();
+        return Response.success("成功");
     }
 
 
@@ -72,17 +54,17 @@ public class CreditSearchController {
      * @param description
      * @return
      */
-    @RequestMapping("/personSearch")
+    @RequestMapping(value = "/personSearch", produces = "application/json;charset=UTF-8")
     @ApiOperation(notes = "个人信用主体搜索", httpMethod = "GET", value = "个人信用主体搜索")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public String personSearch(String pid, String dealType, String description) {
+    public Object personSearch(String pid, String dealType, String description) {
         Map map = new HashMap();
         map.put("key", 123);
         map.put("value", "你好");
-        return map.toString();
+        return Response.success("成功");
     }
 
 
@@ -90,17 +72,17 @@ public class CreditSearchController {
      * @param pid
      * @return
      */
-    @RequestMapping("/enterpriseDetail")
+    @RequestMapping(value = "/enterpriseDetail", produces = "application/json;charset=UTF-8")
     @ApiOperation(notes = "企业信用主体详情", httpMethod = "GET", value = "企业信用主体详情")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public String enterpriseDetail(String pid) {
+    public Object enterpriseDetail(String pid) {
         Map map = new HashMap();
         map.put("key", 123);
         map.put("value", "你好");
-        return map.toString();
+        return Response.success("成功");
     }
 
 
@@ -110,17 +92,17 @@ public class CreditSearchController {
      * @param description
      * @return
      */
-    @RequestMapping("/enterpriseSearch")
+    @RequestMapping(value = "/enterpriseSearch", produces = "application/json;charset=UTF-8")
     @ApiOperation(notes = "企业信用主体搜索", httpMethod = "GET", value = "企业信用主体搜索")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public String enterpriseSearch(String pid, String dealType, String description) {
+    public Object enterpriseSearch(String pid, String dealType, String description) {
         Map map = new HashMap();
         map.put("key", 123);
         map.put("value", "你好");
-        return map.toString();
+        return Response.success("成功");
     }
 
 

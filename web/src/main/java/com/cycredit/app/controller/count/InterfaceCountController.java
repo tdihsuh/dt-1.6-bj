@@ -1,5 +1,6 @@
 package com.cycredit.app.controller.count;
 
+import com.cycredit.base.utils.consts.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -29,17 +30,18 @@ public class InterfaceCountController {
      * @param pid
      * @return
      */
-    @RequestMapping("/personSearch")
+    @RequestMapping(value = "/personSearch", produces = "application/json;charset=UTF-8")
+    @ResponseBody
     @ApiOperation(notes = "个人信用主体搜索统计", httpMethod = "GET", value = "个人信用主体搜索统计")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = true),
-            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = true),
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token"),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid"),
     })
-    public String addPersonCount(String pid) {
+    public Object addPersonCount(String pid) {
         Map map = new HashMap();
         map.put("key", 123);
         map.put("value", "你好");
-        return map.toString();
+        return Response.success("成功");
     }
 
     /**
@@ -48,18 +50,19 @@ public class InterfaceCountController {
      * @param pid
      * @return
      */
-    @RequestMapping("/enterpriseSearch")
+    @RequestMapping(value = "/enterpriseSearch", produces = "application/json;charset=UTF-8")
+    @ResponseBody
     @ApiOperation(notes = "企业信用主体搜索统计", httpMethod = "GET", value = "企业信用主体搜索统计")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = true),
-            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = true),
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token"),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid"),
     })
-    public String addEnterpriseCount(String pid, String dealType, String description) {
+    public Object addEnterpriseCount(String pid, String dealType, String description) {
 
         Map map = new HashMap();
         map.put("key", 123);
         map.put("value", "你好");
-        return map.toString();
+        return Response.success("成功");
     }
 
 }

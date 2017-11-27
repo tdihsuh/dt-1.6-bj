@@ -41,7 +41,7 @@ public class SessionController {
     @Resource
     UserTokenService userTokenService;
 
-    @RequestMapping("/session")
+    @RequestMapping(value = "/session", produces = "application/json;charset=UTF-8")
     @ApiOperation(notes = "session", httpMethod = "GET", value = "登录")
     public Object addCreditSelect(Long uid, String pwd, HttpServletResponse response) {
 

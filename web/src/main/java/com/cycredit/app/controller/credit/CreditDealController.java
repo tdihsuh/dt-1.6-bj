@@ -1,5 +1,6 @@
 package com.cycredit.app.controller.credit;
 
+import com.cycredit.base.utils.consts.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -30,17 +31,18 @@ public class CreditDealController {
      * @param description
      * @return
      */
-    @RequestMapping("/personOperation")
+    @RequestMapping(value = "/personOperation", produces = "application/json;charset=UTF-8")
+    @ResponseBody
     @ApiOperation(notes = "个人信用主体操作处理", httpMethod = "GET", value = "个人信用主体操作处理")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public String personOperation(String pid, String dealType, String description) {
+    public Object personOperation(String pid, String dealType, String description) {
         Map map = new HashMap();
         map.put("key", 123);
         map.put("value", "你好");
-        return map.toString();
+        return Response.success("成功");
     }
 
     /**
@@ -51,17 +53,18 @@ public class CreditDealController {
      * @param description
      * @return
      */
-    @RequestMapping("/enterpriseOperation")
+    @RequestMapping(value = "/enterpriseOperation", produces = "application/json;charset=UTF-8")
+    @ResponseBody
     @ApiOperation(notes = "企业信用主体操作处理", httpMethod = "GET", value = "企业信用主体操作处理")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public String enterpriseOperation(String pid, String dealType, String description) {
+    public Object enterpriseOperation(String pid, String dealType, String description) {
         Map map = new HashMap();
         map.put("key", 123);
         map.put("value", "你好");
-        return map.toString();
+        return Response.success("成功");
     }
 
 

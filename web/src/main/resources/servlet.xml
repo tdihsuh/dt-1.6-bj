@@ -56,10 +56,10 @@
             <mvc:mapping path="/**"/>
             <bean class="com.cycredit.base.interceptors.SwaggerApiAuthInterceptor"/>
         </mvc:interceptor>
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/api/**"/>-->
-            <!--<bean class="com.cycredit.app.inteceptors.ApiAuthInteceptors"/>-->
-        <!--</mvc:interceptor>-->
+        <mvc:interceptor>
+            <mvc:mapping path="/api/**"/>
+            <bean class="com.cycredit.app.inteceptors.ApiAuthInteceptors"/>
+        </mvc:interceptor>
     </mvc:interceptors>
 
 
