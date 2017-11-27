@@ -3,6 +3,8 @@ package com.cycredit.app.inteceptors.processor;
 import com.cycredit.app.util.authc.UserToken;
 import com.cycredit.app.util.cache.UserTokenCache;
 import com.cycredit.app.util.threads.UserTokenThreadLocal;
+import com.cycredit.base.interceptors.SwaggerApiAuthInterceptor;
+import com.cycredit.base.utils.CookiesUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +24,14 @@ public class ApiSecurityFilterProcessor {
     public static Boolean filterRequest(HttpServletRequest request) {
         String userToken = request.getHeader("token");
         String uid = request.getHeader("uid");
+        if (uid == null) {
+            uid = CookiesUtils.getCookieValue(SwaggerApiAuthInterceptor.threadCookie.get(), "uid", false);
+        }
+        if (userToken == null) {
+            userToken = CookiesUtils.getCookieValue(SwaggerApiAuthInterceptor.threadCookie.get(), "token", false);
+        }
+
+
         if (StringUtils.isNotEmpty(uid)) {
             return validUserToken(uid, userToken);
         }

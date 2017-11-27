@@ -20,6 +20,9 @@ public class SwaggerApiAuthInterceptor extends HandlerInterceptorAdapter {
 
     private static Logger logger = LoggerFactory.getLogger(SwaggerApiAuthInterceptor.class);
 
+    public static ThreadLocal<Cookie[]> threadCookie = new ThreadLocal<>();
+
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String path = request.getServletPath();
@@ -39,7 +42,10 @@ public class SwaggerApiAuthInterceptor extends HandlerInterceptorAdapter {
                     return false;
                 }
             }
+
+
         }
+        threadCookie.set(request.getCookies());
         logger.info("Auth cost :" + (System.currentTimeMillis() - oldTime));
 
         return super.preHandle(request, response, handler);

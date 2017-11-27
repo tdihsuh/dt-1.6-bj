@@ -1,6 +1,7 @@
 package com.cycredit.dao.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class SearchCount implements Serializable {
     private Long id;
@@ -11,7 +12,11 @@ public class SearchCount implements Serializable {
 
     private Integer result;
 
+    private Long uid;
+
     private String area;
+
+    private Date createTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -47,11 +52,27 @@ public class SearchCount implements Serializable {
         this.result = result;
     }
 
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
+
     public String getArea() {
         return area;
     }
 
     public void setArea(String area) {
         this.area = area == null ? null : area.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

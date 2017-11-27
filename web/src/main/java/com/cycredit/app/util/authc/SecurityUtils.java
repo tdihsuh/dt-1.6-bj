@@ -6,6 +6,8 @@ import com.cycredit.base.utils.Encodes;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.UUID;
 
@@ -35,7 +37,7 @@ public class SecurityUtils {
 
     //token -> user
 
-    public static void loginSuccess(String username, Long uid) {
+    public static void loginSuccess(String username, Long uid, HttpServletResponse response) {
         UserToken userToken = new UserToken();
         String token = UUID.randomUUID().toString();
         userToken.setUsername(username);
@@ -44,6 +46,13 @@ public class SecurityUtils {
         userToken.setCreateTime(new Date());
         UserTokenThreadLocal.putIntoThread(userToken);
         UserTokenCache.setUserTokenToCache(uid.toString(), userToken);
+        Cookie cookie1 = new Cookie("uid", uid.toString());
+        cookie1.setPath("/api");
+        response.addCookie(cookie1);
+        Cookie cookie2 = new Cookie("token", token);
+        cookie2.setPath("/api");
+        response.addCookie(cookie2);
+
 
     }
 

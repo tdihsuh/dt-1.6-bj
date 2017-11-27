@@ -2,7 +2,6 @@ package com.cycredit.app.inteceptors;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cycredit.app.inteceptors.processor.ApiSecurityFilterProcessor;
-import com.cycredit.app.util.authc.SecurityUtils;
 import com.cycredit.base.utils.consts.Response;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -18,7 +17,7 @@ public class ApiAuthInteceptors extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //url过滤规则 /com.cycredit.swagger/login
         String path = request.getServletPath();
-        if (path.contains("login")) {
+        if (path.contains("session")) {
             return super.preHandle(request, response, handler);
         }
 

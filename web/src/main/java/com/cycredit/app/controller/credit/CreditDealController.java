@@ -1,6 +1,8 @@
 package com.cycredit.app.controller.credit;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +17,7 @@ import java.util.Map;
  * @author qiyubin
  */
 @RestController
-@RequestMapping(value = "credit")
+@RequestMapping(value = "/api/credit")
 @ResponseBody
 @Api(value = "credit", description = "信用主体处理接口")
 public class CreditDealController {
@@ -29,7 +31,11 @@ public class CreditDealController {
      * @return
      */
     @RequestMapping("/personOperation")
-    @ApiOperation(notes = "personOperation", httpMethod = "GET", value = "")
+    @ApiOperation(notes = "个人信用主体操作处理", httpMethod = "GET", value = "个人信用主体操作处理")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
     public String personOperation(String pid, String dealType, String description) {
         Map map = new HashMap();
         map.put("key", 123);
@@ -46,7 +52,11 @@ public class CreditDealController {
      * @return
      */
     @RequestMapping("/enterpriseOperation")
-    @ApiOperation(notes = "enterpriseOperation", httpMethod = "GET", value = "")
+    @ApiOperation(notes = "企业信用主体操作处理", httpMethod = "GET", value = "企业信用主体操作处理")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
     public String enterpriseOperation(String pid, String dealType, String description) {
         Map map = new HashMap();
         map.put("key", 123);

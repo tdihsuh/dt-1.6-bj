@@ -6,7 +6,9 @@
     <result column="search_type" jdbcType="VARCHAR" property="searchType" />
     <result column="search_key" jdbcType="VARCHAR" property="searchKey" />
     <result column="result" jdbcType="INTEGER" property="result" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
     <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, search_type, search_key, result, area
+    id, search_type, search_key, result, uid, area, create_time
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.SearchCountExample" resultMap="BaseResultMap">
     select
@@ -105,9 +107,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into search_count (search_type, search_key, result, 
-      area)
+      uid, area, create_time
+      )
     values (#{searchType,jdbcType=VARCHAR}, #{searchKey,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, 
-      #{area,jdbcType=VARCHAR})
+      #{uid,jdbcType=BIGINT}, #{area,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.SearchCount">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -124,8 +128,14 @@
       <if test="result != null">
         result,
       </if>
+      <if test="uid != null">
+        uid,
+      </if>
       <if test="area != null">
         area,
+      </if>
+      <if test="createTime != null">
+        create_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -138,8 +148,14 @@
       <if test="result != null">
         #{result,jdbcType=INTEGER},
       </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
       <if test="area != null">
         #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -164,8 +180,14 @@
       <if test="record.result != null">
         result = #{record.result,jdbcType=INTEGER},
       </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=BIGINT},
+      </if>
       <if test="record.area != null">
         area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -178,7 +200,9 @@
       search_type = #{record.searchType,jdbcType=VARCHAR},
       search_key = #{record.searchKey,jdbcType=VARCHAR},
       result = #{record.result,jdbcType=INTEGER},
-      area = #{record.area,jdbcType=VARCHAR}
+      uid = #{record.uid,jdbcType=BIGINT},
+      area = #{record.area,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -195,8 +219,14 @@
       <if test="result != null">
         result = #{result,jdbcType=INTEGER},
       </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=BIGINT},
+      </if>
       <if test="area != null">
         area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -206,7 +236,9 @@
     set search_type = #{searchType,jdbcType=VARCHAR},
       search_key = #{searchKey,jdbcType=VARCHAR},
       result = #{result,jdbcType=INTEGER},
-      area = #{area,jdbcType=VARCHAR}
+      uid = #{uid,jdbcType=BIGINT},
+      area = #{area,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

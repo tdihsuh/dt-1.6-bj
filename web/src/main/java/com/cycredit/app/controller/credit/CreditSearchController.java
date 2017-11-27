@@ -1,6 +1,8 @@
 package com.cycredit.app.controller.credit;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,21 +17,67 @@ import java.util.Map;
  * @author qiyubin
  */
 @RestController
-@RequestMapping(value = "credit")
+@RequestMapping(value = "/api/credit")
 @ResponseBody
 @Api(value = "credit", description = "信用主体搜索接口")
 public class CreditSearchController {
+    ApiImplicitParam[] value() {
+        return new ApiImplicitParam[]{
+
+
+        };
+    }
+
 
     /**
-     * 联合个人备忘录处理
-     *
+     * @param pid
+     * @return
+     */
+    @RequestMapping("/list")
+    @ApiOperation(notes = "暂存备忘录", httpMethod = "GET", value = "暂存备忘录")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+                    @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+            })
+    public String add(String pid) {
+        Map map = new HashMap();
+        map.put("key", 123);
+        map.put("value", "你好");
+        return map.toString();
+    }
+
+
+    /**
+     * @param pid
+     * @return
+     */
+    @RequestMapping("/personDetail")
+    @ApiOperation(notes = "个人信用主体信息详情", httpMethod = "GET", value = "个人信用主体信息详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public String personDetail(String pid) {
+        Map map = new HashMap();
+        map.put("key", 123);
+        map.put("value", "你好");
+        return map.toString();
+    }
+
+
+    /**
      * @param pid
      * @param dealType
      * @param description
      * @return
      */
     @RequestMapping("/personSearch")
-    @ApiOperation(notes = "personSearch", httpMethod = "GET", value = "")
+    @ApiOperation(notes = "个人信用主体搜索", httpMethod = "GET", value = "个人信用主体搜索")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
     public String personSearch(String pid, String dealType, String description) {
         Map map = new HashMap();
         map.put("key", 123);
@@ -37,16 +85,37 @@ public class CreditSearchController {
         return map.toString();
     }
 
+
     /**
-     * 联合企业备忘录处理
-     *
+     * @param pid
+     * @return
+     */
+    @RequestMapping("/enterpriseDetail")
+    @ApiOperation(notes = "企业信用主体详情", httpMethod = "GET", value = "企业信用主体详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public String enterpriseDetail(String pid) {
+        Map map = new HashMap();
+        map.put("key", 123);
+        map.put("value", "你好");
+        return map.toString();
+    }
+
+
+    /**
      * @param pid
      * @param dealType
      * @param description
      * @return
      */
     @RequestMapping("/enterpriseSearch")
-    @ApiOperation(notes = "enterpriseSearch", httpMethod = "GET", value = "")
+    @ApiOperation(notes = "企业信用主体搜索", httpMethod = "GET", value = "企业信用主体搜索")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
     public String enterpriseSearch(String pid, String dealType, String description) {
         Map map = new HashMap();
         map.put("key", 123);
