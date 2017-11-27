@@ -1,27 +1,20 @@
 package com.cycredit.app.controller.user;
 
 import com.cycredit.app.util.authc.SecurityUtils;
-import com.cycredit.base.utils.SecurityTools;
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.dao.entity.User;
-import com.cycredit.dao.entity.UserToken;
 import com.cycredit.service.UserService;
 import com.cycredit.service.UserTokenService;
-import com.sun.xml.internal.ws.resources.HttpserverMessages;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by qiyubin on 2017/11/21 0021.
