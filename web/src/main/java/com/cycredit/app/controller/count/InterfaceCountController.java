@@ -1,6 +1,7 @@
 package com.cycredit.app.controller.count;
 
 import com.cycredit.base.utils.consts.Response;
+import com.cycredit.service.AreaRankService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +24,22 @@ import java.util.Map;
 @ResponseBody
 @Api(value = "count", description = "统计接口")
 public class InterfaceCountController {
+
+    @Resource
+    AreaRankService areaRankService;
+
+
+    @RequestMapping(value = "/areaRank", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    @ApiOperation(notes = "地区排名", httpMethod = "GET", value = "地区排名")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token"),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid"),
+    })
+    public Object areaRank(String pid) {
+
+        return Response.success("成功", areaRankService.findAll());
+    }
 
 
     /**

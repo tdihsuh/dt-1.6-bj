@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cycredit.dao.mapper.AreaRankMapper">
+  <resultMap id="BaseResultMap" type="com.cycredit.dao.entity.AreaRank">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="rank" jdbcType="INTEGER" property="rank" />
+    <result column="uni_count" jdbcType="INTEGER" property="uniCount" />
+    <result column="select_count" jdbcType="INTEGER" property="selectCount" />
+    <result column="active_count" jdbcType="VARCHAR" property="activeCount" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, area, area_name, rank, uni_count, select_count, active_count, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.cycredit.dao.entity.AreaRankExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from area_rank
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from area_rank
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from area_rank
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cycredit.dao.entity.AreaRankExample">
+    delete from area_rank
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cycredit.dao.entity.AreaRank">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into area_rank (area, area_name, rank, 
+      uni_count, select_count, active_count, 
+      update_time)
+    values (#{area,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER}, 
+      #{uniCount,jdbcType=INTEGER}, #{selectCount,jdbcType=INTEGER}, #{activeCount,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cycredit.dao.entity.AreaRank">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into area_rank
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="area != null">
+        area,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+      <if test="rank != null">
+        rank,
+      </if>
+      <if test="uniCount != null">
+        uni_count,
+      </if>
+      <if test="selectCount != null">
+        select_count,
+      </if>
+      <if test="activeCount != null">
+        active_count,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="uniCount != null">
+        #{uniCount,jdbcType=INTEGER},
+      </if>
+      <if test="selectCount != null">
+        #{selectCount,jdbcType=INTEGER},
+      </if>
+      <if test="activeCount != null">
+        #{activeCount,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cycredit.dao.entity.AreaRankExample" resultType="java.lang.Long">
+    select count(*) from area_rank
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update area_rank
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaName != null">
+        area_name = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rank != null">
+        rank = #{record.rank,jdbcType=INTEGER},
+      </if>
+      <if test="record.uniCount != null">
+        uni_count = #{record.uniCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.selectCount != null">
+        select_count = #{record.selectCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.activeCount != null">
+        active_count = #{record.activeCount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update area_rank
+    set id = #{record.id,jdbcType=INTEGER},
+      area = #{record.area,jdbcType=VARCHAR},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      rank = #{record.rank,jdbcType=INTEGER},
+      uni_count = #{record.uniCount,jdbcType=INTEGER},
+      select_count = #{record.selectCount,jdbcType=INTEGER},
+      active_count = #{record.activeCount,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cycredit.dao.entity.AreaRank">
+    update area_rank
+    <set>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        rank = #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="uniCount != null">
+        uni_count = #{uniCount,jdbcType=INTEGER},
+      </if>
+      <if test="selectCount != null">
+        select_count = #{selectCount,jdbcType=INTEGER},
+      </if>
+      <if test="activeCount != null">
+        active_count = #{activeCount,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cycredit.dao.entity.AreaRank">
+    update area_rank
+    set area = #{area,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      rank = #{rank,jdbcType=INTEGER},
+      uni_count = #{uniCount,jdbcType=INTEGER},
+      select_count = #{selectCount,jdbcType=INTEGER},
+      active_count = #{activeCount,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
