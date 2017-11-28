@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class AreaRankExample {
+public class DepartmentRankExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public AreaRankExample() {
+    public DepartmentRankExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,143 +165,143 @@ public class AreaRankExample {
             return (Criteria) this;
         }
 
-        public Criteria andAreaIsNull() {
-            addCriterion("area is null");
+        public Criteria andDepartmentIsNull() {
+            addCriterion("department is null");
             return (Criteria) this;
         }
 
-        public Criteria andAreaIsNotNull() {
-            addCriterion("area is not null");
+        public Criteria andDepartmentIsNotNull() {
+            addCriterion("department is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAreaEqualTo(String value) {
-            addCriterion("area =", value, "area");
+        public Criteria andDepartmentEqualTo(String value) {
+            addCriterion("department =", value, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNotEqualTo(String value) {
-            addCriterion("area <>", value, "area");
+        public Criteria andDepartmentNotEqualTo(String value) {
+            addCriterion("department <>", value, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaGreaterThan(String value) {
-            addCriterion("area >", value, "area");
+        public Criteria andDepartmentGreaterThan(String value) {
+            addCriterion("department >", value, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaGreaterThanOrEqualTo(String value) {
-            addCriterion("area >=", value, "area");
+        public Criteria andDepartmentGreaterThanOrEqualTo(String value) {
+            addCriterion("department >=", value, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaLessThan(String value) {
-            addCriterion("area <", value, "area");
+        public Criteria andDepartmentLessThan(String value) {
+            addCriterion("department <", value, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaLessThanOrEqualTo(String value) {
-            addCriterion("area <=", value, "area");
+        public Criteria andDepartmentLessThanOrEqualTo(String value) {
+            addCriterion("department <=", value, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaLike(String value) {
-            addCriterion("area like", value, "area");
+        public Criteria andDepartmentLike(String value) {
+            addCriterion("department like", value, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNotLike(String value) {
-            addCriterion("area not like", value, "area");
+        public Criteria andDepartmentNotLike(String value) {
+            addCriterion("department not like", value, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaIn(List<String> values) {
-            addCriterion("area in", values, "area");
+        public Criteria andDepartmentIn(List<String> values) {
+            addCriterion("department in", values, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNotIn(List<String> values) {
-            addCriterion("area not in", values, "area");
+        public Criteria andDepartmentNotIn(List<String> values) {
+            addCriterion("department not in", values, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaBetween(String value1, String value2) {
-            addCriterion("area between", value1, value2, "area");
+        public Criteria andDepartmentBetween(String value1, String value2) {
+            addCriterion("department between", value1, value2, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNotBetween(String value1, String value2) {
-            addCriterion("area not between", value1, value2, "area");
+        public Criteria andDepartmentNotBetween(String value1, String value2) {
+            addCriterion("department not between", value1, value2, "department");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameIsNull() {
-            addCriterion("area_name is null");
+        public Criteria andDepartmentNameIsNull() {
+            addCriterion("department_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameIsNotNull() {
-            addCriterion("area_name is not null");
+        public Criteria andDepartmentNameIsNotNull() {
+            addCriterion("department_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameEqualTo(String value) {
-            addCriterion("area_name =", value, "areaName");
+        public Criteria andDepartmentNameEqualTo(String value) {
+            addCriterion("department_name =", value, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameNotEqualTo(String value) {
-            addCriterion("area_name <>", value, "areaName");
+        public Criteria andDepartmentNameNotEqualTo(String value) {
+            addCriterion("department_name <>", value, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameGreaterThan(String value) {
-            addCriterion("area_name >", value, "areaName");
+        public Criteria andDepartmentNameGreaterThan(String value) {
+            addCriterion("department_name >", value, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameGreaterThanOrEqualTo(String value) {
-            addCriterion("area_name >=", value, "areaName");
+        public Criteria andDepartmentNameGreaterThanOrEqualTo(String value) {
+            addCriterion("department_name >=", value, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameLessThan(String value) {
-            addCriterion("area_name <", value, "areaName");
+        public Criteria andDepartmentNameLessThan(String value) {
+            addCriterion("department_name <", value, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameLessThanOrEqualTo(String value) {
-            addCriterion("area_name <=", value, "areaName");
+        public Criteria andDepartmentNameLessThanOrEqualTo(String value) {
+            addCriterion("department_name <=", value, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameLike(String value) {
-            addCriterion("area_name like", value, "areaName");
+        public Criteria andDepartmentNameLike(String value) {
+            addCriterion("department_name like", value, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameNotLike(String value) {
-            addCriterion("area_name not like", value, "areaName");
+        public Criteria andDepartmentNameNotLike(String value) {
+            addCriterion("department_name not like", value, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameIn(List<String> values) {
-            addCriterion("area_name in", values, "areaName");
+        public Criteria andDepartmentNameIn(List<String> values) {
+            addCriterion("department_name in", values, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameNotIn(List<String> values) {
-            addCriterion("area_name not in", values, "areaName");
+        public Criteria andDepartmentNameNotIn(List<String> values) {
+            addCriterion("department_name not in", values, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameBetween(String value1, String value2) {
-            addCriterion("area_name between", value1, value2, "areaName");
+        public Criteria andDepartmentNameBetween(String value1, String value2) {
+            addCriterion("department_name between", value1, value2, "departmentName");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNameNotBetween(String value1, String value2) {
-            addCriterion("area_name not between", value1, value2, "areaName");
+        public Criteria andDepartmentNameNotBetween(String value1, String value2) {
+            addCriterion("department_name not between", value1, value2, "departmentName");
             return (Criteria) this;
         }
 
@@ -365,6 +365,66 @@ public class AreaRankExample {
             return (Criteria) this;
         }
 
+        public Criteria andJoinCountIsNull() {
+            addCriterion("join_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountIsNotNull() {
+            addCriterion("join_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountEqualTo(Integer value) {
+            addCriterion("join_count =", value, "joinCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountNotEqualTo(Integer value) {
+            addCriterion("join_count <>", value, "joinCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountGreaterThan(Integer value) {
+            addCriterion("join_count >", value, "joinCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("join_count >=", value, "joinCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountLessThan(Integer value) {
+            addCriterion("join_count <", value, "joinCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountLessThanOrEqualTo(Integer value) {
+            addCriterion("join_count <=", value, "joinCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountIn(List<Integer> values) {
+            addCriterion("join_count in", values, "joinCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountNotIn(List<Integer> values) {
+            addCriterion("join_count not in", values, "joinCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountBetween(Integer value1, Integer value2) {
+            addCriterion("join_count between", value1, value2, "joinCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("join_count not between", value1, value2, "joinCount");
+            return (Criteria) this;
+        }
+
         public Criteria andUniCountIsNull() {
             addCriterion("uni_count is null");
             return (Criteria) this;
@@ -425,63 +485,63 @@ public class AreaRankExample {
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountIsNull() {
-            addCriterion("uni_punish_count is null");
+        public Criteria andUniPubnishCountIsNull() {
+            addCriterion("uni_pubnish_count is null");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountIsNotNull() {
-            addCriterion("uni_punish_count is not null");
+        public Criteria andUniPubnishCountIsNotNull() {
+            addCriterion("uni_pubnish_count is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountEqualTo(Integer value) {
-            addCriterion("uni_punish_count =", value, "uniPunishCount");
+        public Criteria andUniPubnishCountEqualTo(Integer value) {
+            addCriterion("uni_pubnish_count =", value, "uniPubnishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountNotEqualTo(Integer value) {
-            addCriterion("uni_punish_count <>", value, "uniPunishCount");
+        public Criteria andUniPubnishCountNotEqualTo(Integer value) {
+            addCriterion("uni_pubnish_count <>", value, "uniPubnishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountGreaterThan(Integer value) {
-            addCriterion("uni_punish_count >", value, "uniPunishCount");
+        public Criteria andUniPubnishCountGreaterThan(Integer value) {
+            addCriterion("uni_pubnish_count >", value, "uniPubnishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("uni_punish_count >=", value, "uniPunishCount");
+        public Criteria andUniPubnishCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("uni_pubnish_count >=", value, "uniPubnishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountLessThan(Integer value) {
-            addCriterion("uni_punish_count <", value, "uniPunishCount");
+        public Criteria andUniPubnishCountLessThan(Integer value) {
+            addCriterion("uni_pubnish_count <", value, "uniPubnishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountLessThanOrEqualTo(Integer value) {
-            addCriterion("uni_punish_count <=", value, "uniPunishCount");
+        public Criteria andUniPubnishCountLessThanOrEqualTo(Integer value) {
+            addCriterion("uni_pubnish_count <=", value, "uniPubnishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountIn(List<Integer> values) {
-            addCriterion("uni_punish_count in", values, "uniPunishCount");
+        public Criteria andUniPubnishCountIn(List<Integer> values) {
+            addCriterion("uni_pubnish_count in", values, "uniPubnishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountNotIn(List<Integer> values) {
-            addCriterion("uni_punish_count not in", values, "uniPunishCount");
+        public Criteria andUniPubnishCountNotIn(List<Integer> values) {
+            addCriterion("uni_pubnish_count not in", values, "uniPubnishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountBetween(Integer value1, Integer value2) {
-            addCriterion("uni_punish_count between", value1, value2, "uniPunishCount");
+        public Criteria andUniPubnishCountBetween(Integer value1, Integer value2) {
+            addCriterion("uni_pubnish_count between", value1, value2, "uniPubnishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPunishCountNotBetween(Integer value1, Integer value2) {
-            addCriterion("uni_punish_count not between", value1, value2, "uniPunishCount");
+        public Criteria andUniPubnishCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("uni_pubnish_count not between", value1, value2, "uniPubnishCount");
             return (Criteria) this;
         }
 
@@ -615,62 +675,52 @@ public class AreaRankExample {
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountEqualTo(String value) {
+        public Criteria andActiveCountEqualTo(Integer value) {
             addCriterion("active_count =", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountNotEqualTo(String value) {
+        public Criteria andActiveCountNotEqualTo(Integer value) {
             addCriterion("active_count <>", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountGreaterThan(String value) {
+        public Criteria andActiveCountGreaterThan(Integer value) {
             addCriterion("active_count >", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountGreaterThanOrEqualTo(String value) {
+        public Criteria andActiveCountGreaterThanOrEqualTo(Integer value) {
             addCriterion("active_count >=", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountLessThan(String value) {
+        public Criteria andActiveCountLessThan(Integer value) {
             addCriterion("active_count <", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountLessThanOrEqualTo(String value) {
+        public Criteria andActiveCountLessThanOrEqualTo(Integer value) {
             addCriterion("active_count <=", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountLike(String value) {
-            addCriterion("active_count like", value, "activeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andActiveCountNotLike(String value) {
-            addCriterion("active_count not like", value, "activeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andActiveCountIn(List<String> values) {
+        public Criteria andActiveCountIn(List<Integer> values) {
             addCriterion("active_count in", values, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountNotIn(List<String> values) {
+        public Criteria andActiveCountNotIn(List<Integer> values) {
             addCriterion("active_count not in", values, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountBetween(String value1, String value2) {
+        public Criteria andActiveCountBetween(Integer value1, Integer value2) {
             addCriterion("active_count between", value1, value2, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountNotBetween(String value1, String value2) {
+        public Criteria andActiveCountNotBetween(Integer value1, Integer value2) {
             addCriterion("active_count not between", value1, value2, "activeCount");
             return (Criteria) this;
         }

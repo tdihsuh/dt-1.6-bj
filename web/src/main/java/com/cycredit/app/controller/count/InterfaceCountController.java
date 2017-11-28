@@ -2,6 +2,7 @@ package com.cycredit.app.controller.count;
 
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.service.AreaRankService;
+import com.cycredit.service.DepartmentRankService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -27,6 +28,8 @@ public class InterfaceCountController {
 
     @Resource
     AreaRankService areaRankService;
+    @Resource
+    DepartmentRankService departmentRankService;
 
 
     @RequestMapping(value = "/areaRank", produces = "application/json;charset=UTF-8")
@@ -36,9 +39,21 @@ public class InterfaceCountController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token"),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid"),
     })
-    public Object areaRank(String pid) {
+    public Object areaRank() {
 
         return Response.success("成功", areaRankService.findAll());
+    }
+
+    @RequestMapping(value = "/departmentRank", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    @ApiOperation(notes = "部门排名", httpMethod = "GET", value = "部门排名")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token"),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid"),
+    })
+    public Object departmentRank() {
+
+        return Response.success("成功", departmentRankService.findAll());
     }
 
 

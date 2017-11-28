@@ -21,7 +21,7 @@ public class AreaRankService {
 
     public List<AreaRank> findAll() {
         AreaRankExample areaRankExample = new AreaRankExample();
-        areaRankExample.setOrderByClause("order by rank asc");
+        areaRankExample.setOrderByClause("rank asc");
 
         return areaRankMapper.selectByExample(areaRankExample);
     }

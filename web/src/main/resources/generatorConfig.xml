@@ -156,5 +156,13 @@
 
         </table>
 
+
+        <table tableName="department_rank" domainObjectName="DepartmentRank"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+
+        </table>
+
     </context>
 </generatorConfiguration>

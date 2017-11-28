@@ -3,24 +3,26 @@ package com.cycredit.dao.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class AreaRank implements Serializable {
+public class DepartmentRank implements Serializable {
     private Integer id;
 
-    private String area;
+    private String department;
 
-    private String areaName;
+    private String departmentName;
 
     private Integer rank;
 
+    private Integer joinCount;
+
     private Integer uniCount;
 
-    private Integer uniPunishCount;
+    private Integer uniPubnishCount;
 
     private Integer uniBonusCount;
 
     private Integer selectCount;
 
-    private String activeCount;
+    private Integer activeCount;
 
     private Date updateTime;
 
@@ -34,20 +36,20 @@ public class AreaRank implements Serializable {
         this.id = id;
     }
 
-    public String getArea() {
-        return area;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
+    public void setDepartment(String department) {
+        this.department = department == null ? null : department.trim();
     }
 
-    public String getAreaName() {
-        return areaName;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setAreaName(String areaName) {
-        this.areaName = areaName == null ? null : areaName.trim();
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName == null ? null : departmentName.trim();
     }
 
     public Integer getRank() {
@@ -58,6 +60,14 @@ public class AreaRank implements Serializable {
         this.rank = rank;
     }
 
+    public Integer getJoinCount() {
+        return joinCount;
+    }
+
+    public void setJoinCount(Integer joinCount) {
+        this.joinCount = joinCount;
+    }
+
     public Integer getUniCount() {
         return uniCount;
     }
@@ -66,12 +76,12 @@ public class AreaRank implements Serializable {
         this.uniCount = uniCount;
     }
 
-    public Integer getUniPunishCount() {
-        return uniPunishCount;
+    public Integer getUniPubnishCount() {
+        return uniPubnishCount;
     }
 
-    public void setUniPunishCount(Integer uniPunishCount) {
-        this.uniPunishCount = uniPunishCount;
+    public void setUniPubnishCount(Integer uniPubnishCount) {
+        this.uniPubnishCount = uniPubnishCount;
     }
 
     public Integer getUniBonusCount() {
@@ -90,12 +100,12 @@ public class AreaRank implements Serializable {
         this.selectCount = selectCount;
     }
 
-    public String getActiveCount() {
+    public Integer getActiveCount() {
         return activeCount;
     }
 
-    public void setActiveCount(String activeCount) {
-        this.activeCount = activeCount == null ? null : activeCount.trim();
+    public void setActiveCount(Integer activeCount) {
+        this.activeCount = activeCount;
     }
 
     public Date getUpdateTime() {
