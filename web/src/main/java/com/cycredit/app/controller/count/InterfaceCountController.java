@@ -1,5 +1,6 @@
 package com.cycredit.app.controller.count;
 
+import com.cycredit.app.util.authc.SecurityUtils;
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.service.AreaRankService;
 import com.cycredit.service.DepartmentRankService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.security.Security;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,7 +54,7 @@ public class InterfaceCountController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid"),
     })
     public Object departmentRank() {
-
+        SecurityUtils.fetchCurrentUserToken();
         return Response.success("成功", departmentRankService.findAll());
     }
 

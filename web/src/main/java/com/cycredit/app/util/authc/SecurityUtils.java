@@ -1,8 +1,10 @@
 package com.cycredit.app.util.authc;
 
+import com.cycredit.app.util.cache.UserInfoCache;
 import com.cycredit.app.util.cache.UserTokenCache;
 import com.cycredit.app.util.threads.UserTokenThreadLocal;
 import com.cycredit.base.utils.Encodes;
+import com.cycredit.dao.entity.User;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
@@ -37,15 +39,27 @@ public class SecurityUtils {
 
     //token -> user
 
-    public static void loginSuccess(String username, Long uid, HttpServletResponse response) {
-        UserToken userToken = new UserToken();
+    public static void loginSuccess(String username, Long uid, String name, String area, String department, HttpServletResponse response) {
+
+        //add user token cache
         String token = UUID.randomUUID().toString();
+        UserToken userToken = new UserToken();
         userToken.setUsername(username);
         userToken.setUid(uid);
         userToken.setToken(token);
         userToken.setCreateTime(new Date());
-        UserTokenThreadLocal.putIntoThread(userToken);
         UserTokenCache.setUserTokenToCache(uid.toString(), userToken);
+//        UserTokenThreadLocal.putIntoThread(userToken);
+
+        //add userinfo cache
+        User user = new User();
+        user.setArea(area);
+        user.setDepartment(department);
+        user.setName(name);
+        UserInfoCache.setToCache(uid.toString(), user);
+
+
+        //write cookie to api path
         Cookie cookie1 = new Cookie("uid", uid.toString());
         cookie1.setPath("/api");
         response.addCookie(cookie1);

@@ -1,6 +1,11 @@
 package com.cycredit.app.controller.credit;
 
+import com.cycredit.app.controller.credit.pojo.EnterpriseDetail;
+import com.cycredit.app.controller.credit.pojo.EnterpriseItem;
+import com.cycredit.app.controller.credit.pojo.PersonDetail;
+import com.cycredit.app.controller.credit.pojo.PersonItem;
 import com.cycredit.base.utils.consts.Response;
+import com.google.common.collect.Lists;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -10,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,12 +28,6 @@ import java.util.Map;
 @ResponseBody
 @Api(value = "credit", description = "信用主体搜索接口")
 public class CreditSearchController {
-    ApiImplicitParam[] value() {
-        return new ApiImplicitParam[]{
-
-
-        };
-    }
 
 
     /**
@@ -41,10 +41,13 @@ public class CreditSearchController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object personDetail(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
-        return Response.success("成功");
+        PersonDetail personDetail = new PersonDetail();
+        personDetail.setName("张晓多");
+        personDetail.setAddress("北京市海淀区西土城路十号");
+        personDetail.setIdentityCard("110100198907180902");
+        personDetail.setPid("1");
+
+        return Response.success("成功", personDetail);
     }
 
 
@@ -61,10 +64,13 @@ public class CreditSearchController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object personSearch(String pid, String dealType, String description) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
-        return Response.success("成功");
+        List<PersonItem> personItems = Lists.newArrayList();
+        PersonItem personItem = new PersonItem();
+        personItem.setIdentityCard("110100198907180902");
+        personItem.setPid("1");
+        personItem.setName("张晓多");
+        personItem.setTags("失信被执行人,奖励措施,违法嫌疑人");
+        return Response.success("成功", personItem);
     }
 
 
@@ -79,10 +85,17 @@ public class CreditSearchController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object enterpriseDetail(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
-        return Response.success("成功");
+        EnterpriseDetail enterpriseDetail = new EnterpriseDetail();
+        enterpriseDetail.setPid("1");
+        enterpriseDetail.setName("辉山乳业有限责任公司");
+        enterpriseDetail.setCode("913710007628687892");
+        enterpriseDetail.setAddress("北京市惠山路1号");
+        enterpriseDetail.setType("有限责任公司（非自然人投资或控股的法人独资）");
+        enterpriseDetail.setLegalPerson("张晓度");
+        enterpriseDetail.setValidTime("2029年05月17日");
+        enterpriseDetail.setCreateTime("2009年05月18日");
+
+        return Response.success("成功", enterpriseDetail);
     }
 
 
@@ -99,10 +112,15 @@ public class CreditSearchController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object enterpriseSearch(String pid, String dealType, String description) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
-        return Response.success("成功");
+        List<EnterpriseItem> enterpriseItemList = Lists.newArrayList();
+        EnterpriseItem enterpriseItem = new EnterpriseItem();
+        enterpriseItem.setCode("913710007628687892");
+        enterpriseItem.setPid("1");
+        enterpriseItem.setName("辉山乳业有限责任公司");
+        enterpriseItem.setTags("失信被执行人,奖励措施");
+
+        enterpriseItemList.add(enterpriseItem);
+        return Response.success("成功", enterpriseItemList);
     }
 
 

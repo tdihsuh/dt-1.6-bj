@@ -1,6 +1,7 @@
 package com.cycredit.app.controller.user;
 
 import com.cycredit.app.util.authc.SecurityUtils;
+import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.dao.entity.User;
 import com.cycredit.service.UserService;
@@ -36,14 +37,14 @@ public class SessionController {
 
     @RequestMapping(value = "/session", produces = "application/json;charset=UTF-8")
     @ApiOperation(notes = "session", httpMethod = "GET", value = "登录")
-    public Object addCreditSelect(Long uid, String pwd, HttpServletResponse response) {
+    public Object addCreditSelect(String uname, String pwd, HttpServletResponse response) {
 
-        User user = userService.findById(uid);
+        User user = userService.findByName(uname);
 
         Boolean checkResult = SecurityUtils.passwordCheck(user.getPassword(), pwd);
 
         if (checkResult) {
-            SecurityUtils.loginSuccess(user.getName(), user.getId(), response);
+            SecurityUtils.loginSuccess(user.getName(), user.getId(), user.getName(), user.getArea(), user.getDepartment(), response);
             return Response.success("登录成功", SecurityUtils.fetchCurrentUserToken());
 
         } else {
@@ -55,7 +56,7 @@ public class SessionController {
 
     @RequestMapping(value = "/users", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    @ApiOperation(notes = "users", httpMethod = "POST", value = "新增用户")
+    @ApiOperation(notes = "users", httpMethod = "GET", value = "查看用户信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
@@ -63,7 +64,7 @@ public class SessionController {
     Object postUsers(User user) {
 //        user.setPassword(SecurityTools.entryptPassword(user.getPassword()));
 //        userService.save(user);
-        return Response.success("注册用户成功");
+        return Response.success("查询成功", UserInfoThreadLocal.getFromThread());
     }
 
 

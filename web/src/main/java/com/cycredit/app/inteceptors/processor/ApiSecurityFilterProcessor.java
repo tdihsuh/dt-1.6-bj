@@ -1,7 +1,9 @@
 package com.cycredit.app.inteceptors.processor;
 
 import com.cycredit.app.util.authc.UserToken;
+import com.cycredit.app.util.cache.UserInfoCache;
 import com.cycredit.app.util.cache.UserTokenCache;
+import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.app.util.threads.UserTokenThreadLocal;
 import com.cycredit.base.interceptors.SwaggerApiAuthInterceptor;
 import com.cycredit.base.utils.CookiesUtils;
@@ -42,7 +44,10 @@ public class ApiSecurityFilterProcessor {
         UserToken userToken = UserTokenCache.getUserToeknFromCache(headerUid);
         if (userToken != null) {
             if (userToken.getToken().equals(headerToken)) {
+                //check and push data to thread
                 UserTokenThreadLocal.putIntoThread(userToken);
+                UserInfoThreadLocal.putIntoThread(UserInfoCache.getFromCache(headerUid));
+
                 return true;
             }
         }

@@ -1,5 +1,6 @@
 package com.cycredit.app.controller.credit;
 
+import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -39,10 +40,9 @@ public class CreditDealController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object personOperation(String pid, String dealType, String description) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
-        return Response.success("成功");
+
+
+        return Response.success("成功", UserInfoThreadLocal.getFromThread());
     }
 
     /**

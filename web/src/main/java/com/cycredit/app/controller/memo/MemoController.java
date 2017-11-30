@@ -32,14 +32,12 @@ public class MemoController {
     @RequestMapping(value = "/publish/list", produces = "application/json;charset=UTF-8")
     @ResponseBody
     @ApiOperation(notes = "已发布备忘录列表", httpMethod = "GET", value = "已发布备忘录列表")
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
-//            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
-//    })
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
     public Object publishList(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
+
         return Response.success("成功");
     }
 
@@ -56,9 +54,7 @@ public class MemoController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object list(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
+
         return Response.success("成功");
     }
 
@@ -73,9 +69,7 @@ public class MemoController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object add(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
+
         return Response.success("成功");
 
     }
@@ -91,9 +85,7 @@ public class MemoController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object pass(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
+
         return Response.success("成功");
 
     }
@@ -110,9 +102,7 @@ public class MemoController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object update(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
+
         return Response.success("成功");
 
     }
@@ -125,9 +115,7 @@ public class MemoController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object departmentAdd(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
+
         return Response.success("成功");
 
     }
@@ -140,9 +128,7 @@ public class MemoController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object departmentDelete(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
+
         return Response.success("成功");
 
     }

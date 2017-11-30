@@ -16,6 +16,8 @@ import java.util.List;
 @Service
 public class AreaRankService {
 
+
+
     @Resource
     AreaRankMapper areaRankMapper;
 
