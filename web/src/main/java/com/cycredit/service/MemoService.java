@@ -31,6 +31,14 @@ public class MemoService {
 
     }
 
+    public void publishMemo(Long id) {
+        UniMemo uniMemo = new UniMemo();
+        uniMemo.setId(id);
+        uniMemo.setStatus(1);
+        uniMemoMapper.updateByPrimaryKeySelective(uniMemo);
+    }
+
+
     public List<UniMemo> findPublishMemo() {
         UniMemoExample uniMemoExample = new UniMemoExample();
         UniMemoExample.Criteria criteria = uniMemoExample.createCriteria().andStatusEqualTo(1);

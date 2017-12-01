@@ -67,7 +67,6 @@ public class MemoController {
     }
 
     /**
-     * @param pid
      * @return
      */
     @RequestMapping(value = "/drafts/list", produces = "application/json;charset=UTF-8")
@@ -76,15 +75,14 @@ public class MemoController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object add(String pid) {
-
+    public Object add(UniMemo uniMemo) {
+        memoService.save(uniMemo);
 
         return Response.success("成功");
 
     }
 
     /**
-     * @param pid
      * @return
      */
     @RequestMapping(value = "/publish", produces = "application/json;charset=UTF-8")
@@ -93,8 +91,8 @@ public class MemoController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object pass(String pid) {
-
+    public Object pass(Long id) {
+        memoService.publishMemo(id);
         return Response.success("成功");
 
     }
