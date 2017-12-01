@@ -53,6 +53,7 @@ public class SecurityUtils {
 
         //add userinfo cache
         User user = new User();
+        user.setId(uid);
         user.setArea(area);
         user.setDepartment(department);
         user.setName(name);
