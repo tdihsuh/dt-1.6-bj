@@ -1,7 +1,9 @@
 package com.cycredit.app.controller.memo;
 
+import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.dao.entity.UniMemo;
+import com.cycredit.dao.entity.User;
 import com.cycredit.service.MemoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -69,16 +71,29 @@ public class MemoController {
     /**
      * @return
      */
-    @RequestMapping(value = "/drafts/list", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "暂存备忘录", httpMethod = "GET", value = "暂存备忘录")
+    @RequestMapping(value = "/temporary", produces = "application/json;charset=UTF-8")
+    @ApiOperation(notes = "暂存或者修改备忘录", httpMethod = "GET", value = "暂存或者修改备忘录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object add(UniMemo uniMemo) {
+    public Object add(Long id, String name, String type, String relationDepartment, String tag) {
+        UniMemo uniMemo = new UniMemo();
+        uniMemo.setId(id);
+        uniMemo.setName(name);
+        uniMemo.setType(type);
+        uniMemo.setRelationDepartment(relationDepartment);
+        uniMemo.setTag(tag);
+        uniMemo.setStatus(0);
+
+        User user = UserInfoThreadLocal.getFromThread();
+        uniMemo.setOperator(user.getId());
+        uniMemo.setOperatrorDepartment(user.getDepartment());
+        uniMemo.setOperatorArea(user.getArea());
+
         memoService.save(uniMemo);
 
-        return Response.success("成功");
+        return Response.success("暂存备忘录成功");
 
     }
 
@@ -86,7 +101,7 @@ public class MemoController {
      * @return
      */
     @RequestMapping(value = "/publish", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "发布备忘录", httpMethod = "GET", value = "暂存备忘录")
+    @ApiOperation(notes = "发布备忘录", httpMethod = "GET", value = "发布备忘录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
@@ -97,22 +112,6 @@ public class MemoController {
 
     }
 
-
-    /**
-     * @param pid
-     * @return
-     */
-    @RequestMapping(value = "/update", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "修改备忘录", httpMethod = "GET", value = "修改备忘录")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
-            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
-    })
-    public Object update(String pid) {
-
-        return Response.success("成功");
-
-    }
 
 
     @RequestMapping(value = "/department/add", produces = "application/json;charset=UTF-8")
