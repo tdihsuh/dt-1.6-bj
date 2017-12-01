@@ -61,10 +61,10 @@ public class SecurityUtils {
 
         //write cookie to api path
         Cookie cookie1 = new Cookie("uid", uid.toString());
-        cookie1.setPath("/api");
+        cookie1.setPath("/");
         response.addCookie(cookie1);
         Cookie cookie2 = new Cookie("token", token);
-        cookie2.setPath("/api");
+        cookie2.setPath("/");
         response.addCookie(cookie2);
 
 

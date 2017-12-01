@@ -1,6 +1,8 @@
 package com.cycredit.app.controller.memo;
 
 import com.cycredit.base.utils.consts.Response;
+import com.cycredit.dao.entity.UniMemo;
+import com.cycredit.service.MemoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +29,9 @@ import java.util.Map;
 public class MemoController {
 
 
+    @Resource
+    MemoService memoService;
+
     /**
      * @param pid
      * @return
@@ -37,8 +44,8 @@ public class MemoController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object publishList(String pid) {
-
-        return Response.success("成功");
+        List<UniMemo> list = memoService.findPublishMemo();
+        return Response.success("成功", list);
     }
 
 
@@ -54,8 +61,9 @@ public class MemoController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object list(String pid) {
+        List<UniMemo> list = memoService.findPendingMemo();
 
-        return Response.success("成功");
+        return Response.success("成功", list);
     }
 
     /**
@@ -69,6 +77,7 @@ public class MemoController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object add(String pid) {
+
 
         return Response.success("成功");
 

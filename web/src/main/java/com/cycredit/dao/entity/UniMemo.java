@@ -9,13 +9,19 @@ public class UniMemo implements Serializable {
 
     private String source;
 
+    private String relationDepartment;
+
     private String type;
 
     private String tag;
 
-    private String relationDepartment;
+    private int status;
 
-    private Byte status;
+    private Long operator;
+
+    private String operatorArea;
+
+    private String operatrorDepartment;
 
     private static final long serialVersionUID = 1L;
 
@@ -43,6 +49,14 @@ public class UniMemo implements Serializable {
         this.source = source == null ? null : source.trim();
     }
 
+    public String getRelationDepartment() {
+        return relationDepartment;
+    }
+
+    public void setRelationDepartment(String relationDepartment) {
+        this.relationDepartment = relationDepartment == null ? null : relationDepartment.trim();
+    }
+
     public String getType() {
         return type;
     }
@@ -59,19 +73,35 @@ public class UniMemo implements Serializable {
         this.tag = tag == null ? null : tag.trim();
     }
 
-    public String getRelationDepartment() {
-        return relationDepartment;
-    }
-
-    public void setRelationDepartment(String relationDepartment) {
-        this.relationDepartment = relationDepartment == null ? null : relationDepartment.trim();
-    }
-
-    public Byte getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Long getOperator() {
+        return operator;
+    }
+
+    public void setOperator(Long operator) {
+        this.operator = operator;
+    }
+
+    public String getOperatorArea() {
+        return operatorArea;
+    }
+
+    public void setOperatorArea(String operatorArea) {
+        this.operatorArea = operatorArea == null ? null : operatorArea.trim();
+    }
+
+    public String getOperatrorDepartment() {
+        return operatrorDepartment;
+    }
+
+    public void setOperatrorDepartment(String operatrorDepartment) {
+        this.operatrorDepartment = operatrorDepartment == null ? null : operatrorDepartment.trim();
     }
 }

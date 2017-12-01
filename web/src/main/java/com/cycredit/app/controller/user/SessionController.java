@@ -1,5 +1,6 @@
 package com.cycredit.app.controller.user;
 
+import com.cycredit.app.controller.memo.pojo.SessionReponse;
 import com.cycredit.app.util.authc.SecurityUtils;
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.security.KeyStore;
 
 /**
  * Created by qiyubin on 2017/11/21 0021.
@@ -35,21 +37,37 @@ public class SessionController {
     @Resource
     UserTokenService userTokenService;
 
+    enum Role {
+        infoCenterEmployee("信息中心职员"), infoCenterMajor("信息中心主任"),
+        dpEmployee("部位职员"), dpMajor("部位主任");
+
+        String name;
+
+        Role(String name) {
+            this.name = name;
+        }
+    }
+
+
     @RequestMapping(value = "/session", produces = "application/json;charset=UTF-8")
     @ApiOperation(notes = "session", httpMethod = "GET", value = "登录")
     public Object addCreditSelect(String uname, String pwd, HttpServletResponse response) {
 
-        User user = userService.findByName(uname);
+        try {
+            User user = userService.findByName(uname);
+            Boolean checkResult = SecurityUtils.passwordCheck(user.getPassword(), pwd);
 
-        Boolean checkResult = SecurityUtils.passwordCheck(user.getPassword(), pwd);
+            if (checkResult) {
+                SecurityUtils.loginSuccess(user.getName(), user.getId(), user.getName(), user.getArea(), user.getDepartment(), response);
+                return Response.success("登录成功", new SessionReponse(user.getId(), user.getName()
+                        , user.getDepartment(), "", Role.infoCenterMajor.name(), Role.infoCenterMajor.name, user.getArea(), "郑州市"));
 
-        if (checkResult) {
-            SecurityUtils.loginSuccess(user.getName(), user.getId(), user.getName(), user.getArea(), user.getDepartment(), response);
-            return Response.success("登录成功", SecurityUtils.fetchCurrentUserToken());
+            } else {
+                return Response.fail("登录失败");
 
-        } else {
+            }
+        } catch (Exception e) {
             return Response.fail("登录失败");
-
         }
     }
 
@@ -64,6 +82,7 @@ public class SessionController {
     Object postUsers(User user) {
 //        user.setPassword(SecurityTools.entryptPassword(user.getPassword()));
 //        userService.save(user);
+
         return Response.success("查询成功", UserInfoThreadLocal.getFromThread());
     }
 

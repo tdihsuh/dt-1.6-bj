@@ -10,6 +10,10 @@ public class UniMemoExample {
 
     protected List<Criteria> oredCriteria;
 
+    private Integer limit;
+
+    private Integer offset;
+
     public UniMemoExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -61,6 +65,22 @@ public class UniMemoExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Integer getOffset() {
+        return offset;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -304,6 +324,76 @@ public class UniMemoExample {
             return (Criteria) this;
         }
 
+        public Criteria andRelationDepartmentIsNull() {
+            addCriterion("relation_department is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentIsNotNull() {
+            addCriterion("relation_department is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentEqualTo(String value) {
+            addCriterion("relation_department =", value, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentNotEqualTo(String value) {
+            addCriterion("relation_department <>", value, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentGreaterThan(String value) {
+            addCriterion("relation_department >", value, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentGreaterThanOrEqualTo(String value) {
+            addCriterion("relation_department >=", value, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentLessThan(String value) {
+            addCriterion("relation_department <", value, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentLessThanOrEqualTo(String value) {
+            addCriterion("relation_department <=", value, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentLike(String value) {
+            addCriterion("relation_department like", value, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentNotLike(String value) {
+            addCriterion("relation_department not like", value, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentIn(List<String> values) {
+            addCriterion("relation_department in", values, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentNotIn(List<String> values) {
+            addCriterion("relation_department not in", values, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentBetween(String value1, String value2) {
+            addCriterion("relation_department between", value1, value2, "relationDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelationDepartmentNotBetween(String value1, String value2) {
+            addCriterion("relation_department not between", value1, value2, "relationDepartment");
+            return (Criteria) this;
+        }
+
         public Criteria andTypeIsNull() {
             addCriterion("type is null");
             return (Criteria) this;
@@ -444,76 +534,6 @@ public class UniMemoExample {
             return (Criteria) this;
         }
 
-        public Criteria andRelationDepartmentIsNull() {
-            addCriterion("relation_department is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentIsNotNull() {
-            addCriterion("relation_department is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentEqualTo(String value) {
-            addCriterion("relation_department =", value, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentNotEqualTo(String value) {
-            addCriterion("relation_department <>", value, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentGreaterThan(String value) {
-            addCriterion("relation_department >", value, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentGreaterThanOrEqualTo(String value) {
-            addCriterion("relation_department >=", value, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentLessThan(String value) {
-            addCriterion("relation_department <", value, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentLessThanOrEqualTo(String value) {
-            addCriterion("relation_department <=", value, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentLike(String value) {
-            addCriterion("relation_department like", value, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentNotLike(String value) {
-            addCriterion("relation_department not like", value, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentIn(List<String> values) {
-            addCriterion("relation_department in", values, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentNotIn(List<String> values) {
-            addCriterion("relation_department not in", values, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentBetween(String value1, String value2) {
-            addCriterion("relation_department between", value1, value2, "relationDepartment");
-            return (Criteria) this;
-        }
-
-        public Criteria andRelationDepartmentNotBetween(String value1, String value2) {
-            addCriterion("relation_department not between", value1, value2, "relationDepartment");
-            return (Criteria) this;
-        }
-
         public Criteria andStatusIsNull() {
             addCriterion("status is null");
             return (Criteria) this;
@@ -524,53 +544,253 @@ public class UniMemoExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Byte value) {
+        public Criteria andStatusEqualTo(int value) {
             addCriterion("status =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Byte value) {
+        public Criteria andStatusNotEqualTo(int value) {
             addCriterion("status <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Byte value) {
+        public Criteria andStatusGreaterThan(int value) {
             addCriterion("status >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
+        public Criteria andStatusGreaterThanOrEqualTo(int value) {
             addCriterion("status >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Byte value) {
+        public Criteria andStatusLessThan(int value) {
             addCriterion("status <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Byte value) {
+        public Criteria andStatusLessThanOrEqualTo(int value) {
             addCriterion("status <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Byte> values) {
+        public Criteria andStatusIn(List<Integer> values) {
             addCriterion("status in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Byte> values) {
+        public Criteria andStatusNotIn(List<Integer> values) {
             addCriterion("status not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Byte value1, Byte value2) {
+        public Criteria andStatusBetween(int value1, int value2) {
             addCriterion("status between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
+        public Criteria andStatusNotBetween(int value1, int value2) {
             addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorIsNull() {
+            addCriterion("operator is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorIsNotNull() {
+            addCriterion("operator is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorEqualTo(Long value) {
+            addCriterion("operator =", value, "operator");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorNotEqualTo(Long value) {
+            addCriterion("operator <>", value, "operator");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorGreaterThan(Long value) {
+            addCriterion("operator >", value, "operator");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorGreaterThanOrEqualTo(Long value) {
+            addCriterion("operator >=", value, "operator");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorLessThan(Long value) {
+            addCriterion("operator <", value, "operator");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorLessThanOrEqualTo(Long value) {
+            addCriterion("operator <=", value, "operator");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorIn(List<Long> values) {
+            addCriterion("operator in", values, "operator");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorNotIn(List<Long> values) {
+            addCriterion("operator not in", values, "operator");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorBetween(Long value1, Long value2) {
+            addCriterion("operator between", value1, value2, "operator");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorNotBetween(Long value1, Long value2) {
+            addCriterion("operator not between", value1, value2, "operator");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaIsNull() {
+            addCriterion("operator_area is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaIsNotNull() {
+            addCriterion("operator_area is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaEqualTo(String value) {
+            addCriterion("operator_area =", value, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaNotEqualTo(String value) {
+            addCriterion("operator_area <>", value, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaGreaterThan(String value) {
+            addCriterion("operator_area >", value, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaGreaterThanOrEqualTo(String value) {
+            addCriterion("operator_area >=", value, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaLessThan(String value) {
+            addCriterion("operator_area <", value, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaLessThanOrEqualTo(String value) {
+            addCriterion("operator_area <=", value, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaLike(String value) {
+            addCriterion("operator_area like", value, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaNotLike(String value) {
+            addCriterion("operator_area not like", value, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaIn(List<String> values) {
+            addCriterion("operator_area in", values, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaNotIn(List<String> values) {
+            addCriterion("operator_area not in", values, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaBetween(String value1, String value2) {
+            addCriterion("operator_area between", value1, value2, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatorAreaNotBetween(String value1, String value2) {
+            addCriterion("operator_area not between", value1, value2, "operatorArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentIsNull() {
+            addCriterion("operatror_department is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentIsNotNull() {
+            addCriterion("operatror_department is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentEqualTo(String value) {
+            addCriterion("operatror_department =", value, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentNotEqualTo(String value) {
+            addCriterion("operatror_department <>", value, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentGreaterThan(String value) {
+            addCriterion("operatror_department >", value, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentGreaterThanOrEqualTo(String value) {
+            addCriterion("operatror_department >=", value, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentLessThan(String value) {
+            addCriterion("operatror_department <", value, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentLessThanOrEqualTo(String value) {
+            addCriterion("operatror_department <=", value, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentLike(String value) {
+            addCriterion("operatror_department like", value, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentNotLike(String value) {
+            addCriterion("operatror_department not like", value, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentIn(List<String> values) {
+            addCriterion("operatror_department in", values, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentNotIn(List<String> values) {
+            addCriterion("operatror_department not in", values, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentBetween(String value1, String value2) {
+            addCriterion("operatror_department between", value1, value2, "operatrorDepartment");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperatrorDepartmentNotBetween(String value1, String value2) {
+            addCriterion("operatror_department not between", value1, value2, "operatrorDepartment");
             return (Criteria) this;
         }
     }

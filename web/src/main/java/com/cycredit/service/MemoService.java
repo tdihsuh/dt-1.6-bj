@@ -2,8 +2,10 @@ package com.cycredit.service;
 
 import com.cycredit.dao.entity.UniMemo;
 import com.cycredit.dao.entity.UniMemoDepartment;
+import com.cycredit.dao.entity.UniMemoExample;
 import com.cycredit.dao.mapper.UniMemoDepartmentMapper;
 import com.cycredit.dao.mapper.UniMemoMapper;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,13 +32,30 @@ public class MemoService {
     }
 
     public List<UniMemo> findPublishMemo() {
-
-        return null;
+        UniMemoExample uniMemoExample = new UniMemoExample();
+        UniMemoExample.Criteria criteria = uniMemoExample.createCriteria().andStatusEqualTo(1);
+        uniMemoExample.setOffset(0);
+        uniMemoExample.setLimit(10);
+        return uniMemoMapper.selectByExample(uniMemoExample);
     }
 
-    public List<UniMemo> findMyMemo() {
+    public List<UniMemo> findPendingMemo() {
+        UniMemoExample uniMemoExample = new UniMemoExample();
+        UniMemoExample.Criteria criteria = uniMemoExample.createCriteria().andStatusEqualTo(0);
+        uniMemoExample.setOffset(0);
+        uniMemoExample.setLimit(10);
+        return uniMemoMapper.selectByExample(uniMemoExample);
+    }
 
-        return null;
+
+    public List<UniMemo> findMyMemo(Long uid) {
+        UniMemoExample uniMemoExample = new UniMemoExample();
+        UniMemoExample.Criteria criteria = uniMemoExample.createCriteria().andOperatorEqualTo(uid);
+        RowBounds rowBounds = new RowBounds(10, 0);
+
+        uniMemoExample.setOffset(0);
+        uniMemoExample.setLimit(10);
+        return uniMemoMapper.selectByExample(uniMemoExample);
     }
 
 

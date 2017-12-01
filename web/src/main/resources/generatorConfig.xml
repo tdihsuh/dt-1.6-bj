@@ -20,8 +20,7 @@
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
 
 
-        <!--<plugin type="com.cycredit.plugin.PaginationPlugin"></plugin>-->
-
+        <plugin type="com.cycredit.plugins.MySQLLimitPlugin"></plugin>
 
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
@@ -113,14 +112,15 @@
         <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
         <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
         <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
-
         <!--</table>-->
-        <!--<table tableName="uni_memo" domainObjectName="UniMemo"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
 
-        <!--</table>-->
+        <table tableName="uni_memo" domainObjectName="UniMemo"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+            <columnOverride column="status" javaType="int"/>
+        </table>
+
         <!--<table tableName="uni_memo_department" domainObjectName="UniMemoDepartment"-->
         <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
         <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
@@ -149,20 +149,20 @@
         <!--</table>-->
 
 
-        <table tableName="area_rank" domainObjectName="AreaRank"
-               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" selectByExampleQueryId="false">
-            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        <!--<table tableName="area_rank" domainObjectName="AreaRank"-->
+        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
+        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
 
-        </table>
+        <!--</table>-->
 
 
-        <table tableName="department_rank" domainObjectName="DepartmentRank"
-               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" selectByExampleQueryId="false">
-            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        <!--<table tableName="department_rank" domainObjectName="DepartmentRank"-->
+        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
+        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
 
-        </table>
+        <!--</table>-->
 
     </context>
 </generatorConfiguration>
