@@ -61,6 +61,7 @@ public class CreditDealController {
         personDealResult.setDepartment(user.getDepartment());
         personDealResult.setArea(user.getArea());
         personDealResult.setOperator(user.getId());
+        dealService.dealPerson(dealType, pid, description);
         return Response.success("成功");
     }
 
@@ -112,6 +113,7 @@ public class CreditDealController {
         enterpriseDealResult.setDepartment(user.getDepartment());
         enterpriseDealResult.setArea(user.getArea());
         enterpriseDealResult.setOperator(user.getId());
+        dealService.dealEnterprise(dealType, pid, description);
         return Response.success("成功");
     }
 

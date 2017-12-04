@@ -42,6 +42,7 @@ public class DealService {
         personDealResult.setPid(pid);
         personDealResult.setDescription(description);
         personDealResult.setUpdateTime(new Date());
+        personDealResult.setCreateTime(new Date());
         User user = UserInfoThreadLocal.getFromThread();
         personDealResult.setOperator(user.getId());
         personDealResult.setArea(user.getArea());
@@ -56,6 +57,7 @@ public class DealService {
         enterpriseDealResult.setEid(pid);
         enterpriseDealResult.setDescription(description);
         enterpriseDealResult.setUpdateTime(new Date());
+        enterpriseDealResult.setCreateTime(new Date());
         User user = UserInfoThreadLocal.getFromThread();
         enterpriseDealResult.setOperator(user.getId());
         enterpriseDealResult.setArea(user.getArea());
