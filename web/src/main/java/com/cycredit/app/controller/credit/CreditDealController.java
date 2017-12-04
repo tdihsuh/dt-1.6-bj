@@ -56,31 +56,33 @@ public class CreditDealController {
         personDealResult.setDescription(description);
         personDealResult.setDealType(dealType);
 
+        personDealResult.setIdentityCard("123");
+        personDealResult.setName("张三");
+        personDealResult.setTags("重大税收违法,test");
+
+
         personDealResult.setPid(pid);
         User user = UserInfoThreadLocal.getFromThread();
         personDealResult.setDepartment(user.getDepartment());
         personDealResult.setArea(user.getArea());
         personDealResult.setOperator(user.getId());
-        dealService.dealPerson(dealType, pid, description);
+        dealService.dealPerson(personDealResult);
         return Response.success("成功");
     }
 
     /**
      * 联合个人备忘录处理
      *
-     * @param pid
-     * @param dealType
-     * @param description
      * @return
      */
     @RequestMapping(value = "/person/list", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    @ApiOperation(notes = "个人信用主体操作处理", httpMethod = "GET", value = "个人信用主体操作处理")
+    @ApiOperation(notes = "个人信用主体处理记录", httpMethod = "GET", value = "个人信用主体处理记录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object personList(String pid, String dealType, String description) {
+    public Object personList() {
         User user = UserInfoThreadLocal.getFromThread();
         return dealService.findMyPersonDeal(user.getId());
     }
@@ -89,7 +91,6 @@ public class CreditDealController {
     /**
      * 联合企业备忘录处理
      *
-     * @param pid
      * @param dealType
      * @param description
      * @return
@@ -101,31 +102,35 @@ public class CreditDealController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object enterpriseOperation(String pid, String dealType, String description) {
+    public Object enterpriseOperation(String eid, String dealType, String description) {
         EnterpriseDealResult enterpriseDealResult = new EnterpriseDealResult();
         enterpriseDealResult.setUpdateTime(new Date());
         enterpriseDealResult.setCreateTime(new Date());
+        enterpriseDealResult.setCode("123");
+        enterpriseDealResult.setName("测试企业");
+        enterpriseDealResult.setTags("重大税收违法,test");
+
         enterpriseDealResult.setDescription(description);
         enterpriseDealResult.setDealType(dealType);
 
-        enterpriseDealResult.setEid(pid);
+        enterpriseDealResult.setEid(eid);
         User user = UserInfoThreadLocal.getFromThread();
         enterpriseDealResult.setDepartment(user.getDepartment());
         enterpriseDealResult.setArea(user.getArea());
         enterpriseDealResult.setOperator(user.getId());
-        dealService.dealEnterprise(dealType, pid, description);
+        dealService.dealEnterprise(enterpriseDealResult);
         return Response.success("成功");
     }
 
 
     @RequestMapping(value = "/enterprise/list", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    @ApiOperation(notes = "企业信用主体操作处理", httpMethod = "GET", value = "企业信用主体操作处理")
+    @ApiOperation(notes = "企业信用主体处理记录", httpMethod = "GET", value = "企业信用主体处理记录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object enterpriseList(String pid, String dealType, String description) {
+    public Object enterpriseList() {
         User user = UserInfoThreadLocal.getFromThread();
         return dealService.findMyEnterpriseDeal(user.getId());
     }

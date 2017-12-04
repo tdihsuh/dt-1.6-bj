@@ -53,8 +53,6 @@ public class CreditSearchController {
 
     /**
      * @param pid
-     * @param dealType
-     * @param description
      * @return
      */
     @RequestMapping(value = "/personSearch", produces = "application/json;charset=UTF-8")
@@ -63,7 +61,7 @@ public class CreditSearchController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object personSearch(String pid, String dealType, String description) {
+    public Object personSearch(String pid) {
         List<PersonItem> personItems = Lists.newArrayList();
         PersonItem personItem = new PersonItem();
         personItem.setIdentityCard("110100198907180902");
@@ -100,9 +98,6 @@ public class CreditSearchController {
 
 
     /**
-     * @param pid
-     * @param dealType
-     * @param description
      * @return
      */
     @RequestMapping(value = "/enterpriseSearch", produces = "application/json;charset=UTF-8")
@@ -111,7 +106,7 @@ public class CreditSearchController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object enterpriseSearch(String pid, String dealType, String description) {
+    public Object enterpriseSearch(String eid) {
         List<EnterpriseItem> enterpriseItemList = Lists.newArrayList();
         EnterpriseItem enterpriseItem = new EnterpriseItem();
         enterpriseItem.setCode("913710007628687892");

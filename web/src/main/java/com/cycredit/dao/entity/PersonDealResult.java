@@ -12,15 +12,21 @@ public class PersonDealResult implements Serializable {
 
     private String dealType;
 
-    private Date createTime;
-
-    private Date updateTime;
-
     private Long operator;
 
     private String department;
 
     private String area;
+
+    private String name;
+
+    private String identityCard;
+
+    private String tags;
+
+    private Date updateTime;
+
+    private Date createTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -56,22 +62,6 @@ public class PersonDealResult implements Serializable {
         this.dealType = dealType == null ? null : dealType.trim();
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public Long getOperator() {
         return operator;
     }
@@ -94,5 +84,45 @@ public class PersonDealResult implements Serializable {
 
     public void setArea(String area) {
         this.area = area == null ? null : area.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getIdentityCard() {
+        return identityCard;
+    }
+
+    public void setIdentityCard(String identityCard) {
+        this.identityCard = identityCard == null ? null : identityCard.trim();
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags == null ? null : tags.trim();
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

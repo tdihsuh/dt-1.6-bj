@@ -36,32 +36,12 @@ public class DealService {
     }
 
 
-    public void dealPerson(String dealType, String pid, String description) {
-        PersonDealResult personDealResult = new PersonDealResult();
-        personDealResult.setDealType(dealType);
-        personDealResult.setPid(pid);
-        personDealResult.setDescription(description);
-        personDealResult.setUpdateTime(new Date());
-        personDealResult.setCreateTime(new Date());
-        User user = UserInfoThreadLocal.getFromThread();
-        personDealResult.setOperator(user.getId());
-        personDealResult.setArea(user.getArea());
-        personDealResult.setDepartment(user.getDepartment());
+    public void dealPerson(PersonDealResult personDealResult) {
         personDealResultMapper.insertSelective(personDealResult);
 
     }
 
-    public void dealEnterprise(String dealType, String pid, String description) {
-        EnterpriseDealResult enterpriseDealResult = new EnterpriseDealResult();
-        enterpriseDealResult.setDealType(dealType);
-        enterpriseDealResult.setEid(pid);
-        enterpriseDealResult.setDescription(description);
-        enterpriseDealResult.setUpdateTime(new Date());
-        enterpriseDealResult.setCreateTime(new Date());
-        User user = UserInfoThreadLocal.getFromThread();
-        enterpriseDealResult.setOperator(user.getId());
-        enterpriseDealResult.setArea(user.getArea());
-        enterpriseDealResult.setDepartment(user.getDepartment());
+    public void dealEnterprise(EnterpriseDealResult enterpriseDealResult) {
         enterpriseDealResultMapper.insertSelective(enterpriseDealResult);
     }
 

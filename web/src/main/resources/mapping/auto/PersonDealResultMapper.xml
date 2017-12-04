@@ -6,11 +6,14 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="pid" jdbcType="VARCHAR" property="pid" />
     <result column="deal_type" jdbcType="VARCHAR" property="dealType" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="operator" jdbcType="BIGINT" property="operator" />
     <result column="department" jdbcType="VARCHAR" property="department" />
     <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="identity_card" jdbcType="VARCHAR" property="identityCard" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, description, pid, deal_type, create_time, update_time, operator, department, 
-    area
+    id, description, pid, deal_type, operator, department, area, name, identity_card, 
+    tags, update_time, create_time
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.PersonDealResultExample" resultMap="BaseResultMap">
     select
@@ -118,11 +121,13 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into person_deal_result (description, pid, deal_type, 
-      create_time, update_time, operator, 
-      department, area)
+      operator, department, area, 
+      name, identity_card, tags, 
+      update_time, create_time)
     values (#{description,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{dealType,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=BIGINT}, 
-      #{department,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR})
+      #{operator,jdbcType=BIGINT}, #{department,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{identityCard,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.PersonDealResult">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -139,12 +144,6 @@
       <if test="dealType != null">
         deal_type,
       </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
       <if test="operator != null">
         operator,
       </if>
@@ -153,6 +152,21 @@
       </if>
       <if test="area != null">
         area,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="identityCard != null">
+        identity_card,
+      </if>
+      <if test="tags != null">
+        tags,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -165,12 +179,6 @@
       <if test="dealType != null">
         #{dealType,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="operator != null">
         #{operator,jdbcType=BIGINT},
       </if>
@@ -179,6 +187,21 @@
       </if>
       <if test="area != null">
         #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCard != null">
+        #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -203,12 +226,6 @@
       <if test="record.dealType != null">
         deal_type = #{record.dealType,jdbcType=VARCHAR},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="record.operator != null">
         operator = #{record.operator,jdbcType=BIGINT},
       </if>
@@ -217,6 +234,21 @@
       </if>
       <if test="record.area != null">
         area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identityCard != null">
+        identity_card = #{record.identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tags != null">
+        tags = #{record.tags,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -229,11 +261,14 @@
       description = #{record.description,jdbcType=VARCHAR},
       pid = #{record.pid,jdbcType=VARCHAR},
       deal_type = #{record.dealType,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       operator = #{record.operator,jdbcType=BIGINT},
       department = #{record.department,jdbcType=VARCHAR},
-      area = #{record.area,jdbcType=VARCHAR}
+      area = #{record.area,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      identity_card = #{record.identityCard,jdbcType=VARCHAR},
+      tags = #{record.tags,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -250,12 +285,6 @@
       <if test="dealType != null">
         deal_type = #{dealType,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="operator != null">
         operator = #{operator,jdbcType=BIGINT},
       </if>
@@ -265,6 +294,21 @@
       <if test="area != null">
         area = #{area,jdbcType=VARCHAR},
       </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCard != null">
+        identity_card = #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -273,11 +317,14 @@
     set description = #{description,jdbcType=VARCHAR},
       pid = #{pid,jdbcType=VARCHAR},
       deal_type = #{dealType,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
       operator = #{operator,jdbcType=BIGINT},
       department = #{department,jdbcType=VARCHAR},
-      area = #{area,jdbcType=VARCHAR}
+      area = #{area,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      identity_card = #{identityCard,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
