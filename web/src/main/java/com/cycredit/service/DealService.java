@@ -1,10 +1,7 @@
 package com.cycredit.service;
 
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
-import com.cycredit.dao.entity.EnterpriseDealResult;
-import com.cycredit.dao.entity.PersonDealResult;
-import com.cycredit.dao.entity.PersonDealResultExample;
-import com.cycredit.dao.entity.User;
+import com.cycredit.dao.entity.*;
 import com.cycredit.dao.mapper.EnterpriseDealResultMapper;
 import com.cycredit.dao.mapper.PersonDealResultMapper;
 import org.springframework.stereotype.Service;
@@ -32,9 +29,10 @@ public class DealService {
         return personDealResultMapper.selectByExample(personDealResultExample);
     }
 
-    public List<PersonDealResult> findMyEnterpriseDeal() {
-
-        return null;
+    public List<EnterpriseDealResult> findMyEnterpriseDeal(Long uid) {
+        EnterpriseDealResultExample enterpriseDealResultExample = new EnterpriseDealResultExample();
+        enterpriseDealResultExample.createCriteria().andOperatorEqualTo(uid);
+        return enterpriseDealResultMapper.selectByExample(enterpriseDealResultExample);
     }
 
 

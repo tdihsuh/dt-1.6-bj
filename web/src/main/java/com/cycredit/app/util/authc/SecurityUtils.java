@@ -57,6 +57,8 @@ public class SecurityUtils {
         user.setArea(area);
         user.setDepartment(department);
         user.setName(name);
+        //TODO add 用户权限
+
         UserInfoCache.setToCache(uid.toString(), user);
 
 
