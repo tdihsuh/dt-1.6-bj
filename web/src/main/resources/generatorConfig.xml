@@ -73,46 +73,19 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <!--<table tableName="test" domainObjectName="Test"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--&lt;!&ndash;<generatedKey column="id" identity="true" sqlStatement="Oracle"/>&ndash;&gt;-->
-        <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
-        <!--</table>-->
 
-        <!--<table tableName="credit_score" domainObjectName="CreditScore"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--&lt;!&ndash;<generatedKey column="id" identity="true" sqlStatement="Oracle"/>&ndash;&gt;-->
-        <!--<columnOverride column="mapping_no" javaType="java.lang.Long"/>-->
-        <!--<columnOverride column="is_qianfei" javaType="java.lang.Boolean"/>-->
+        <table tableName="user" domainObjectName="User"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
 
-        <!--<columnOverride column="create_time" javaType="java.util.Date"/>-->
-        <!--<columnOverride column="update_time" javaType="java.util.Date"/>-->
-        <!--</table>-->
+        </table>
 
-        <!--<table tableName="identity_mapping" domainObjectName="IdentityMapping"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--&lt;!&ndash;<generatedKey column="id" identity="true" sqlStatement="Oracle"/>&ndash;&gt;-->
-        <!--<columnOverride column="mapping_no" javaType="java.lang.Long"/>-->
-        <!--</table>-->
-
-        <!--<table tableName="user" domainObjectName="User"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
-
-        <!--</table>-->
-
-        <!--<table tableName="user_token" domainObjectName="UserToken"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
-        <!--</table>-->
+        <table tableName="user_token" domainObjectName="UserToken"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        </table>
 
         <table tableName="uni_memo" domainObjectName="UniMemo"
                enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
@@ -121,48 +94,43 @@
             <columnOverride column="status" javaType="int"/>
         </table>
 
-        <!--<table tableName="uni_memo_department" domainObjectName="UniMemoDepartment"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
+        <table tableName="uni_memo_department" domainObjectName="UniMemoDepartment"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        </table>
 
-        <!--</table>-->
+        <table tableName="search_count" domainObjectName="SearchCount"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        </table>
 
-        <!--<table tableName="search_count" domainObjectName="SearchCount"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
+        <table tableName="person_deal_result" domainObjectName="PersonDealResult"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        </table>
 
-        <!--</table>-->
-
-        <!--<table tableName="person_deal_result" domainObjectName="PersonDealResult"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
-
-        <!--</table>-->
-
-        <!--<table tableName="enterprise_deal_result" domainObjectName="EnterpriseDealResult"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
-        <!--</table>-->
+        <table tableName="enterprise_deal_result" domainObjectName="EnterpriseDealResult"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        </table>
 
 
-        <!--<table tableName="area_rank" domainObjectName="AreaRank"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
+        <table tableName="area_rank" domainObjectName="AreaRank"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        </table>
 
-        <!--</table>-->
 
-
-        <!--<table tableName="department_rank" domainObjectName="DepartmentRank"-->
-        <!--enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"-->
-        <!--enableSelectByExample="true" selectByExampleQueryId="false">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="mysql"/>-->
-
-        <!--</table>-->
+        <table tableName="department_rank" domainObjectName="DepartmentRank"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        </table>
 
     </context>
 </generatorConfiguration>

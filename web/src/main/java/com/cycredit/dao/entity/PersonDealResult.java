@@ -16,7 +16,7 @@ public class PersonDealResult implements Serializable {
 
     private Date updateTime;
 
-    private String operator;
+    private Long operator;
 
     private String department;
 
@@ -72,12 +72,12 @@ public class PersonDealResult implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public String getOperator() {
+    public Long getOperator() {
         return operator;
     }
 
-    public void setOperator(String operator) {
-        this.operator = operator == null ? null : operator.trim();
+    public void setOperator(Long operator) {
+        this.operator = operator;
     }
 
     public String getDepartment() {

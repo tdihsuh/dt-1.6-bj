@@ -4,7 +4,9 @@ import com.cycredit.dao.entity.SearchCount;
 import com.cycredit.dao.entity.SearchCountExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface SearchCountMapper {
     long countByExample(SearchCountExample example);
 

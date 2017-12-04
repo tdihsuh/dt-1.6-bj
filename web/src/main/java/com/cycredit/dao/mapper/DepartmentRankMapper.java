@@ -4,7 +4,9 @@ import com.cycredit.dao.entity.DepartmentRank;
 import com.cycredit.dao.entity.DepartmentRankExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface DepartmentRankMapper {
     long countByExample(DepartmentRankExample example);
 

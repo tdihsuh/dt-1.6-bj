@@ -11,6 +11,10 @@ public class SearchCountExample {
 
     protected List<Criteria> oredCriteria;
 
+    private Integer limit;
+
+    private Integer offset;
+
     public SearchCountExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -62,6 +66,22 @@ public class SearchCountExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Integer getOffset() {
+        return offset;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -492,6 +512,76 @@ public class SearchCountExample {
 
         public Criteria andAreaNotBetween(String value1, String value2) {
             addCriterion("area not between", value1, value2, "area");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentIsNull() {
+            addCriterion("department is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentIsNotNull() {
+            addCriterion("department is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentEqualTo(String value) {
+            addCriterion("department =", value, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentNotEqualTo(String value) {
+            addCriterion("department <>", value, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentGreaterThan(String value) {
+            addCriterion("department >", value, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentGreaterThanOrEqualTo(String value) {
+            addCriterion("department >=", value, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentLessThan(String value) {
+            addCriterion("department <", value, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentLessThanOrEqualTo(String value) {
+            addCriterion("department <=", value, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentLike(String value) {
+            addCriterion("department like", value, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentNotLike(String value) {
+            addCriterion("department not like", value, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentIn(List<String> values) {
+            addCriterion("department in", values, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentNotIn(List<String> values) {
+            addCriterion("department not in", values, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentBetween(String value1, String value2) {
+            addCriterion("department between", value1, value2, "department");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepartmentNotBetween(String value1, String value2) {
+            addCriterion("department not between", value1, value2, "department");
             return (Criteria) this;
         }
 

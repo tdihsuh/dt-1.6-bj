@@ -4,7 +4,9 @@ import com.cycredit.dao.entity.PersonDealResult;
 import com.cycredit.dao.entity.PersonDealResultExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PersonDealResultMapper {
     long countByExample(PersonDealResultExample example);
 

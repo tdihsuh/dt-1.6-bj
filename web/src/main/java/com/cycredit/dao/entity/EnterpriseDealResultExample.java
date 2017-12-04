@@ -11,6 +11,10 @@ public class EnterpriseDealResultExample {
 
     protected List<Criteria> oredCriteria;
 
+    private Integer limit;
+
+    private Integer offset;
+
     public EnterpriseDealResultExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -62,6 +66,22 @@ public class EnterpriseDealResultExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Integer getOffset() {
+        return offset;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -505,62 +525,52 @@ public class EnterpriseDealResultExample {
             return (Criteria) this;
         }
 
-        public Criteria andOperatorEqualTo(String value) {
+        public Criteria andOperatorEqualTo(Long value) {
             addCriterion("operator =", value, "operator");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorNotEqualTo(String value) {
+        public Criteria andOperatorNotEqualTo(Long value) {
             addCriterion("operator <>", value, "operator");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorGreaterThan(String value) {
+        public Criteria andOperatorGreaterThan(Long value) {
             addCriterion("operator >", value, "operator");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorGreaterThanOrEqualTo(String value) {
+        public Criteria andOperatorGreaterThanOrEqualTo(Long value) {
             addCriterion("operator >=", value, "operator");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorLessThan(String value) {
+        public Criteria andOperatorLessThan(Long value) {
             addCriterion("operator <", value, "operator");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorLessThanOrEqualTo(String value) {
+        public Criteria andOperatorLessThanOrEqualTo(Long value) {
             addCriterion("operator <=", value, "operator");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorLike(String value) {
-            addCriterion("operator like", value, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorNotLike(String value) {
-            addCriterion("operator not like", value, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorIn(List<String> values) {
+        public Criteria andOperatorIn(List<Long> values) {
             addCriterion("operator in", values, "operator");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorNotIn(List<String> values) {
+        public Criteria andOperatorNotIn(List<Long> values) {
             addCriterion("operator not in", values, "operator");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorBetween(String value1, String value2) {
+        public Criteria andOperatorBetween(Long value1, Long value2) {
             addCriterion("operator between", value1, value2, "operator");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorNotBetween(String value1, String value2) {
+        public Criteria andOperatorNotBetween(Long value1, Long value2) {
             addCriterion("operator not between", value1, value2, "operator");
             return (Criteria) this;
         }

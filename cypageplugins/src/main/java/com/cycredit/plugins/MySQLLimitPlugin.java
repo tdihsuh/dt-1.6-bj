@@ -2,18 +2,14 @@ package com.cycredit.plugins;
 
 import java.util.List;
 
+import org.mybatis.generator.api.GeneratedXmlFile;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.JavaVisibility;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.Parameter;
-import org.mybatis.generator.api.dom.java.PrimitiveTypeWrapper;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
+import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
+
 
 public class MySQLLimitPlugin extends PluginAdapter {
 
@@ -22,11 +18,39 @@ public class MySQLLimitPlugin extends PluginAdapter {
         return true;
     }
 
+
+    @Override
+    public boolean sqlMapGenerated(GeneratedXmlFile sqlMap, IntrospectedTable introspectedTable) {
+        try {
+            java.lang.reflect.Field field = sqlMap.getClass().getDeclaredField("isMergeable");
+            field.setAccessible(true);
+            field.setBoolean(sqlMap, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+
+    @Override
+    public boolean clientGenerated(Interface interfaze,
+                                   TopLevelClass topLevelClass,
+                                   IntrospectedTable introspectedTable) {
+
+        FullyQualifiedJavaType repository = new FullyQualifiedJavaType("org.springframework.stereotype.Repository");
+
+        interfaze.addImportedType(repository);
+        interfaze.addAnnotation("@Repository");
+
+        return true;
+    }
+
     /**
      * 为每个Example类添加limit和offset属性已经set、get方法
      */
     @Override
     public boolean modelExampleClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+
 
         PrimitiveTypeWrapper integerWrapper = FullyQualifiedJavaType.getIntInstance().getPrimitiveTypeWrapper();
 

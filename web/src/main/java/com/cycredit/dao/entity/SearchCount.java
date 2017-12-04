@@ -16,6 +16,8 @@ public class SearchCount implements Serializable {
 
     private String area;
 
+    private String department;
+
     private Date createTime;
 
     private static final long serialVersionUID = 1L;
@@ -66,6 +68,14 @@ public class SearchCount implements Serializable {
 
     public void setArea(String area) {
         this.area = area == null ? null : area.trim();
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department == null ? null : department.trim();
     }
 
     public Date getCreateTime() {

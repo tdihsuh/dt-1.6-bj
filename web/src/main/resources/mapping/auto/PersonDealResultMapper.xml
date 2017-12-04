@@ -8,7 +8,7 @@
     <result column="deal_type" jdbcType="VARCHAR" property="dealType" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="operator" jdbcType="BIGINT" property="operator" />
     <result column="department" jdbcType="VARCHAR" property="department" />
     <result column="area" jdbcType="VARCHAR" property="area" />
   </resultMap>
@@ -88,6 +88,14 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -113,7 +121,7 @@
       create_time, update_time, operator, 
       department, area)
     values (#{description,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{dealType,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=BIGINT}, 
       #{department,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.PersonDealResult">
@@ -164,7 +172,7 @@
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="operator != null">
-        #{operator,jdbcType=VARCHAR},
+        #{operator,jdbcType=BIGINT},
       </if>
       <if test="department != null">
         #{department,jdbcType=VARCHAR},
@@ -202,7 +210,7 @@
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.operator != null">
-        operator = #{record.operator,jdbcType=VARCHAR},
+        operator = #{record.operator,jdbcType=BIGINT},
       </if>
       <if test="record.department != null">
         department = #{record.department,jdbcType=VARCHAR},
@@ -223,7 +231,7 @@
       deal_type = #{record.dealType,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      operator = #{record.operator,jdbcType=VARCHAR},
+      operator = #{record.operator,jdbcType=BIGINT},
       department = #{record.department,jdbcType=VARCHAR},
       area = #{record.area,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -249,7 +257,7 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="operator != null">
-        operator = #{operator,jdbcType=VARCHAR},
+        operator = #{operator,jdbcType=BIGINT},
       </if>
       <if test="department != null">
         department = #{department,jdbcType=VARCHAR},
@@ -267,7 +275,7 @@
       deal_type = #{dealType,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      operator = #{operator,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=BIGINT},
       department = #{department,jdbcType=VARCHAR},
       area = #{area,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}

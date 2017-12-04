@@ -4,7 +4,9 @@ import com.cycredit.dao.entity.AreaRank;
 import com.cycredit.dao.entity.AreaRankExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AreaRankMapper {
     long countByExample(AreaRankExample example);
 

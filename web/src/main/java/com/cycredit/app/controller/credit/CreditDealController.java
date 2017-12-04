@@ -42,7 +42,7 @@ public class CreditDealController {
     public Object personOperation(String pid, String dealType, String description) {
 
 
-        return Response.success("成功", UserInfoThreadLocal.getFromThread());
+        return Response.success("成功");
     }
 
     /**

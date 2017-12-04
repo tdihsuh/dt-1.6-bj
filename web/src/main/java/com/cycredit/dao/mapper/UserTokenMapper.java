@@ -4,7 +4,9 @@ import com.cycredit.dao.entity.UserToken;
 import com.cycredit.dao.entity.UserTokenExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserTokenMapper {
     long countByExample(UserTokenExample example);
 

@@ -4,7 +4,9 @@ import com.cycredit.dao.entity.EnterpriseDealResult;
 import com.cycredit.dao.entity.EnterpriseDealResultExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface EnterpriseDealResultMapper {
     long countByExample(EnterpriseDealResultExample example);
 

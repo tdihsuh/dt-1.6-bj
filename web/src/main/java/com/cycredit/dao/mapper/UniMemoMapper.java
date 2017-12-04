@@ -4,7 +4,9 @@ import com.cycredit.dao.entity.UniMemo;
 import com.cycredit.dao.entity.UniMemoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UniMemoMapper {
     long countByExample(UniMemoExample example);
 
