@@ -10,19 +10,19 @@ public class EnterpriseDealResult implements Serializable {
 
     private String eid;
 
+    private String name;
+
+    private String code;
+
     private String dealType;
 
     private Long operator;
 
-    private String department;
+    private String operatorDepartmentCode;
 
-    private String area;
+    private String operatorAreaCode;
 
     private String tags;
-
-    private String name;
-
-    private String code;
 
     private Date createTime;
 
@@ -54,6 +54,22 @@ public class EnterpriseDealResult implements Serializable {
         this.eid = eid == null ? null : eid.trim();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
     public String getDealType() {
         return dealType;
     }
@@ -70,20 +86,20 @@ public class EnterpriseDealResult implements Serializable {
         this.operator = operator;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getOperatorDepartmentCode() {
+        return operatorDepartmentCode;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setOperatorDepartmentCode(String operatorDepartmentCode) {
+        this.operatorDepartmentCode = operatorDepartmentCode == null ? null : operatorDepartmentCode.trim();
     }
 
-    public String getArea() {
-        return area;
+    public String getOperatorAreaCode() {
+        return operatorAreaCode;
     }
 
-    public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
+    public void setOperatorAreaCode(String operatorAreaCode) {
+        this.operatorAreaCode = operatorAreaCode == null ? null : operatorAreaCode.trim();
     }
 
     public String getTags() {
@@ -92,22 +108,6 @@ public class EnterpriseDealResult implements Serializable {
 
     public void setTags(String tags) {
         this.tags = tags == null ? null : tags.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
     }
 
     public Date getCreateTime() {

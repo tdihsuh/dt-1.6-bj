@@ -3,7 +3,7 @@
 <mapper namespace="com.cycredit.dao.mapper.DepartmentRankMapper">
   <resultMap id="BaseResultMap" type="com.cycredit.dao.entity.DepartmentRank">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="department_code" jdbcType="VARCHAR" property="departmentCode" />
     <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
     <result column="rank" jdbcType="INTEGER" property="rank" />
     <result column="join_count" jdbcType="INTEGER" property="joinCount" />
@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, department, department_name, rank, join_count, uni_count, uni_pubnish_count, 
+    id, department_code, department_name, rank, join_count, uni_count, uni_pubnish_count, 
     uni_bonus_count, select_count, active_count, update_time
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.DepartmentRankExample" resultMap="BaseResultMap">
@@ -119,11 +119,11 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into department_rank (department, department_name, rank, 
+    insert into department_rank (department_code, department_name, rank, 
       join_count, uni_count, uni_pubnish_count, 
       uni_bonus_count, select_count, active_count, 
       update_time)
-    values (#{department,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER}, 
+    values (#{departmentCode,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER}, 
       #{joinCount,jdbcType=INTEGER}, #{uniCount,jdbcType=INTEGER}, #{uniPubnishCount,jdbcType=INTEGER}, 
       #{uniBonusCount,jdbcType=INTEGER}, #{selectCount,jdbcType=INTEGER}, #{activeCount,jdbcType=INTEGER}, 
       #{updateTime,jdbcType=TIMESTAMP})
@@ -134,8 +134,8 @@
     </selectKey>
     insert into department_rank
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="department != null">
-        department,
+      <if test="departmentCode != null">
+        department_code,
       </if>
       <if test="departmentName != null">
         department_name,
@@ -166,8 +166,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
+      <if test="departmentCode != null">
+        #{departmentCode,jdbcType=VARCHAR},
       </if>
       <if test="departmentName != null">
         #{departmentName,jdbcType=VARCHAR},
@@ -210,8 +210,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=VARCHAR},
+      <if test="record.departmentCode != null">
+        department_code = #{record.departmentCode,jdbcType=VARCHAR},
       </if>
       <if test="record.departmentName != null">
         department_name = #{record.departmentName,jdbcType=VARCHAR},
@@ -248,7 +248,7 @@
   <update id="updateByExample" parameterType="map">
     update department_rank
     set id = #{record.id,jdbcType=INTEGER},
-      department = #{record.department,jdbcType=VARCHAR},
+      department_code = #{record.departmentCode,jdbcType=VARCHAR},
       department_name = #{record.departmentName,jdbcType=VARCHAR},
       rank = #{record.rank,jdbcType=INTEGER},
       join_count = #{record.joinCount,jdbcType=INTEGER},
@@ -265,8 +265,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cycredit.dao.entity.DepartmentRank">
     update department_rank
     <set>
-      <if test="department != null">
-        department = #{department,jdbcType=VARCHAR},
+      <if test="departmentCode != null">
+        department_code = #{departmentCode,jdbcType=VARCHAR},
       </if>
       <if test="departmentName != null">
         department_name = #{departmentName,jdbcType=VARCHAR},
@@ -300,7 +300,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cycredit.dao.entity.DepartmentRank">
     update department_rank
-    set department = #{department,jdbcType=VARCHAR},
+    set department_code = #{departmentCode,jdbcType=VARCHAR},
       department_name = #{departmentName,jdbcType=VARCHAR},
       rank = #{rank,jdbcType=INTEGER},
       join_count = #{joinCount,jdbcType=INTEGER},

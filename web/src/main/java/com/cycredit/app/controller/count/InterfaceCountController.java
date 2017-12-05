@@ -59,45 +59,4 @@ public class InterfaceCountController {
     }
 
 
-    /**
-     * 联合个人备忘录处理
-     *
-     * @param pid
-     * @return
-     */
-    @RequestMapping(value = "/personSearch", produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    @ApiOperation(notes = "个人信用主体搜索统计", httpMethod = "GET", value = "个人信用主体搜索统计")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "token", paramType = "header", value = "token"),
-            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid"),
-    })
-    public Object addPersonCount(String pid) {
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
-        return Response.success("成功");
-    }
-
-    /**
-     * 联合企业备忘录处理
-     *
-     * @param pid
-     * @return
-     */
-    @RequestMapping(value = "/enterpriseSearch", produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    @ApiOperation(notes = "企业信用主体搜索统计", httpMethod = "GET", value = "企业信用主体搜索统计")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "token", paramType = "header", value = "token"),
-            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid"),
-    })
-    public Object addEnterpriseCount(String pid, String dealType, String description) {
-
-        Map map = new HashMap();
-        map.put("key", 123);
-        map.put("value", "你好");
-        return Response.success("成功");
-    }
-
 }

@@ -9,9 +9,9 @@ public class User implements Serializable {
 
     private String password;
 
-    private String department;
+    private String departmentCode;
 
-    private String area;
+    private String areaCode;
 
     private static final long serialVersionUID = 1L;
 
@@ -39,19 +39,19 @@ public class User implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDepartmentCode() {
+        return departmentCode;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode == null ? null : departmentCode.trim();
     }
 
-    public String getArea() {
-        return area;
+    public String getAreaCode() {
+        return areaCode;
     }
 
-    public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode == null ? null : areaCode.trim();
     }
 }

@@ -464,73 +464,73 @@ public class UniMemoExample {
             return (Criteria) this;
         }
 
-        public Criteria andTagIsNull() {
-            addCriterion("tag is null");
+        public Criteria andTagsIsNull() {
+            addCriterion("tags is null");
             return (Criteria) this;
         }
 
-        public Criteria andTagIsNotNull() {
-            addCriterion("tag is not null");
+        public Criteria andTagsIsNotNull() {
+            addCriterion("tags is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTagEqualTo(String value) {
-            addCriterion("tag =", value, "tag");
+        public Criteria andTagsEqualTo(String value) {
+            addCriterion("tags =", value, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagNotEqualTo(String value) {
-            addCriterion("tag <>", value, "tag");
+        public Criteria andTagsNotEqualTo(String value) {
+            addCriterion("tags <>", value, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagGreaterThan(String value) {
-            addCriterion("tag >", value, "tag");
+        public Criteria andTagsGreaterThan(String value) {
+            addCriterion("tags >", value, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagGreaterThanOrEqualTo(String value) {
-            addCriterion("tag >=", value, "tag");
+        public Criteria andTagsGreaterThanOrEqualTo(String value) {
+            addCriterion("tags >=", value, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagLessThan(String value) {
-            addCriterion("tag <", value, "tag");
+        public Criteria andTagsLessThan(String value) {
+            addCriterion("tags <", value, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagLessThanOrEqualTo(String value) {
-            addCriterion("tag <=", value, "tag");
+        public Criteria andTagsLessThanOrEqualTo(String value) {
+            addCriterion("tags <=", value, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagLike(String value) {
-            addCriterion("tag like", value, "tag");
+        public Criteria andTagsLike(String value) {
+            addCriterion("tags like", value, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagNotLike(String value) {
-            addCriterion("tag not like", value, "tag");
+        public Criteria andTagsNotLike(String value) {
+            addCriterion("tags not like", value, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagIn(List<String> values) {
-            addCriterion("tag in", values, "tag");
+        public Criteria andTagsIn(List<String> values) {
+            addCriterion("tags in", values, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagNotIn(List<String> values) {
-            addCriterion("tag not in", values, "tag");
+        public Criteria andTagsNotIn(List<String> values) {
+            addCriterion("tags not in", values, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagBetween(String value1, String value2) {
-            addCriterion("tag between", value1, value2, "tag");
+        public Criteria andTagsBetween(String value1, String value2) {
+            addCriterion("tags between", value1, value2, "tags");
             return (Criteria) this;
         }
 
-        public Criteria andTagNotBetween(String value1, String value2) {
-            addCriterion("tag not between", value1, value2, "tag");
+        public Criteria andTagsNotBetween(String value1, String value2) {
+            addCriterion("tags not between", value1, value2, "tags");
             return (Criteria) this;
         }
 
@@ -654,143 +654,143 @@ public class UniMemoExample {
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaIsNull() {
-            addCriterion("operator_area is null");
+        public Criteria andOperatorAreaCodeIsNull() {
+            addCriterion("operator_area_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaIsNotNull() {
-            addCriterion("operator_area is not null");
+        public Criteria andOperatorAreaCodeIsNotNull() {
+            addCriterion("operator_area_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaEqualTo(String value) {
-            addCriterion("operator_area =", value, "operatorArea");
+        public Criteria andOperatorAreaCodeEqualTo(String value) {
+            addCriterion("operator_area_code =", value, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaNotEqualTo(String value) {
-            addCriterion("operator_area <>", value, "operatorArea");
+        public Criteria andOperatorAreaCodeNotEqualTo(String value) {
+            addCriterion("operator_area_code <>", value, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaGreaterThan(String value) {
-            addCriterion("operator_area >", value, "operatorArea");
+        public Criteria andOperatorAreaCodeGreaterThan(String value) {
+            addCriterion("operator_area_code >", value, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaGreaterThanOrEqualTo(String value) {
-            addCriterion("operator_area >=", value, "operatorArea");
+        public Criteria andOperatorAreaCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("operator_area_code >=", value, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaLessThan(String value) {
-            addCriterion("operator_area <", value, "operatorArea");
+        public Criteria andOperatorAreaCodeLessThan(String value) {
+            addCriterion("operator_area_code <", value, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaLessThanOrEqualTo(String value) {
-            addCriterion("operator_area <=", value, "operatorArea");
+        public Criteria andOperatorAreaCodeLessThanOrEqualTo(String value) {
+            addCriterion("operator_area_code <=", value, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaLike(String value) {
-            addCriterion("operator_area like", value, "operatorArea");
+        public Criteria andOperatorAreaCodeLike(String value) {
+            addCriterion("operator_area_code like", value, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaNotLike(String value) {
-            addCriterion("operator_area not like", value, "operatorArea");
+        public Criteria andOperatorAreaCodeNotLike(String value) {
+            addCriterion("operator_area_code not like", value, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaIn(List<String> values) {
-            addCriterion("operator_area in", values, "operatorArea");
+        public Criteria andOperatorAreaCodeIn(List<String> values) {
+            addCriterion("operator_area_code in", values, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaNotIn(List<String> values) {
-            addCriterion("operator_area not in", values, "operatorArea");
+        public Criteria andOperatorAreaCodeNotIn(List<String> values) {
+            addCriterion("operator_area_code not in", values, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaBetween(String value1, String value2) {
-            addCriterion("operator_area between", value1, value2, "operatorArea");
+        public Criteria andOperatorAreaCodeBetween(String value1, String value2) {
+            addCriterion("operator_area_code between", value1, value2, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorAreaNotBetween(String value1, String value2) {
-            addCriterion("operator_area not between", value1, value2, "operatorArea");
+        public Criteria andOperatorAreaCodeNotBetween(String value1, String value2) {
+            addCriterion("operator_area_code not between", value1, value2, "operatorAreaCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentIsNull() {
-            addCriterion("operatror_department is null");
+        public Criteria andOperatrorDepartmentCodeIsNull() {
+            addCriterion("operatror_department_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentIsNotNull() {
-            addCriterion("operatror_department is not null");
+        public Criteria andOperatrorDepartmentCodeIsNotNull() {
+            addCriterion("operatror_department_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentEqualTo(String value) {
-            addCriterion("operatror_department =", value, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeEqualTo(String value) {
+            addCriterion("operatror_department_code =", value, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentNotEqualTo(String value) {
-            addCriterion("operatror_department <>", value, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeNotEqualTo(String value) {
+            addCriterion("operatror_department_code <>", value, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentGreaterThan(String value) {
-            addCriterion("operatror_department >", value, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeGreaterThan(String value) {
+            addCriterion("operatror_department_code >", value, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentGreaterThanOrEqualTo(String value) {
-            addCriterion("operatror_department >=", value, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("operatror_department_code >=", value, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentLessThan(String value) {
-            addCriterion("operatror_department <", value, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeLessThan(String value) {
+            addCriterion("operatror_department_code <", value, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentLessThanOrEqualTo(String value) {
-            addCriterion("operatror_department <=", value, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeLessThanOrEqualTo(String value) {
+            addCriterion("operatror_department_code <=", value, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentLike(String value) {
-            addCriterion("operatror_department like", value, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeLike(String value) {
+            addCriterion("operatror_department_code like", value, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentNotLike(String value) {
-            addCriterion("operatror_department not like", value, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeNotLike(String value) {
+            addCriterion("operatror_department_code not like", value, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentIn(List<String> values) {
-            addCriterion("operatror_department in", values, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeIn(List<String> values) {
+            addCriterion("operatror_department_code in", values, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentNotIn(List<String> values) {
-            addCriterion("operatror_department not in", values, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeNotIn(List<String> values) {
+            addCriterion("operatror_department_code not in", values, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentBetween(String value1, String value2) {
-            addCriterion("operatror_department between", value1, value2, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeBetween(String value1, String value2) {
+            addCriterion("operatror_department_code between", value1, value2, "operatrorDepartmentCode");
             return (Criteria) this;
         }
 
-        public Criteria andOperatrorDepartmentNotBetween(String value1, String value2) {
-            addCriterion("operatror_department not between", value1, value2, "operatrorDepartment");
+        public Criteria andOperatrorDepartmentCodeNotBetween(String value1, String value2) {
+            addCriterion("operatror_department_code not between", value1, value2, "operatrorDepartmentCode");
             return (Criteria) this;
         }
     }

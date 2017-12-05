@@ -39,7 +39,7 @@ public class SecurityUtils {
 
     //token -> user
 
-    public static void loginSuccess(String username, Long uid, String name, String area, String department, HttpServletResponse response) {
+    public static void loginSuccess(String username, Long uid, String areaCode, String departmentCode, HttpServletResponse response) {
 
         //add user token cache
         String token = UUID.randomUUID().toString();
@@ -54,11 +54,10 @@ public class SecurityUtils {
         //add userinfo cache
         User user = new User();
         user.setId(uid);
-        user.setArea(area);
-        user.setDepartment(department);
-        user.setName(name);
+        user.setAreaCode(areaCode);
+        user.setDepartmentCode(departmentCode);
+        user.setName(username);
         //TODO add 用户权限
-
         UserInfoCache.setToCache(uid.toString(), user);
 
 

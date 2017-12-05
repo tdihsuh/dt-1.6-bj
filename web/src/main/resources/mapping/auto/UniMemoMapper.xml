@@ -7,11 +7,11 @@
     <result column="source" jdbcType="VARCHAR" property="source" />
     <result column="relation_department" jdbcType="VARCHAR" property="relationDepartment" />
     <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="operator" jdbcType="BIGINT" property="operator" />
-    <result column="operator_area" jdbcType="VARCHAR" property="operatorArea" />
-    <result column="operatror_department" jdbcType="VARCHAR" property="operatrorDepartment" />
+    <result column="operator_area_code" jdbcType="VARCHAR" property="operatorAreaCode" />
+    <result column="operatror_department_code" jdbcType="VARCHAR" property="operatrorDepartmentCode" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, source, relation_department, type, tag, status, operator, operator_area, 
-    operatror_department
+    id, name, source, relation_department, type, tags, status, operator, operator_area_code, 
+    operatror_department_code
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.UniMemoExample" resultMap="BaseResultMap">
     select
@@ -119,12 +119,12 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into uni_memo (name, source, relation_department, 
-      type, tag, status, 
-      operator, operator_area, operatror_department
+      type, tags, status, 
+      operator, operator_area_code, operatror_department_code
       )
     values (#{name,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{relationDepartment,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
-      #{operator,jdbcType=BIGINT}, #{operatorArea,jdbcType=VARCHAR}, #{operatrorDepartment,jdbcType=VARCHAR}
+      #{type,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{operator,jdbcType=BIGINT}, #{operatorAreaCode,jdbcType=VARCHAR}, #{operatrorDepartmentCode,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.UniMemo">
@@ -145,18 +145,18 @@
       <if test="type != null">
         type,
       </if>
-      <if test="tag != null">
-        tag,
+      <if test="tags != null">
+        tags,
       </if>
       status,
       <if test="operator != null">
         operator,
       </if>
-      <if test="operatorArea != null">
-        operator_area,
+      <if test="operatorAreaCode != null">
+        operator_area_code,
       </if>
-      <if test="operatrorDepartment != null">
-        operatror_department,
+      <if test="operatrorDepartmentCode != null">
+        operatror_department_code,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -172,18 +172,18 @@
       <if test="type != null">
         #{type,jdbcType=VARCHAR},
       </if>
-      <if test="tag != null">
-        #{tag,jdbcType=VARCHAR},
+      <if test="tags != null">
+        #{tags,jdbcType=VARCHAR},
       </if>
       #{status,jdbcType=TINYINT},
       <if test="operator != null">
         #{operator,jdbcType=BIGINT},
       </if>
-      <if test="operatorArea != null">
-        #{operatorArea,jdbcType=VARCHAR},
+      <if test="operatorAreaCode != null">
+        #{operatorAreaCode,jdbcType=VARCHAR},
       </if>
-      <if test="operatrorDepartment != null">
-        #{operatrorDepartment,jdbcType=VARCHAR},
+      <if test="operatrorDepartmentCode != null">
+        #{operatrorDepartmentCode,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -211,8 +211,8 @@
       <if test="record.type != null">
         type = #{record.type,jdbcType=VARCHAR},
       </if>
-      <if test="record.tag != null">
-        tag = #{record.tag,jdbcType=VARCHAR},
+      <if test="record.tags != null">
+        tags = #{record.tags,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=TINYINT},
@@ -220,11 +220,11 @@
       <if test="record.operator != null">
         operator = #{record.operator,jdbcType=BIGINT},
       </if>
-      <if test="record.operatorArea != null">
-        operator_area = #{record.operatorArea,jdbcType=VARCHAR},
+      <if test="record.operatorAreaCode != null">
+        operator_area_code = #{record.operatorAreaCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.operatrorDepartment != null">
-        operatror_department = #{record.operatrorDepartment,jdbcType=VARCHAR},
+      <if test="record.operatrorDepartmentCode != null">
+        operatror_department_code = #{record.operatrorDepartmentCode,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -238,11 +238,11 @@
       source = #{record.source,jdbcType=VARCHAR},
       relation_department = #{record.relationDepartment,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=VARCHAR},
-      tag = #{record.tag,jdbcType=VARCHAR},
+      tags = #{record.tags,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=TINYINT},
       operator = #{record.operator,jdbcType=BIGINT},
-      operator_area = #{record.operatorArea,jdbcType=VARCHAR},
-      operatror_department = #{record.operatrorDepartment,jdbcType=VARCHAR}
+      operator_area_code = #{record.operatorAreaCode,jdbcType=VARCHAR},
+      operatror_department_code = #{record.operatrorDepartmentCode,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -262,8 +262,8 @@
       <if test="type != null">
         type = #{type,jdbcType=VARCHAR},
       </if>
-      <if test="tag != null">
-        tag = #{tag,jdbcType=VARCHAR},
+      <if test="tags != null">
+        tags = #{tags,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=TINYINT},
@@ -271,11 +271,11 @@
       <if test="operator != null">
         operator = #{operator,jdbcType=BIGINT},
       </if>
-      <if test="operatorArea != null">
-        operator_area = #{operatorArea,jdbcType=VARCHAR},
+      <if test="operatorAreaCode != null">
+        operator_area_code = #{operatorAreaCode,jdbcType=VARCHAR},
       </if>
-      <if test="operatrorDepartment != null">
-        operatror_department = #{operatrorDepartment,jdbcType=VARCHAR},
+      <if test="operatrorDepartmentCode != null">
+        operatror_department_code = #{operatrorDepartmentCode,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -286,11 +286,11 @@
       source = #{source,jdbcType=VARCHAR},
       relation_department = #{relationDepartment,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
-      tag = #{tag,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},
       operator = #{operator,jdbcType=BIGINT},
-      operator_area = #{operatorArea,jdbcType=VARCHAR},
-      operatror_department = #{operatrorDepartment,jdbcType=VARCHAR}
+      operator_area_code = #{operatorAreaCode,jdbcType=VARCHAR},
+      operatror_department_code = #{operatrorDepartmentCode,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

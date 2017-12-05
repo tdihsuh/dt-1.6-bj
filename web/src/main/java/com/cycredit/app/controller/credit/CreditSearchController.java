@@ -52,7 +52,6 @@ public class CreditSearchController {
 
 
     /**
-     * @param pid
      * @return
      */
     @RequestMapping(value = "/personSearch", produces = "application/json;charset=UTF-8")
@@ -61,7 +60,7 @@ public class CreditSearchController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object personSearch(String pid) {
+    public Object personSearch(String key) {
         List<PersonItem> personItems = Lists.newArrayList();
         PersonItem personItem = new PersonItem();
         personItem.setIdentityCard("110100198907180902");
@@ -73,7 +72,6 @@ public class CreditSearchController {
 
 
     /**
-     * @param pid
      * @return
      */
     @RequestMapping(value = "/enterpriseDetail", produces = "application/json;charset=UTF-8")
@@ -82,9 +80,9 @@ public class CreditSearchController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object enterpriseDetail(String pid) {
+    public Object enterpriseDetail(String eid) {
         EnterpriseDetail enterpriseDetail = new EnterpriseDetail();
-        enterpriseDetail.setPid("1");
+        enterpriseDetail.setEid("1");
         enterpriseDetail.setName("辉山乳业有限责任公司");
         enterpriseDetail.setCode("913710007628687892");
         enterpriseDetail.setAddress("北京市惠山路1号");
@@ -110,7 +108,7 @@ public class CreditSearchController {
         List<EnterpriseItem> enterpriseItemList = Lists.newArrayList();
         EnterpriseItem enterpriseItem = new EnterpriseItem();
         enterpriseItem.setCode("913710007628687892");
-        enterpriseItem.setPid("1");
+        enterpriseItem.setEid("1");
         enterpriseItem.setName("辉山乳业有限责任公司");
         enterpriseItem.setTags("失信被执行人,奖励措施");
 

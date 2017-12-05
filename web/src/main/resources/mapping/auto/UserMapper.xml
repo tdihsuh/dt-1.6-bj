@@ -5,8 +5,8 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="department" jdbcType="VARCHAR" property="department" />
-    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="department_code" jdbcType="VARCHAR" property="departmentCode" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, password, department, area
+    id, name, password, department_code, area_code
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.UserExample" resultMap="BaseResultMap">
     select
@@ -112,10 +112,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user (name, password, department, 
-      area)
-    values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
-      #{area,jdbcType=VARCHAR})
+    insert into user (name, password, department_code, 
+      area_code)
+    values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{departmentCode,jdbcType=VARCHAR}, 
+      #{areaCode,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.User">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -129,11 +129,11 @@
       <if test="password != null">
         password,
       </if>
-      <if test="department != null">
-        department,
+      <if test="departmentCode != null">
+        department_code,
       </if>
-      <if test="area != null">
-        area,
+      <if test="areaCode != null">
+        area_code,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -143,11 +143,11 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
+      <if test="departmentCode != null">
+        #{departmentCode,jdbcType=VARCHAR},
       </if>
-      <if test="area != null">
-        #{area,jdbcType=VARCHAR},
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -169,11 +169,11 @@
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=VARCHAR},
+      <if test="record.departmentCode != null">
+        department_code = #{record.departmentCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.area != null">
-        area = #{record.area,jdbcType=VARCHAR},
+      <if test="record.areaCode != null">
+        area_code = #{record.areaCode,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -185,8 +185,8 @@
     set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      department = #{record.department,jdbcType=VARCHAR},
-      area = #{record.area,jdbcType=VARCHAR}
+      department_code = #{record.departmentCode,jdbcType=VARCHAR},
+      area_code = #{record.areaCode,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -200,11 +200,11 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=VARCHAR},
+      <if test="departmentCode != null">
+        department_code = #{departmentCode,jdbcType=VARCHAR},
       </if>
-      <if test="area != null">
-        area = #{area,jdbcType=VARCHAR},
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -213,8 +213,8 @@
     update user
     set name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      department = #{department,jdbcType=VARCHAR},
-      area = #{area,jdbcType=VARCHAR}
+      department_code = #{departmentCode,jdbcType=VARCHAR},
+      area_code = #{areaCode,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

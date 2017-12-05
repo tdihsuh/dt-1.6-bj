@@ -3,7 +3,7 @@
 <mapper namespace="com.cycredit.dao.mapper.AreaRankMapper">
   <resultMap id="BaseResultMap" type="com.cycredit.dao.entity.AreaRank">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
     <result column="area_name" jdbcType="VARCHAR" property="areaName" />
     <result column="rank" jdbcType="INTEGER" property="rank" />
     <result column="uni_count" jdbcType="INTEGER" property="uniCount" />
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, area, area_name, rank, uni_count, uni_punish_count, uni_bonus_count, select_count, 
+    id, area_code, area_name, rank, uni_count, uni_punish_count, uni_bonus_count, select_count, 
     active_count, update_time
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.AreaRankExample" resultMap="BaseResultMap">
@@ -118,11 +118,11 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into area_rank (area, area_name, rank, 
+    insert into area_rank (area_code, area_name, rank, 
       uni_count, uni_punish_count, uni_bonus_count, 
       select_count, active_count, update_time
       )
-    values (#{area,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER}, 
+    values (#{areaCode,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER}, 
       #{uniCount,jdbcType=INTEGER}, #{uniPunishCount,jdbcType=INTEGER}, #{uniBonusCount,jdbcType=INTEGER}, 
       #{selectCount,jdbcType=INTEGER}, #{activeCount,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
       )
@@ -133,8 +133,8 @@
     </selectKey>
     insert into area_rank
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="area != null">
-        area,
+      <if test="areaCode != null">
+        area_code,
       </if>
       <if test="areaName != null">
         area_name,
@@ -162,8 +162,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="area != null">
-        #{area,jdbcType=VARCHAR},
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
       </if>
       <if test="areaName != null">
         #{areaName,jdbcType=VARCHAR},
@@ -203,8 +203,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.area != null">
-        area = #{record.area,jdbcType=VARCHAR},
+      <if test="record.areaCode != null">
+        area_code = #{record.areaCode,jdbcType=VARCHAR},
       </if>
       <if test="record.areaName != null">
         area_name = #{record.areaName,jdbcType=VARCHAR},
@@ -238,7 +238,7 @@
   <update id="updateByExample" parameterType="map">
     update area_rank
     set id = #{record.id,jdbcType=INTEGER},
-      area = #{record.area,jdbcType=VARCHAR},
+      area_code = #{record.areaCode,jdbcType=VARCHAR},
       area_name = #{record.areaName,jdbcType=VARCHAR},
       rank = #{record.rank,jdbcType=INTEGER},
       uni_count = #{record.uniCount,jdbcType=INTEGER},
@@ -254,8 +254,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cycredit.dao.entity.AreaRank">
     update area_rank
     <set>
-      <if test="area != null">
-        area = #{area,jdbcType=VARCHAR},
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=VARCHAR},
       </if>
       <if test="areaName != null">
         area_name = #{areaName,jdbcType=VARCHAR},
@@ -286,7 +286,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cycredit.dao.entity.AreaRank">
     update area_rank
-    set area = #{area,jdbcType=VARCHAR},
+    set area_code = #{areaCode,jdbcType=VARCHAR},
       area_name = #{areaName,jdbcType=VARCHAR},
       rank = #{rank,jdbcType=INTEGER},
       uni_count = #{uniCount,jdbcType=INTEGER},

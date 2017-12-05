@@ -1,4 +1,4 @@
-package com.cycredit.app.controller.memo.pojo;
+package com.cycredit.app.controller.user.pojo;
 
 /**
  * Created by qiyubin on 2017/11/30 0030.
@@ -11,24 +11,25 @@ public class SessionReponse {
     public SessionReponse() {
     }
 
-    public SessionReponse(Long id, String name, String department, String departmentName, String role, String roleName, String area, String areaName) {
+
+    public SessionReponse(Long id, String name, String departmentCode, String departmentName, String role, String roleName, String areaCode, String areaName) {
         this.id = id;
         this.name = name;
-        this.department = department;
+        this.departmentCode = departmentCode;
         this.departmentName = departmentName;
         this.role = role;
         this.roleName = roleName;
-        this.area = area;
+        this.areaCode = areaCode;
         this.areaName = areaName;
     }
 
     private Long id;
     private String name;
-    private String department;
+    private String departmentCode;
     private String departmentName;
     private String role;
     private String roleName;
-    private String area;
+    private String areaCode;
     private String areaName;
 
     public Long getId() {
@@ -47,12 +48,20 @@ public class SessionReponse {
         this.name = name;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDepartmentCode() {
+        return departmentCode;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode;
+    }
+
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
     }
 
     public String getDepartmentName() {
@@ -79,13 +88,6 @@ public class SessionReponse {
         this.roleName = roleName;
     }
 
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
 
     public String getAreaName() {
         return areaName;

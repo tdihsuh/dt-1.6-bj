@@ -63,8 +63,8 @@ public class CreditDealController {
 
         personDealResult.setPid(pid);
         User user = UserInfoThreadLocal.getFromThread();
-        personDealResult.setDepartment(user.getDepartment());
-        personDealResult.setArea(user.getArea());
+        personDealResult.setOperatorDepartmentCode(user.getDepartmentCode());
+        personDealResult.setOperatorAreaCode(user.getAreaCode());
         personDealResult.setOperator(user.getId());
         dealService.dealPerson(personDealResult);
         return Response.success("成功");
@@ -115,8 +115,8 @@ public class CreditDealController {
 
         enterpriseDealResult.setEid(eid);
         User user = UserInfoThreadLocal.getFromThread();
-        enterpriseDealResult.setDepartment(user.getDepartment());
-        enterpriseDealResult.setArea(user.getArea());
+        enterpriseDealResult.setOperatorDepartmentCode(user.getDepartmentCode());
+        enterpriseDealResult.setOperatorAreaCode(user.getAreaCode());
         enterpriseDealResult.setOperator(user.getId());
         dealService.dealEnterprise(enterpriseDealResult);
         return Response.success("成功");

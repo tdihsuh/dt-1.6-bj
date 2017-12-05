@@ -6,7 +6,7 @@ import java.util.Date;
 public class DepartmentRank implements Serializable {
     private Integer id;
 
-    private String department;
+    private String departmentCode;
 
     private String departmentName;
 
@@ -36,12 +36,12 @@ public class DepartmentRank implements Serializable {
         this.id = id;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDepartmentCode() {
+        return departmentCode;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode == null ? null : departmentCode.trim();
     }
 
     public String getDepartmentName() {

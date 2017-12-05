@@ -5,12 +5,12 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="pid" jdbcType="VARCHAR" property="pid" />
-    <result column="deal_type" jdbcType="VARCHAR" property="dealType" />
-    <result column="operator" jdbcType="BIGINT" property="operator" />
-    <result column="department" jdbcType="VARCHAR" property="department" />
-    <result column="area" jdbcType="VARCHAR" property="area" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="identity_card" jdbcType="VARCHAR" property="identityCard" />
+    <result column="operator" jdbcType="BIGINT" property="operator" />
+    <result column="operator_area_code" jdbcType="VARCHAR" property="operatorAreaCode" />
+    <result column="operator_department_code" jdbcType="VARCHAR" property="operatorDepartmentCode" />
+    <result column="deal_type" jdbcType="VARCHAR" property="dealType" />
     <result column="tags" jdbcType="VARCHAR" property="tags" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -74,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, description, pid, deal_type, operator, department, area, name, identity_card, 
-    tags, update_time, create_time
+    id, description, pid, name, identity_card, operator, operator_area_code, operator_department_code, 
+    deal_type, tags, update_time, create_time
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.PersonDealResultExample" resultMap="BaseResultMap">
     select
@@ -120,13 +120,13 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into person_deal_result (description, pid, deal_type, 
-      operator, department, area, 
-      name, identity_card, tags, 
+    insert into person_deal_result (description, pid, name, 
+      identity_card, operator, operator_area_code, 
+      operator_department_code, deal_type, tags, 
       update_time, create_time)
-    values (#{description,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{dealType,jdbcType=VARCHAR}, 
-      #{operator,jdbcType=BIGINT}, #{department,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{identityCard,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, 
+    values (#{description,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{identityCard,jdbcType=VARCHAR}, #{operator,jdbcType=BIGINT}, #{operatorAreaCode,jdbcType=VARCHAR}, 
+      #{operatorDepartmentCode,jdbcType=VARCHAR}, #{dealType,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.PersonDealResult">
@@ -141,23 +141,23 @@
       <if test="pid != null">
         pid,
       </if>
-      <if test="dealType != null">
-        deal_type,
-      </if>
-      <if test="operator != null">
-        operator,
-      </if>
-      <if test="department != null">
-        department,
-      </if>
-      <if test="area != null">
-        area,
-      </if>
       <if test="name != null">
         name,
       </if>
       <if test="identityCard != null">
         identity_card,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="operatorAreaCode != null">
+        operator_area_code,
+      </if>
+      <if test="operatorDepartmentCode != null">
+        operator_department_code,
+      </if>
+      <if test="dealType != null">
+        deal_type,
       </if>
       <if test="tags != null">
         tags,
@@ -176,23 +176,23 @@
       <if test="pid != null">
         #{pid,jdbcType=VARCHAR},
       </if>
-      <if test="dealType != null">
-        #{dealType,jdbcType=VARCHAR},
-      </if>
-      <if test="operator != null">
-        #{operator,jdbcType=BIGINT},
-      </if>
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
-      </if>
-      <if test="area != null">
-        #{area,jdbcType=VARCHAR},
-      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="identityCard != null">
         #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="operatorAreaCode != null">
+        #{operatorAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDepartmentCode != null">
+        #{operatorDepartmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealType != null">
+        #{dealType,jdbcType=VARCHAR},
       </if>
       <if test="tags != null">
         #{tags,jdbcType=VARCHAR},
@@ -223,23 +223,23 @@
       <if test="record.pid != null">
         pid = #{record.pid,jdbcType=VARCHAR},
       </if>
-      <if test="record.dealType != null">
-        deal_type = #{record.dealType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.operator != null">
-        operator = #{record.operator,jdbcType=BIGINT},
-      </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=VARCHAR},
-      </if>
-      <if test="record.area != null">
-        area = #{record.area,jdbcType=VARCHAR},
-      </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.identityCard != null">
         identity_card = #{record.identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null">
+        operator = #{record.operator,jdbcType=BIGINT},
+      </if>
+      <if test="record.operatorAreaCode != null">
+        operator_area_code = #{record.operatorAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorDepartmentCode != null">
+        operator_department_code = #{record.operatorDepartmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealType != null">
+        deal_type = #{record.dealType,jdbcType=VARCHAR},
       </if>
       <if test="record.tags != null">
         tags = #{record.tags,jdbcType=VARCHAR},
@@ -260,12 +260,12 @@
     set id = #{record.id,jdbcType=BIGINT},
       description = #{record.description,jdbcType=VARCHAR},
       pid = #{record.pid,jdbcType=VARCHAR},
-      deal_type = #{record.dealType,jdbcType=VARCHAR},
-      operator = #{record.operator,jdbcType=BIGINT},
-      department = #{record.department,jdbcType=VARCHAR},
-      area = #{record.area,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       identity_card = #{record.identityCard,jdbcType=VARCHAR},
+      operator = #{record.operator,jdbcType=BIGINT},
+      operator_area_code = #{record.operatorAreaCode,jdbcType=VARCHAR},
+      operator_department_code = #{record.operatorDepartmentCode,jdbcType=VARCHAR},
+      deal_type = #{record.dealType,jdbcType=VARCHAR},
       tags = #{record.tags,jdbcType=VARCHAR},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
@@ -282,23 +282,23 @@
       <if test="pid != null">
         pid = #{pid,jdbcType=VARCHAR},
       </if>
-      <if test="dealType != null">
-        deal_type = #{dealType,jdbcType=VARCHAR},
-      </if>
-      <if test="operator != null">
-        operator = #{operator,jdbcType=BIGINT},
-      </if>
-      <if test="department != null">
-        department = #{department,jdbcType=VARCHAR},
-      </if>
-      <if test="area != null">
-        area = #{area,jdbcType=VARCHAR},
-      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="identityCard != null">
         identity_card = #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="operatorAreaCode != null">
+        operator_area_code = #{operatorAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorDepartmentCode != null">
+        operator_department_code = #{operatorDepartmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dealType != null">
+        deal_type = #{dealType,jdbcType=VARCHAR},
       </if>
       <if test="tags != null">
         tags = #{tags,jdbcType=VARCHAR},
@@ -316,12 +316,12 @@
     update person_deal_result
     set description = #{description,jdbcType=VARCHAR},
       pid = #{pid,jdbcType=VARCHAR},
-      deal_type = #{dealType,jdbcType=VARCHAR},
-      operator = #{operator,jdbcType=BIGINT},
-      department = #{department,jdbcType=VARCHAR},
-      area = #{area,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       identity_card = #{identityCard,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=BIGINT},
+      operator_area_code = #{operatorAreaCode,jdbcType=VARCHAR},
+      operator_department_code = #{operatorDepartmentCode,jdbcType=VARCHAR},
+      deal_type = #{dealType,jdbcType=VARCHAR},
       tags = #{tags,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP}

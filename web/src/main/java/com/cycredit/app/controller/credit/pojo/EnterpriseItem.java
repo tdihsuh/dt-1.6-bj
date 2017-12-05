@@ -7,17 +7,17 @@ package com.cycredit.app.controller.credit.pojo;
  */
 public class EnterpriseItem {
 
-    private String pid;
+    private String eid;
     private String name;
     private String code;
     private String tags;
 
-    public String getPid() {
-        return pid;
+    public String getEid() {
+        return eid;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setEid(String eid) {
+        this.eid = eid;
     }
 
     public String getName() {

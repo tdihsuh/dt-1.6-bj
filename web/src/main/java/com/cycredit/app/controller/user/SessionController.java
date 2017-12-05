@@ -1,6 +1,6 @@
 package com.cycredit.app.controller.user;
 
-import com.cycredit.app.controller.memo.pojo.SessionReponse;
+import com.cycredit.app.controller.user.pojo.SessionReponse;
 import com.cycredit.app.util.authc.SecurityUtils;
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.security.KeyStore;
 
 /**
  * Created by qiyubin on 2017/11/21 0021.
@@ -58,9 +57,11 @@ public class SessionController {
             Boolean checkResult = SecurityUtils.passwordCheck(user.getPassword(), pwd);
 
             if (checkResult) {
-                SecurityUtils.loginSuccess(user.getName(), user.getId(), user.getName(), user.getArea(), user.getDepartment(), response);
+                SecurityUtils.loginSuccess(user.getName(), user.getId(), user.getAreaCode(), user.getDepartmentCode(), response);
+
+                //TODO 需要翻译
                 return Response.success("登录成功", new SessionReponse(user.getId(), user.getName()
-                        , user.getDepartment(), "", Role.infoCenterMajor.name(), Role.infoCenterMajor.name, user.getArea(), "郑州市"));
+                        , user.getDepartmentCode(), "省环保厅", Role.infoCenterMajor.name(), Role.infoCenterMajor.name, user.getAreaCode(), "郑州市"));
 
             } else {
                 return Response.fail("登录失败");

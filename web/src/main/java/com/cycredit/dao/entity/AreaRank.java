@@ -6,7 +6,7 @@ import java.util.Date;
 public class AreaRank implements Serializable {
     private Integer id;
 
-    private String area;
+    private String areaCode;
 
     private String areaName;
 
@@ -34,12 +34,12 @@ public class AreaRank implements Serializable {
         this.id = id;
     }
 
-    public String getArea() {
-        return area;
+    public String getAreaCode() {
+        return areaCode;
     }
 
-    public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode == null ? null : areaCode.trim();
     }
 
     public String getAreaName() {

@@ -39,6 +39,11 @@ public class MemoService {
     }
 
 
+    public UniMemo findById(Long id) {
+        return uniMemoMapper.selectByPrimaryKey(id);
+    }
+
+
     public List<UniMemo> findPublishMemo() {
         UniMemoExample uniMemoExample = new UniMemoExample();
         UniMemoExample.Criteria criteria = uniMemoExample.createCriteria().andStatusEqualTo(1);

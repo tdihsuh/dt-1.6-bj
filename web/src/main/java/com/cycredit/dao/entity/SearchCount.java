@@ -12,11 +12,11 @@ public class SearchCount implements Serializable {
 
     private Integer result;
 
-    private Long uid;
+    private Long operator;
 
-    private String area;
+    private String areaCode;
 
-    private String department;
+    private String departmentCode;
 
     private Date createTime;
 
@@ -54,28 +54,28 @@ public class SearchCount implements Serializable {
         this.result = result;
     }
 
-    public Long getUid() {
-        return uid;
+    public Long getOperator() {
+        return operator;
     }
 
-    public void setUid(Long uid) {
-        this.uid = uid;
+    public void setOperator(Long operator) {
+        this.operator = operator;
     }
 
-    public String getArea() {
-        return area;
+    public String getAreaCode() {
+        return areaCode;
     }
 
-    public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode == null ? null : areaCode.trim();
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDepartmentCode() {
+        return departmentCode;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode == null ? null : departmentCode.trim();
     }
 
     public Date getCreateTime() {

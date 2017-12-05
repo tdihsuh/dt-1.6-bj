@@ -5,13 +5,13 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="eid" jdbcType="VARCHAR" property="eid" />
-    <result column="deal_type" jdbcType="VARCHAR" property="dealType" />
-    <result column="operator" jdbcType="BIGINT" property="operator" />
-    <result column="department" jdbcType="VARCHAR" property="department" />
-    <result column="area" jdbcType="VARCHAR" property="area" />
-    <result column="tags" jdbcType="VARCHAR" property="tags" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="deal_type" jdbcType="VARCHAR" property="dealType" />
+    <result column="operator" jdbcType="BIGINT" property="operator" />
+    <result column="operator_department_code" jdbcType="VARCHAR" property="operatorDepartmentCode" />
+    <result column="operator_area_code" jdbcType="VARCHAR" property="operatorAreaCode" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -74,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, description, eid, deal_type, operator, department, area, tags, name, code, create_time, 
-    update_time
+    id, description, eid, name, code, deal_type, operator, operator_department_code, 
+    operator_area_code, tags, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.EnterpriseDealResultExample" resultMap="BaseResultMap">
     select
@@ -120,14 +120,16 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into enterprise_deal_result (description, eid, deal_type, 
-      operator, department, area, 
-      tags, name, code, create_time, 
-      update_time)
-    values (#{description,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{dealType,jdbcType=VARCHAR}, 
-      #{operator,jdbcType=BIGINT}, #{department,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
-      #{tags,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+    insert into enterprise_deal_result (description, eid, name, 
+      code, deal_type, operator, 
+      operator_department_code, operator_area_code, 
+      tags, create_time, update_time
+      )
+    values (#{description,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{dealType,jdbcType=VARCHAR}, #{operator,jdbcType=BIGINT}, 
+      #{operatorDepartmentCode,jdbcType=VARCHAR}, #{operatorAreaCode,jdbcType=VARCHAR}, 
+      #{tags,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.EnterpriseDealResult">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -141,26 +143,26 @@
       <if test="eid != null">
         eid,
       </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
       <if test="dealType != null">
         deal_type,
       </if>
       <if test="operator != null">
         operator,
       </if>
-      <if test="department != null">
-        department,
+      <if test="operatorDepartmentCode != null">
+        operator_department_code,
       </if>
-      <if test="area != null">
-        area,
+      <if test="operatorAreaCode != null">
+        operator_area_code,
       </if>
       <if test="tags != null">
         tags,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="code != null">
-        code,
       </if>
       <if test="createTime != null">
         create_time,
@@ -176,26 +178,26 @@
       <if test="eid != null">
         #{eid,jdbcType=VARCHAR},
       </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
       <if test="dealType != null">
         #{dealType,jdbcType=VARCHAR},
       </if>
       <if test="operator != null">
         #{operator,jdbcType=BIGINT},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
+      <if test="operatorDepartmentCode != null">
+        #{operatorDepartmentCode,jdbcType=VARCHAR},
       </if>
-      <if test="area != null">
-        #{area,jdbcType=VARCHAR},
+      <if test="operatorAreaCode != null">
+        #{operatorAreaCode,jdbcType=VARCHAR},
       </if>
       <if test="tags != null">
         #{tags,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -223,26 +225,26 @@
       <if test="record.eid != null">
         eid = #{record.eid,jdbcType=VARCHAR},
       </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
       <if test="record.dealType != null">
         deal_type = #{record.dealType,jdbcType=VARCHAR},
       </if>
       <if test="record.operator != null">
         operator = #{record.operator,jdbcType=BIGINT},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=VARCHAR},
+      <if test="record.operatorDepartmentCode != null">
+        operator_department_code = #{record.operatorDepartmentCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.area != null">
-        area = #{record.area,jdbcType=VARCHAR},
+      <if test="record.operatorAreaCode != null">
+        operator_area_code = #{record.operatorAreaCode,jdbcType=VARCHAR},
       </if>
       <if test="record.tags != null">
         tags = #{record.tags,jdbcType=VARCHAR},
-      </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.code != null">
-        code = #{record.code,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -260,13 +262,13 @@
     set id = #{record.id,jdbcType=BIGINT},
       description = #{record.description,jdbcType=VARCHAR},
       eid = #{record.eid,jdbcType=VARCHAR},
-      deal_type = #{record.dealType,jdbcType=VARCHAR},
-      operator = #{record.operator,jdbcType=BIGINT},
-      department = #{record.department,jdbcType=VARCHAR},
-      area = #{record.area,jdbcType=VARCHAR},
-      tags = #{record.tags,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
+      deal_type = #{record.dealType,jdbcType=VARCHAR},
+      operator = #{record.operator,jdbcType=BIGINT},
+      operator_department_code = #{record.operatorDepartmentCode,jdbcType=VARCHAR},
+      operator_area_code = #{record.operatorAreaCode,jdbcType=VARCHAR},
+      tags = #{record.tags,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -282,26 +284,26 @@
       <if test="eid != null">
         eid = #{eid,jdbcType=VARCHAR},
       </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
       <if test="dealType != null">
         deal_type = #{dealType,jdbcType=VARCHAR},
       </if>
       <if test="operator != null">
         operator = #{operator,jdbcType=BIGINT},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=VARCHAR},
+      <if test="operatorDepartmentCode != null">
+        operator_department_code = #{operatorDepartmentCode,jdbcType=VARCHAR},
       </if>
-      <if test="area != null">
-        area = #{area,jdbcType=VARCHAR},
+      <if test="operatorAreaCode != null">
+        operator_area_code = #{operatorAreaCode,jdbcType=VARCHAR},
       </if>
       <if test="tags != null">
         tags = #{tags,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        code = #{code,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -316,13 +318,13 @@
     update enterprise_deal_result
     set description = #{description,jdbcType=VARCHAR},
       eid = #{eid,jdbcType=VARCHAR},
-      deal_type = #{dealType,jdbcType=VARCHAR},
-      operator = #{operator,jdbcType=BIGINT},
-      department = #{department,jdbcType=VARCHAR},
-      area = #{area,jdbcType=VARCHAR},
-      tags = #{tags,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
+      deal_type = #{dealType,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=BIGINT},
+      operator_department_code = #{operatorDepartmentCode,jdbcType=VARCHAR},
+      operator_area_code = #{operatorAreaCode,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

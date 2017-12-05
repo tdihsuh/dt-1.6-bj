@@ -3,7 +3,7 @@
 <mapper namespace="com.cycredit.dao.mapper.UniMemoDepartmentMapper">
   <resultMap id="BaseResultMap" type="com.cycredit.dao.entity.UniMemoDepartment">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="department_code" jdbcType="VARCHAR" property="departmentCode" />
     <result column="reason" jdbcType="VARCHAR" property="reason" />
     <result column="measure" jdbcType="VARCHAR" property="measure" />
     <result column="memo_id" jdbcType="BIGINT" property="memoId" />
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, department, reason, measure, memo_id, create_time
+    id, department_code, reason, measure, memo_id, create_time
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.UniMemoDepartmentExample" resultMap="BaseResultMap">
     select
@@ -113,9 +113,9 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into uni_memo_department (department, reason, measure, 
+    insert into uni_memo_department (department_code, reason, measure, 
       memo_id, create_time)
-    values (#{department,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{measure,jdbcType=VARCHAR}, 
+    values (#{departmentCode,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{measure,jdbcType=VARCHAR}, 
       #{memoId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.UniMemoDepartment">
@@ -124,8 +124,8 @@
     </selectKey>
     insert into uni_memo_department
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="department != null">
-        department,
+      <if test="departmentCode != null">
+        department_code,
       </if>
       <if test="reason != null">
         reason,
@@ -141,8 +141,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
+      <if test="departmentCode != null">
+        #{departmentCode,jdbcType=VARCHAR},
       </if>
       <if test="reason != null">
         #{reason,jdbcType=VARCHAR},
@@ -170,8 +170,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=VARCHAR},
+      <if test="record.departmentCode != null">
+        department_code = #{record.departmentCode,jdbcType=VARCHAR},
       </if>
       <if test="record.reason != null">
         reason = #{record.reason,jdbcType=VARCHAR},
@@ -193,7 +193,7 @@
   <update id="updateByExample" parameterType="map">
     update uni_memo_department
     set id = #{record.id,jdbcType=BIGINT},
-      department = #{record.department,jdbcType=VARCHAR},
+      department_code = #{record.departmentCode,jdbcType=VARCHAR},
       reason = #{record.reason,jdbcType=VARCHAR},
       measure = #{record.measure,jdbcType=VARCHAR},
       memo_id = #{record.memoId,jdbcType=BIGINT},
@@ -205,8 +205,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cycredit.dao.entity.UniMemoDepartment">
     update uni_memo_department
     <set>
-      <if test="department != null">
-        department = #{department,jdbcType=VARCHAR},
+      <if test="departmentCode != null">
+        department_code = #{departmentCode,jdbcType=VARCHAR},
       </if>
       <if test="reason != null">
         reason = #{reason,jdbcType=VARCHAR},
@@ -225,7 +225,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cycredit.dao.entity.UniMemoDepartment">
     update uni_memo_department
-    set department = #{department,jdbcType=VARCHAR},
+    set department_code = #{departmentCode,jdbcType=VARCHAR},
       reason = #{reason,jdbcType=VARCHAR},
       measure = #{measure,jdbcType=VARCHAR},
       memo_id = #{memoId,jdbcType=BIGINT},

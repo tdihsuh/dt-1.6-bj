@@ -13,15 +13,15 @@ public class UniMemo implements Serializable {
 
     private String type;
 
-    private String tag;
+    private String tags;
 
     private int status;
 
     private Long operator;
 
-    private String operatorArea;
+    private String operatorAreaCode;
 
-    private String operatrorDepartment;
+    private String operatrorDepartmentCode;
 
     private static final long serialVersionUID = 1L;
 
@@ -65,12 +65,12 @@ public class UniMemo implements Serializable {
         this.type = type == null ? null : type.trim();
     }
 
-    public String getTag() {
-        return tag;
+    public String getTags() {
+        return tags;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag == null ? null : tag.trim();
+    public void setTags(String tags) {
+        this.tags = tags == null ? null : tags.trim();
     }
 
     public int getStatus() {
@@ -89,19 +89,19 @@ public class UniMemo implements Serializable {
         this.operator = operator;
     }
 
-    public String getOperatorArea() {
-        return operatorArea;
+    public String getOperatorAreaCode() {
+        return operatorAreaCode;
     }
 
-    public void setOperatorArea(String operatorArea) {
-        this.operatorArea = operatorArea == null ? null : operatorArea.trim();
+    public void setOperatorAreaCode(String operatorAreaCode) {
+        this.operatorAreaCode = operatorAreaCode == null ? null : operatorAreaCode.trim();
     }
 
-    public String getOperatrorDepartment() {
-        return operatrorDepartment;
+    public String getOperatrorDepartmentCode() {
+        return operatrorDepartmentCode;
     }
 
-    public void setOperatrorDepartment(String operatrorDepartment) {
-        this.operatrorDepartment = operatrorDepartment == null ? null : operatrorDepartment.trim();
+    public void setOperatrorDepartmentCode(String operatrorDepartmentCode) {
+        this.operatrorDepartmentCode = operatrorDepartmentCode == null ? null : operatrorDepartmentCode.trim();
     }
 }

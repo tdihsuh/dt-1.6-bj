@@ -6,9 +6,9 @@
     <result column="search_type" jdbcType="VARCHAR" property="searchType" />
     <result column="search_key" jdbcType="VARCHAR" property="searchKey" />
     <result column="result" jdbcType="INTEGER" property="result" />
-    <result column="uid" jdbcType="BIGINT" property="uid" />
-    <result column="area" jdbcType="VARCHAR" property="area" />
-    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="operator" jdbcType="BIGINT" property="operator" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+    <result column="department_code" jdbcType="VARCHAR" property="departmentCode" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, search_type, search_key, result, uid, area, department, create_time
+    id, search_type, search_key, result, operator, area_code, department_code, create_time
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.SearchCountExample" resultMap="BaseResultMap">
     select
@@ -116,10 +116,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into search_count (search_type, search_key, result, 
-      uid, area, department, 
+      operator, area_code, department_code, 
       create_time)
     values (#{searchType,jdbcType=VARCHAR}, #{searchKey,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, 
-      #{uid,jdbcType=BIGINT}, #{area,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{operator,jdbcType=BIGINT}, #{areaCode,jdbcType=VARCHAR}, #{departmentCode,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.SearchCount">
@@ -137,14 +137,14 @@
       <if test="result != null">
         result,
       </if>
-      <if test="uid != null">
-        uid,
+      <if test="operator != null">
+        operator,
       </if>
-      <if test="area != null">
-        area,
+      <if test="areaCode != null">
+        area_code,
       </if>
-      <if test="department != null">
-        department,
+      <if test="departmentCode != null">
+        department_code,
       </if>
       <if test="createTime != null">
         create_time,
@@ -160,14 +160,14 @@
       <if test="result != null">
         #{result,jdbcType=INTEGER},
       </if>
-      <if test="uid != null">
-        #{uid,jdbcType=BIGINT},
+      <if test="operator != null">
+        #{operator,jdbcType=BIGINT},
       </if>
-      <if test="area != null">
-        #{area,jdbcType=VARCHAR},
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
+      <if test="departmentCode != null">
+        #{departmentCode,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -195,14 +195,14 @@
       <if test="record.result != null">
         result = #{record.result,jdbcType=INTEGER},
       </if>
-      <if test="record.uid != null">
-        uid = #{record.uid,jdbcType=BIGINT},
+      <if test="record.operator != null">
+        operator = #{record.operator,jdbcType=BIGINT},
       </if>
-      <if test="record.area != null">
-        area = #{record.area,jdbcType=VARCHAR},
+      <if test="record.areaCode != null">
+        area_code = #{record.areaCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.department != null">
-        department = #{record.department,jdbcType=VARCHAR},
+      <if test="record.departmentCode != null">
+        department_code = #{record.departmentCode,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -218,9 +218,9 @@
       search_type = #{record.searchType,jdbcType=VARCHAR},
       search_key = #{record.searchKey,jdbcType=VARCHAR},
       result = #{record.result,jdbcType=INTEGER},
-      uid = #{record.uid,jdbcType=BIGINT},
-      area = #{record.area,jdbcType=VARCHAR},
-      department = #{record.department,jdbcType=VARCHAR},
+      operator = #{record.operator,jdbcType=BIGINT},
+      area_code = #{record.areaCode,jdbcType=VARCHAR},
+      department_code = #{record.departmentCode,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -238,14 +238,14 @@
       <if test="result != null">
         result = #{result,jdbcType=INTEGER},
       </if>
-      <if test="uid != null">
-        uid = #{uid,jdbcType=BIGINT},
+      <if test="operator != null">
+        operator = #{operator,jdbcType=BIGINT},
       </if>
-      <if test="area != null">
-        area = #{area,jdbcType=VARCHAR},
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=VARCHAR},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=VARCHAR},
+      <if test="departmentCode != null">
+        department_code = #{departmentCode,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -258,9 +258,9 @@
     set search_type = #{searchType,jdbcType=VARCHAR},
       search_key = #{searchKey,jdbcType=VARCHAR},
       result = #{result,jdbcType=INTEGER},
-      uid = #{uid,jdbcType=BIGINT},
-      area = #{area,jdbcType=VARCHAR},
-      department = #{department,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=BIGINT},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      department_code = #{departmentCode,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>

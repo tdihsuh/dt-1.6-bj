@@ -6,7 +6,7 @@ import java.util.Date;
 public class UniMemoDepartment implements Serializable {
     private Long id;
 
-    private String department;
+    private String departmentCode;
 
     private String reason;
 
@@ -26,12 +26,12 @@ public class UniMemoDepartment implements Serializable {
         this.id = id;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getDepartmentCode() {
+        return departmentCode;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode == null ? null : departmentCode.trim();
     }
 
     public String getReason() {

@@ -24,8 +24,8 @@ public class SearchCountService {
 
     public void saveCount(SearchType searchType, Long uid, String area, Integer result) {
         SearchCount searchCount = new SearchCount();
-        searchCount.setUid(uid);
-        searchCount.setArea(area);
+        searchCount.setOperator(uid);
+        searchCount.setAreaCode(area);
         searchCount.setResult(result);
         searchCount.setCreateTime(new Date());
         searchCount.setSearchType(searchType.name());
