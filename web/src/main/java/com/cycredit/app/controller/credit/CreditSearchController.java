@@ -104,7 +104,7 @@ public class CreditSearchController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object enterpriseSearch(String eid) {
+    public Object enterpriseSearch(String key) {
         List<EnterpriseItem> enterpriseItemList = Lists.newArrayList();
         EnterpriseItem enterpriseItem = new EnterpriseItem();
         enterpriseItem.setCode("913710007628687892");
