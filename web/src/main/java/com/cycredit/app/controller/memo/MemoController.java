@@ -78,7 +78,7 @@ public class MemoController {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         List<UniMemo> list = memoService.findPublishMemo(pageInfo);
         //todo 需要调活分页
-        return Response.success("成功", list).pageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
+        return Response.success("成功", list).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 
@@ -96,7 +96,7 @@ public class MemoController {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         List<UniMemo> list = memoService.findPendingMemo(pageInfo);
         //todo 需要调活分页
-        return Response.success("成功", list).pageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
+        return Response.success("成功", list).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
     /**

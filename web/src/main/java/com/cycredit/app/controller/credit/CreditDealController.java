@@ -89,7 +89,7 @@ public class CreditDealController {
         Date startDate = startTime == null ? null : new Date(startTime);
         Date endDate = endTime == null ? null : new Date(endTime);
         return Response.success("查询成功", dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getId()
-                , pageInfo)).pageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
+                , pageInfo)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 
@@ -141,7 +141,7 @@ public class CreditDealController {
         Date startDate = startTime == null ? null : new Date(startTime);
         Date endDate = endTime == null ? null : new Date(endTime);
         //TODO 需要处理分页
-        return Response.success("查询成功", dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getId(), pageInfo)).pageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
+        return Response.success("查询成功", dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getId(), pageInfo)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 

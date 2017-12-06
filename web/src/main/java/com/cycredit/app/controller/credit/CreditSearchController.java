@@ -68,7 +68,7 @@ public class CreditSearchController {
         tagList.add(new Tag("奖励措施", "BONUS"));
         tagList.add(new Tag("违法嫌疑人", "PUNISH"));
         personItem.setTagList(tagList);
-        return Response.success("成功", personItem);
+        return Response.success("成功", personItems);
     }
 
 

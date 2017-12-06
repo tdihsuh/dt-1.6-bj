@@ -23,7 +23,7 @@ public class Response {
         return getResponse("0", msg, null);
     }
 
-    public Response pageInfo(Integer pageNum, Long totalCount) {
+    public Response setPageInfo(Integer pageNum, Long totalCount) {
         this.setPageNum(pageNum);
         this.setTotalCount(totalCount);
         return this;
