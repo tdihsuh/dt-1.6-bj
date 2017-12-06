@@ -4,12 +4,14 @@ import com.cycredit.app.controller.memo.pojo.DepartmentItem;
 import com.cycredit.app.controller.memo.pojo.MemoDetail;
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
+import com.cycredit.common.PageInfo;
 import com.cycredit.dao.entity.UniMemo;
 import com.cycredit.dao.entity.UniMemoDepartment;
 import com.cycredit.dao.entity.User;
 import com.cycredit.service.MemoDepartmentService;
 import com.cycredit.service.MemoService;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -42,6 +44,26 @@ public class MemoController {
     @Resource
     MemoDepartmentService memoDepartmentService;
 
+
+    /**
+     * @return
+     */
+    @RequestMapping(value = "/count", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    @ApiOperation(notes = "备忘录数量", httpMethod = "GET", value = "备忘录数量")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public Object count() {
+        Map map = Maps.newHashMap();
+        //todo 需要调活
+        map.put("publishCount", 1);
+        map.put("pendingCount", 1);
+        return Response.success("成功", map);
+    }
+
+
     /**
      * @return
      */
@@ -52,9 +74,11 @@ public class MemoController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object publishList() {
-        List<UniMemo> list = memoService.findPublishMemo();
-        return Response.success("成功", list);
+    public Object publishList(Integer pageNum, Integer limitSize) {
+        PageInfo pageInfo = new PageInfo(pageNum, limitSize);
+        List<UniMemo> list = memoService.findPublishMemo(pageInfo);
+        //todo 需要调活分页
+        return Response.success("成功", list).pageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 
@@ -68,9 +92,11 @@ public class MemoController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object list() {
-        List<UniMemo> list = memoService.findPendingMemo();
-        return Response.success("成功", list);
+    public Object list(Integer pageNum, Integer limitSize) {
+        PageInfo pageInfo = new PageInfo(pageNum, limitSize);
+        List<UniMemo> list = memoService.findPendingMemo(pageInfo);
+        //todo 需要调活分页
+        return Response.success("成功", list).pageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
     /**

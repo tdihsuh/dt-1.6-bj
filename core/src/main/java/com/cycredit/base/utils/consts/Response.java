@@ -7,6 +7,9 @@ public class Response {
     private String code;
     private Object obj;
     private String msg;
+    private Integer pageNum;
+    private Long totalCount;
+
 
     static Response getResponse(String code, String msg, Object obj) {
         Response response = new Response();
@@ -20,9 +23,16 @@ public class Response {
         return getResponse("0", msg, null);
     }
 
+    public Response pageInfo(Integer pageNum, Long totalCount) {
+        this.setPageNum(pageNum);
+        this.setTotalCount(totalCount);
+        return this;
+    }
+
     public static Response success(String msg, Object obj) {
         return getResponse("0", msg, obj);
     }
+
 
     public static Response success(String msg, Object obj, String code) {
         return getResponse(code, msg, obj);
@@ -64,5 +74,21 @@ public class Response {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public Integer getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Long getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 }

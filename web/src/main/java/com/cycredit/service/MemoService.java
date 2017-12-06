@@ -1,5 +1,6 @@
 package com.cycredit.service;
 
+import com.cycredit.common.PageInfo;
 import com.cycredit.dao.entity.UniMemo;
 import com.cycredit.dao.entity.UniMemoDepartment;
 import com.cycredit.dao.entity.UniMemoExample;
@@ -44,30 +45,21 @@ public class MemoService {
     }
 
 
-    public List<UniMemo> findPublishMemo() {
+    public List<UniMemo> findPublishMemo(PageInfo pageInfo) {
         UniMemoExample uniMemoExample = new UniMemoExample();
         UniMemoExample.Criteria criteria = uniMemoExample.createCriteria().andStatusEqualTo(1);
-        uniMemoExample.setOffset(0);
-        uniMemoExample.setLimit(10);
+        pageInfo.setTotalCount(uniMemoMapper.countByExample(uniMemoExample));
+        uniMemoExample.setOffset(pageInfo.getOffset());
+        uniMemoExample.setLimit(pageInfo.getLimitSize());
         return uniMemoMapper.selectByExample(uniMemoExample);
     }
 
-    public List<UniMemo> findPendingMemo() {
+    public List<UniMemo> findPendingMemo(PageInfo pageInfo) {
         UniMemoExample uniMemoExample = new UniMemoExample();
         UniMemoExample.Criteria criteria = uniMemoExample.createCriteria().andStatusEqualTo(0);
-        uniMemoExample.setOffset(0);
-        uniMemoExample.setLimit(10);
-        return uniMemoMapper.selectByExample(uniMemoExample);
-    }
-
-
-    public List<UniMemo> findMyMemo(Long uid) {
-        UniMemoExample uniMemoExample = new UniMemoExample();
-        UniMemoExample.Criteria criteria = uniMemoExample.createCriteria().andOperatorEqualTo(uid);
-        RowBounds rowBounds = new RowBounds(10, 0);
-
-        uniMemoExample.setOffset(0);
-        uniMemoExample.setLimit(10);
+        pageInfo.setTotalCount(uniMemoMapper.countByExample(uniMemoExample));
+        uniMemoExample.setOffset(pageInfo.getOffset());
+        uniMemoExample.setLimit(pageInfo.getLimitSize());
         return uniMemoMapper.selectByExample(uniMemoExample);
     }
 

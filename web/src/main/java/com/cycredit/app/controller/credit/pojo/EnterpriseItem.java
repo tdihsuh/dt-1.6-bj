@@ -1,5 +1,9 @@
 package com.cycredit.app.controller.credit.pojo;
 
+import com.cycredit.common.Tag;
+
+import java.util.List;
+
 /**
  * Created by qiyubin on 2017/11/29 0029.
  *
@@ -11,6 +15,15 @@ public class EnterpriseItem {
     private String name;
     private String code;
     private String tags;
+    private List<Tag> tagList;
+
+    public List<Tag> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<Tag> tagList) {
+        this.tagList = tagList;
+    }
 
     public String getEid() {
         return eid;

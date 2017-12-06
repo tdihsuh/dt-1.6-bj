@@ -1,5 +1,9 @@
 package com.cycredit.app.controller.credit.pojo;
 
+import com.cycredit.common.Tag;
+
+import java.util.List;
+
 /**
  * Created by qiyubin on 2017/11/29 0029.
  *
@@ -11,6 +15,10 @@ public class PersonItem {
     private String name;
     private String identityCard;
     private String tags;
+
+
+    private List<Tag> tagList;
+
 
     public String getPid() {
         return pid;
@@ -42,5 +50,13 @@ public class PersonItem {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public List<Tag> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<Tag> tagList) {
+        this.tagList = tagList;
     }
 }

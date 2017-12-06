@@ -1,9 +1,13 @@
 package com.cycredit.service;
 
-import com.cycredit.app.util.threads.UserInfoThreadLocal;
-import com.cycredit.dao.entity.*;
+import com.cycredit.common.PageInfo;
+import com.cycredit.dao.entity.EnterpriseDealResult;
+import com.cycredit.dao.entity.EnterpriseDealResultExample;
+import com.cycredit.dao.entity.PersonDealResult;
+import com.cycredit.dao.entity.PersonDealResultExample;
 import com.cycredit.dao.mapper.EnterpriseDealResultMapper;
 import com.cycredit.dao.mapper.PersonDealResultMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,15 +27,53 @@ public class DealService {
     @Resource
     EnterpriseDealResultMapper enterpriseDealResultMapper;
 
-    public List<PersonDealResult> findMyPersonDeal(Long uid) {
+    public List<PersonDealResult> findMyPersonDeal(String name, String code, Date startTime, Date endTime, Long uid, PageInfo pageInfo) {
+
         PersonDealResultExample personDealResultExample = new PersonDealResultExample();
-        personDealResultExample.createCriteria().andOperatorEqualTo(uid);
+        PersonDealResultExample.Criteria criteria = personDealResultExample.createCriteria().andOperatorEqualTo(uid);
+
+        if (StringUtils.isNotEmpty(name)) {
+            criteria.andNameLike("%" + name + "%");
+        }
+        if (StringUtils.isNotEmpty(code)) {
+            criteria.andIdentityCardLike("%" + code + "%");
+        }
+        if (startTime != null) {
+            criteria.andCreateTimeGreaterThan(startTime);
+        }
+        if (endTime != null) {
+            criteria.andCreateTimeLessThan(endTime);
+        }
+
+
+        pageInfo.setTotalCount(personDealResultMapper.countByExample(personDealResultExample));
+
+        personDealResultExample.setOffset(pageInfo.getOffset());
+        personDealResultExample.setLimit(pageInfo.getLimitSize());
         return personDealResultMapper.selectByExample(personDealResultExample);
     }
 
-    public List<EnterpriseDealResult> findMyEnterpriseDeal(Long uid) {
+    public List<EnterpriseDealResult> findMyEnterpriseDeal(String name, String code, Date startTime, Date endTime, Long uid, PageInfo pageInfo) {
         EnterpriseDealResultExample enterpriseDealResultExample = new EnterpriseDealResultExample();
-        enterpriseDealResultExample.createCriteria().andOperatorEqualTo(uid);
+        EnterpriseDealResultExample.Criteria criteria = enterpriseDealResultExample.createCriteria().andOperatorEqualTo(uid);
+
+        if (StringUtils.isNotEmpty(name)) {
+            criteria.andNameLike("%" + name + "%");
+        }
+        if (StringUtils.isNotEmpty(code)) {
+            criteria.andCodeLike("%" + code + "%");
+        }
+        if (startTime != null) {
+            criteria.andCreateTimeGreaterThan(startTime);
+        }
+        if (endTime != null) {
+            criteria.andCreateTimeLessThan(endTime);
+        }
+
+        pageInfo.setTotalCount(enterpriseDealResultMapper.countByExample(enterpriseDealResultExample));
+
+        enterpriseDealResultExample.setLimit(pageInfo.getLimitSize());
+        enterpriseDealResultExample.setOffset(pageInfo.getOffset());
         return enterpriseDealResultMapper.selectByExample(enterpriseDealResultExample);
     }
 

@@ -12,7 +12,6 @@
         <module>web</module>
         <module>rule</module>
         <module>shiro</module>
-        <module>pageplugins</module>
         <module>cypageplugins</module>
     </modules>
 

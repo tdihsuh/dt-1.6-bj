@@ -2,6 +2,7 @@ package com.cycredit.app.controller.credit;
 
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
+import com.cycredit.common.PageInfo;
 import com.cycredit.dao.entity.EnterpriseDealResult;
 import com.cycredit.dao.entity.PersonDealResult;
 import com.cycredit.dao.entity.User;
@@ -82,9 +83,13 @@ public class CreditDealController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object personList() {
+    public Object personList(String name, String identityCard, Long startTime, Long endTime, Integer pageNum, Integer limitSize) {
         User user = UserInfoThreadLocal.getFromThread();
-        return dealService.findMyPersonDeal(user.getId());
+        PageInfo pageInfo = new PageInfo(pageNum, limitSize);
+        Date startDate = startTime == null ? null : new Date(startTime);
+        Date endDate = endTime == null ? null : new Date(endTime);
+        return Response.success("查询成功", dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getId()
+                , pageInfo)).pageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 
@@ -130,9 +135,13 @@ public class CreditDealController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object enterpriseList() {
+    public Object enterpriseList(String name, String code, Long startTime, Long endTime, Integer pageNum, Integer limitSize) {
         User user = UserInfoThreadLocal.getFromThread();
-        return dealService.findMyEnterpriseDeal(user.getId());
+        PageInfo pageInfo = new PageInfo(pageNum, limitSize);
+        Date startDate = startTime == null ? null : new Date(startTime);
+        Date endDate = endTime == null ? null : new Date(endTime);
+        //TODO 需要处理分页
+        return Response.success("查询成功", dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getId(), pageInfo)).pageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 

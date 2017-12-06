@@ -1,10 +1,8 @@
 package com.cycredit.app.controller.credit;
 
-import com.cycredit.app.controller.credit.pojo.EnterpriseDetail;
-import com.cycredit.app.controller.credit.pojo.EnterpriseItem;
-import com.cycredit.app.controller.credit.pojo.PersonDetail;
-import com.cycredit.app.controller.credit.pojo.PersonItem;
+import com.cycredit.app.controller.credit.pojo.*;
 import com.cycredit.base.utils.consts.Response;
+import com.cycredit.common.Tag;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -14,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by qiyubin on 2017/11/20 0020.
@@ -67,6 +63,11 @@ public class CreditSearchController {
         personItem.setPid("1");
         personItem.setName("张晓多");
         personItem.setTags("失信被执行人,奖励措施,违法嫌疑人");
+        List<Tag> tagList = Lists.newArrayList();
+        tagList.add(new Tag("失信被执行人", "PUNISH"));
+        tagList.add(new Tag("奖励措施", "BONUS"));
+        tagList.add(new Tag("违法嫌疑人", "PUNISH"));
+        personItem.setTagList(tagList);
         return Response.success("成功", personItem);
     }
 
@@ -110,8 +111,12 @@ public class CreditSearchController {
         enterpriseItem.setCode("913710007628687892");
         enterpriseItem.setEid("1");
         enterpriseItem.setName("辉山乳业有限责任公司");
-        enterpriseItem.setTags("失信被执行人,奖励措施");
-
+        enterpriseItem.setTags("失信被执行人,奖励措施,违法嫌疑人");
+        List<Tag> tagList = Lists.newArrayList();
+        tagList.add(new Tag("失信被执行人", "PUNISH"));
+        tagList.add(new Tag("奖励措施", "BONUS"));
+        tagList.add(new Tag("违法嫌疑人", "PUNISH"));
+        enterpriseItem.setTagList(tagList);
         enterpriseItemList.add(enterpriseItem);
         return Response.success("成功", enterpriseItemList);
     }
