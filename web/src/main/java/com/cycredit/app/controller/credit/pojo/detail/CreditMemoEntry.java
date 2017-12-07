@@ -10,7 +10,8 @@ import java.util.List;
  * @author qiyubin
  */
 public class CreditMemoEntry {
-
+    private Long memoId;
+    private String type;
     private String name;
     private String relationDepartment;
     private List<UniMemoDepartment> uniMemoDepartmentList;
@@ -40,10 +41,28 @@ public class CreditMemoEntry {
         this.uniMemoDepartmentList = uniMemoDepartmentList;
     }
 
+    public Long getMemoId() {
+        return memoId;
+    }
+
+    public void setMemoId(Long memoId) {
+        this.memoId = memoId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public CreditMemoEntry() {
     }
 
-    public CreditMemoEntry(String name, String relationDepartment, List<UniMemoDepartment> uniMemoDepartmentList) {
+    public CreditMemoEntry(Long memoId, String type, String name, String relationDepartment, List<UniMemoDepartment> uniMemoDepartmentList) {
+        this.memoId = memoId;
+        this.type = type;
         this.name = name;
         this.relationDepartment = relationDepartment;
         this.uniMemoDepartmentList = uniMemoDepartmentList;

@@ -46,11 +46,20 @@ public class CreditSearchController {
 
         List<CreditMemoEntry> memoEntryList = Lists.newArrayList();
         List<UniMemoDepartment> testUnimemoDeps = Lists.newArrayList();
+
         UniMemoDepartment uniMemoDepartment = new UniMemoDepartment();
         uniMemoDepartment.setMeasure("触发");
         uniMemoDepartment.setReason("犯法");
         testUnimemoDeps.add(uniMemoDepartment);
-        memoEntryList.add(new CreditMemoEntry("企业联合执法", "法院", testUnimemoDeps));
+        memoEntryList.add(new CreditMemoEntry(1L, "PUNISH", "企业联合执法", "法院", testUnimemoDeps));
+
+        List<UniMemoDepartment> testBonusUnimemoDeps = Lists.newArrayList();
+        UniMemoDepartment bonusDepartment = new UniMemoDepartment();
+        bonusDepartment.setMeasure("奖励条例第100条");
+        bonusDepartment.setReason("奖励");
+        testBonusUnimemoDeps.add(bonusDepartment);
+        memoEntryList.add(new CreditMemoEntry(2L, "BONUS", "奖励备忘录", "法院", testBonusUnimemoDeps));
+
         personDetail.setCreditMemoList(memoEntryList);
 
 
@@ -107,7 +116,16 @@ public class CreditSearchController {
         uniMemoDepartment.setMeasure("触发");
         uniMemoDepartment.setReason("犯法");
         testUnimemoDeps.add(uniMemoDepartment);
-        memoEntryList.add(new CreditMemoEntry("企业联合执法", "法院", testUnimemoDeps));
+        memoEntryList.add(new CreditMemoEntry(1L, "PUNISH", "企业联合执法", "法院", testUnimemoDeps));
+
+        List<UniMemoDepartment> testBonusUnimemoDeps = Lists.newArrayList();
+        UniMemoDepartment bonusDepartment = new UniMemoDepartment();
+        bonusDepartment.setMeasure("奖励条例第100条");
+        bonusDepartment.setReason("奖励");
+        testBonusUnimemoDeps.add(bonusDepartment);
+        memoEntryList.add(new CreditMemoEntry(2L, "BONUS", "奖励备忘录", "法院", testBonusUnimemoDeps));
+
+
         enterpriseDetail.setCreditMemoList(memoEntryList);
 
 
