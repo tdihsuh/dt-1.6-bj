@@ -17,12 +17,12 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +57,7 @@ public class MemoController {
     })
     public Object count() {
         Map map = Maps.newHashMap();
-        //todo 需要调活
+        //TODO 需要调活
         map.put("publishCount", 1);
         map.put("pendingCount", 1);
         return Response.success("成功", map);
@@ -109,10 +109,9 @@ public class MemoController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object pass(Long id) {
+    public Object pass(@RequestPart(required = false) Long id) {
         memoService.publishMemo(id);
         return Response.success("成功");
-
     }
 
 
@@ -125,11 +124,9 @@ public class MemoController {
     public Object detail(Long id) {
 
         UniMemo uniMemo = memoService.findById(id);
-
         if (uniMemo == null) {
             return Response.fail("查不到相应备忘录信息");
         }
-
         List<UniMemoDepartment> departmentList = memoDepartmentService.findMemoDepartment(id);
         MemoDetail memoDetail = new MemoDetail();
         memoDetail.setId(uniMemo.getId());
@@ -137,9 +134,7 @@ public class MemoController {
         memoDetail.setRelationDepartment(uniMemo.getRelationDepartment());
         memoDetail.setTags(uniMemo.getTags());
         memoDetail.setType(uniMemo.getType());
-
         List<DepartmentItem> departmentItems = Lists.newArrayList();
-
         for (UniMemoDepartment uniMemoDepartment : departmentList) {
             DepartmentItem temp = new DepartmentItem();
             temp.setDepartmentCode(uniMemoDepartment.getDepartmentCode());
@@ -152,11 +147,12 @@ public class MemoController {
             departmentItems.add(temp);
         }
         memoDetail.setDepartmentItems(departmentItems);
-
         return Response.success("成功", memoDetail);
 
     }
 
+
+    //------------------------------------------Post-------------------------------------------------------------------
 
     /**
      * @return
@@ -165,9 +161,9 @@ public class MemoController {
     @ApiOperation(notes = "暂存或者修改备忘录", httpMethod = "POST", value = "暂存或者修改备忘录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
-            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
-    })
-    public Object add(Long id, String name, String type, String relationDepartment, String tags) {
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false)}
+    )
+    public Object add(@RequestPart(required = false) Long id, @RequestPart(required = false) String name, @RequestPart(required = false) String type, @RequestPart(required = false) String relationDepartment, @RequestPart(required = false) String tags) {
         UniMemo uniMemo = new UniMemo();
         uniMemo.setId(id);
         uniMemo.setName(name);
@@ -194,7 +190,7 @@ public class MemoController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object departmentAdd(Long memoId, String departmentCode, String measure, String reason) {
+    public Object departmentAdd(@RequestPart(required = false) Long memoId, @RequestPart(required = false) String departmentCode, @RequestPart(required = false) String measure, @RequestPart(required = false) String reason) {
         UniMemoDepartment uniMemoDepartment = new UniMemoDepartment();
         uniMemoDepartment.setDepartmentCode(departmentCode);
         uniMemoDepartment.setMeasure(measure);
@@ -213,7 +209,7 @@ public class MemoController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object departmentDelete(Long id) {
+    public Object departmentDelete(@RequestPart(required = false) Long id) {
         memoDepartmentService.deleteDepartment(id);
         return Response.success("成功");
 

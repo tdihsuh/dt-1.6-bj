@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +35,6 @@ public class CreditDealController {
     @Resource
     DealService dealService;
 
-
     /**
      * 联合个人备忘录处理
      *
@@ -50,7 +50,7 @@ public class CreditDealController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object personOperation(String pid, String dealType, String description) {
+    public Object personOperation(@RequestPart(required = false) String pid, @RequestPart(required = false) String dealType, @RequestPart(required = false) String description) {
         PersonDealResult personDealResult = new PersonDealResult();
         personDealResult.setUpdateTime(new Date());
         personDealResult.setCreateTime(new Date());
@@ -72,6 +72,41 @@ public class CreditDealController {
     }
 
     /**
+     * 联合企业备忘录处理
+     *
+     * @param dealType
+     * @param description
+     * @return
+     */
+    @RequestMapping(value = "/enterprise", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    @ApiOperation(notes = "企业信用主体操作处理", httpMethod = "POST", value = "企业信用主体操作处理")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public Object enterpriseOperation(@RequestPart(required = false) String eid, @RequestPart(required = false) String dealType, @RequestPart(required = false) String description) {
+        EnterpriseDealResult enterpriseDealResult = new EnterpriseDealResult();
+        enterpriseDealResult.setUpdateTime(new Date());
+        enterpriseDealResult.setCreateTime(new Date());
+        enterpriseDealResult.setCode("123");
+        enterpriseDealResult.setName("测试企业");
+        enterpriseDealResult.setTags("重大税收违法,test");
+
+        enterpriseDealResult.setDescription(description);
+        enterpriseDealResult.setDealType(dealType);
+
+        enterpriseDealResult.setEid(eid);
+        User user = UserInfoThreadLocal.getFromThread();
+        enterpriseDealResult.setOperatorDepartmentCode(user.getDepartmentCode());
+        enterpriseDealResult.setOperatorAreaCode(user.getAreaCode());
+        enterpriseDealResult.setOperator(user.getId());
+        dealService.dealEnterprise(enterpriseDealResult);
+        return Response.success("成功");
+    }
+
+
+    /**
      * 联合个人备忘录处理
      *
      * @return
@@ -90,41 +125,6 @@ public class CreditDealController {
         Date endDate = endTime == null ? null : new Date(endTime);
         return Response.success("查询成功", dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getId()
                 , pageInfo)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
-    }
-
-
-    /**
-     * 联合企业备忘录处理
-     *
-     * @param dealType
-     * @param description
-     * @return
-     */
-    @RequestMapping(value = "/enterprise", produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    @ApiOperation(notes = "企业信用主体操作处理", httpMethod = "POST", value = "企业信用主体操作处理")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
-            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
-    })
-    public Object enterpriseOperation(String eid, String dealType, String description) {
-        EnterpriseDealResult enterpriseDealResult = new EnterpriseDealResult();
-        enterpriseDealResult.setUpdateTime(new Date());
-        enterpriseDealResult.setCreateTime(new Date());
-        enterpriseDealResult.setCode("123");
-        enterpriseDealResult.setName("测试企业");
-        enterpriseDealResult.setTags("重大税收违法,test");
-
-        enterpriseDealResult.setDescription(description);
-        enterpriseDealResult.setDealType(dealType);
-
-        enterpriseDealResult.setEid(eid);
-        User user = UserInfoThreadLocal.getFromThread();
-        enterpriseDealResult.setOperatorDepartmentCode(user.getDepartmentCode());
-        enterpriseDealResult.setOperatorAreaCode(user.getAreaCode());
-        enterpriseDealResult.setOperator(user.getId());
-        dealService.dealEnterprise(enterpriseDealResult);
-        return Response.success("成功");
     }
 
 
