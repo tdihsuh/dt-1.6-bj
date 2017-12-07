@@ -11,12 +11,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -51,7 +49,9 @@ public class SessionController {
 
     @RequestMapping(value = "/session", produces = "application/json;charset=UTF-8")
     @ApiOperation(notes = "session", httpMethod = "POST", value = "登录")
-    public Object addCreditSelect(@RequestPart(required = false) String uname, @RequestPart(required = false) String pwd, HttpServletResponse response) {
+    public Object addCreditSelect(@RequestParam(required = false, value = "uname") String uname, @RequestParam(required = false, value = "pwd") String pwd,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response) {
 
         try {
             User user = userService.findByName(uname);

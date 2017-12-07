@@ -1,8 +1,11 @@
 package com.cycredit.app.controller.credit;
 
 import com.cycredit.app.controller.credit.pojo.*;
+import com.cycredit.app.controller.credit.pojo.detail.*;
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.common.Tag;
+import com.cycredit.dao.entity.UniMemoDepartment;
+import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -38,10 +41,22 @@ public class CreditSearchController {
     })
     public Object personDetail(String pid) {
         PersonDetail personDetail = new PersonDetail();
-        personDetail.setName("张晓多");
-        personDetail.setAddress("北京市海淀区西土城路十号");
-        personDetail.setIdentityCard("110100198907180902");
-        personDetail.setPid("1");
+        PersonInfo personInfo = new PersonInfo("张晓多", "北京市海淀区西土城路十号", "110100198907180902", "1");
+        personDetail.setInfo(personInfo);
+
+        List<CreditMemoEntry> memoEntryList = Lists.newArrayList();
+        List<UniMemoDepartment> testUnimemoDeps = Lists.newArrayList();
+        UniMemoDepartment uniMemoDepartment = new UniMemoDepartment();
+        uniMemoDepartment.setMeasure("触发");
+        uniMemoDepartment.setReason("犯法");
+        testUnimemoDeps.add(uniMemoDepartment);
+        memoEntryList.add(new CreditMemoEntry("企业联合执法", "法院", testUnimemoDeps));
+        personDetail.setCreditMemoList(memoEntryList);
+
+
+        List<CreditDetailEntry> detailEntryList = Lists.newArrayList();
+        detailEntryList.add(new CreditDetailEntry("法院", "认命法院"));
+        personDetail.setCreditDetailList(detailEntryList);
 
         return Response.success("成功", personDetail);
     }
@@ -83,14 +98,23 @@ public class CreditSearchController {
     })
     public Object enterpriseDetail(String eid) {
         EnterpriseDetail enterpriseDetail = new EnterpriseDetail();
-        enterpriseDetail.setEid("1");
-        enterpriseDetail.setName("辉山乳业有限责任公司");
-        enterpriseDetail.setCode("913710007628687892");
-        enterpriseDetail.setAddress("北京市惠山路1号");
-        enterpriseDetail.setType("有限责任公司（非自然人投资或控股的法人独资）");
-        enterpriseDetail.setLegalPerson("张晓度");
-        enterpriseDetail.setValidTime("2029年05月17日");
-        enterpriseDetail.setCreateTime("2009年05月18日");
+        EnterpriseInfo enterpriseInfo = new EnterpriseInfo("1", "辉山乳业有限责任公司", "913710007628687892", "北京市惠山路1号", "有限责任公司（非自然人投资或控股的法人独资）", "张晓度", "2029年05月17日", "2009年05月18日");
+        enterpriseDetail.setInfo(enterpriseInfo);
+        List<CreditMemoEntry> memoEntryList = Lists.newArrayList();
+
+        List<UniMemoDepartment> testUnimemoDeps = Lists.newArrayList();
+        UniMemoDepartment uniMemoDepartment = new UniMemoDepartment();
+        uniMemoDepartment.setMeasure("触发");
+        uniMemoDepartment.setReason("犯法");
+        testUnimemoDeps.add(uniMemoDepartment);
+        memoEntryList.add(new CreditMemoEntry("企业联合执法", "法院", testUnimemoDeps));
+        enterpriseDetail.setCreditMemoList(memoEntryList);
+
+
+        List<CreditDetailEntry> detailEntryList = Lists.newArrayList();
+        detailEntryList.add(new CreditDetailEntry("法院", "认命法院"));
+        enterpriseDetail.setCreditDetailList(detailEntryList);
+
 
         return Response.success("成功", enterpriseDetail);
     }

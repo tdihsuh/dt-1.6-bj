@@ -1,11 +1,11 @@
-package com.cycredit.app.controller.credit.pojo;
+package com.cycredit.app.controller.credit.pojo.detail;
 
 /**
- * Created by qiyubin on 2017/11/29 0029.
+ * Created by qiyubin on 2017/12/7 0007.
  *
  * @author qiyubin
  */
-public class EnterpriseDetail {
+public class EnterpriseInfo {
 
     private String eid;
     private String code;
@@ -16,6 +16,19 @@ public class EnterpriseDetail {
     private String createTime;
     private String validTime;
 
+    public EnterpriseInfo() {
+    }
+
+    public EnterpriseInfo(String eid, String code, String name, String legalPerson, String type, String address, String createTime, String validTime) {
+        this.eid = eid;
+        this.code = code;
+        this.name = name;
+        this.legalPerson = legalPerson;
+        this.type = type;
+        this.address = address;
+        this.createTime = createTime;
+        this.validTime = validTime;
+    }
 
     public String getCode() {
         return code;
@@ -80,4 +93,5 @@ public class EnterpriseDetail {
     public void setValidTime(String validTime) {
         this.validTime = validTime;
     }
+
 }

@@ -1,16 +1,26 @@
-package com.cycredit.app.controller.credit.pojo;
+package com.cycredit.app.controller.credit.pojo.detail;
 
 /**
- * Created by qiyubin on 2017/11/29 0029.
+ * Created by qiyubin on 2017/12/7 0007.
  *
  * @author qiyubin
  */
-public class PersonDetail {
+public class PersonInfo {
 
     private String pid;
     private String name;
     private String identityCard;
     private String address;
+
+    public PersonInfo() {
+    }
+
+    public PersonInfo(String pid, String name, String identityCard, String address) {
+        this.pid = pid;
+        this.name = name;
+        this.identityCard = identityCard;
+        this.address = address;
+    }
 
     public String getPid() {
         return pid;
@@ -43,4 +53,5 @@ public class PersonDetail {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }

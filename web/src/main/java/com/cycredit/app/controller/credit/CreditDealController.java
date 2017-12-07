@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,7 +50,7 @@ public class CreditDealController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object personOperation(@RequestPart(required = false) String pid, @RequestPart(required = false) String dealType, @RequestPart(required = false) String description) {
+    public Object personOperation(@RequestParam(required = false, value = "pid") String pid, @RequestParam(required = false, value = "dealType") String dealType, @RequestParam(required = false, value = "description") String description) {
         PersonDealResult personDealResult = new PersonDealResult();
         personDealResult.setUpdateTime(new Date());
         personDealResult.setCreateTime(new Date());
@@ -85,7 +85,7 @@ public class CreditDealController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object enterpriseOperation(@RequestPart(required = false) String eid, @RequestPart(required = false) String dealType, @RequestPart(required = false) String description) {
+    public Object enterpriseOperation(@RequestParam(required = false,value = "eid") String eid, @RequestParam(required = false,value = "dealType") String dealType, @RequestParam(required = false,value = "description") String description) {
         EnterpriseDealResult enterpriseDealResult = new EnterpriseDealResult();
         enterpriseDealResult.setUpdateTime(new Date());
         enterpriseDealResult.setCreateTime(new Date());
