@@ -99,34 +99,7 @@ public class MemoController {
         return Response.success("成功", list).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
-    /**
-     * @return
-     */
-    @RequestMapping(value = "/temporary", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "暂存或者修改备忘录", httpMethod = "GET", value = "暂存或者修改备忘录")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
-            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
-    })
-    public Object add(Long id, String name, String type, String relationDepartment, String tags) {
-        UniMemo uniMemo = new UniMemo();
-        uniMemo.setId(id);
-        uniMemo.setName(name);
-        uniMemo.setType(type);
-        uniMemo.setRelationDepartment(relationDepartment);
-        uniMemo.setTags(tags);
-        uniMemo.setStatus(0);
 
-        User user = UserInfoThreadLocal.getFromThread();
-        uniMemo.setOperator(user.getId());
-        uniMemo.setOperatrorDepartmentCode(user.getDepartmentCode());
-        uniMemo.setOperatorAreaCode(user.getAreaCode());
-
-        memoService.save(uniMemo);
-
-        return Response.success("暂存备忘录成功");
-
-    }
 
     /**
      * @return
@@ -186,8 +159,38 @@ public class MemoController {
     }
 
 
+    /**
+     * @return
+     */
+    @RequestMapping(value = "/temporary", produces = "application/json;charset=UTF-8")
+    @ApiOperation(notes = "暂存或者修改备忘录", httpMethod = "POST", value = "暂存或者修改备忘录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public Object add(Long id, String name, String type, String relationDepartment, String tags) {
+        UniMemo uniMemo = new UniMemo();
+        uniMemo.setId(id);
+        uniMemo.setName(name);
+        uniMemo.setType(type);
+        uniMemo.setRelationDepartment(relationDepartment);
+        uniMemo.setTags(tags);
+        uniMemo.setStatus(0);
+
+        User user = UserInfoThreadLocal.getFromThread();
+        uniMemo.setOperator(user.getId());
+        uniMemo.setOperatrorDepartmentCode(user.getDepartmentCode());
+        uniMemo.setOperatorAreaCode(user.getAreaCode());
+
+        memoService.save(uniMemo);
+
+        return Response.success("暂存备忘录成功");
+
+    }
+
+
     @RequestMapping(value = "/department/add", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "备忘录新增关联部门", httpMethod = "GET", value = "备忘录新增关联部门")
+    @ApiOperation(notes = "备忘录新增关联部门", httpMethod = "POST", value = "备忘录新增关联部门")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
@@ -206,7 +209,7 @@ public class MemoController {
 
 
     @RequestMapping(value = "/department/delete", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "备忘录删除关联部门", httpMethod = "GET", value = "备忘录删除关联部门")
+    @ApiOperation(notes = "备忘录删除关联部门", httpMethod = "POST", value = "备忘录删除关联部门")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),

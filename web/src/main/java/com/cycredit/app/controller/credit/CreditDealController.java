@@ -45,7 +45,7 @@ public class CreditDealController {
      */
     @RequestMapping(value = "/person", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    @ApiOperation(notes = "个人信用主体操作处理", httpMethod = "GET", value = "个人信用主体操作处理")
+    @ApiOperation(notes = "个人信用主体操作处理", httpMethod = "POST", value = "个人信用主体操作处理")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
@@ -102,7 +102,7 @@ public class CreditDealController {
      */
     @RequestMapping(value = "/enterprise", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    @ApiOperation(notes = "企业信用主体操作处理", httpMethod = "GET", value = "企业信用主体操作处理")
+    @ApiOperation(notes = "企业信用主体操作处理", httpMethod = "POST", value = "企业信用主体操作处理")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
