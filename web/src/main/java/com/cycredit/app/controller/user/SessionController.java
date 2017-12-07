@@ -49,7 +49,7 @@ public class SessionController {
 
 
     @RequestMapping(value = "/session", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "session", httpMethod = "GET", value = "登录")
+    @ApiOperation(notes = "session", httpMethod = "POST", value = "登录")
     public Object addCreditSelect(String uname, String pwd, HttpServletResponse response) {
 
         try {

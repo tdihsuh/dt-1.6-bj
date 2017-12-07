@@ -100,12 +100,11 @@ public class MemoController {
     }
 
 
-
     /**
      * @return
      */
     @RequestMapping(value = "/publish", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "发布备忘录", httpMethod = "GET", value = "发布备忘录")
+    @ApiOperation(notes = "发布备忘录", httpMethod = "POST", value = "发布备忘录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
