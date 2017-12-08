@@ -11,15 +11,17 @@ public class PersonInfo {
     private String name;
     private String identityCard;
     private String address;
+    private String gender;
 
     public PersonInfo() {
     }
 
-    public PersonInfo(String pid, String name, String identityCard, String address) {
+    public PersonInfo(String pid, String name, String identityCard, String address, String gender) {
         this.pid = pid;
         this.name = name;
         this.identityCard = identityCard;
         this.address = address;
+        this.gender = gender;
     }
 
     public String getPid() {
@@ -54,4 +56,11 @@ public class PersonInfo {
         this.address = address;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }

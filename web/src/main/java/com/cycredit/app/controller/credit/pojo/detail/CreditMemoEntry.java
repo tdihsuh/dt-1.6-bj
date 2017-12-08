@@ -2,6 +2,7 @@ package com.cycredit.app.controller.credit.pojo.detail;
 
 import com.cycredit.dao.entity.UniMemoDepartment;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,7 +15,9 @@ public class CreditMemoEntry {
     private String type;
     private String name;
     private String relationDepartment;
-    private List<UniMemoDepartment> uniMemoDepartmentList;
+    private List<MemoDepartmentItem> uniMemoDepartmentList;
+
+    private Date time;
 
 
     public String getName() {
@@ -33,11 +36,11 @@ public class CreditMemoEntry {
         this.relationDepartment = relationDepartment;
     }
 
-    public List<UniMemoDepartment> getUniMemoDepartmentList() {
+    public List<MemoDepartmentItem> getUniMemoDepartmentList() {
         return uniMemoDepartmentList;
     }
 
-    public void setUniMemoDepartmentList(List<UniMemoDepartment> uniMemoDepartmentList) {
+    public void setUniMemoDepartmentList(List<MemoDepartmentItem> uniMemoDepartmentList) {
         this.uniMemoDepartmentList = uniMemoDepartmentList;
     }
 
@@ -57,14 +60,25 @@ public class CreditMemoEntry {
         this.type = type;
     }
 
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
     public CreditMemoEntry() {
     }
 
-    public CreditMemoEntry(Long memoId, String type, String name, String relationDepartment, List<UniMemoDepartment> uniMemoDepartmentList) {
+
+    public CreditMemoEntry(Long memoId, String type, String name, String relationDepartment, List<MemoDepartmentItem> uniMemoDepartmentList, Date time) {
         this.memoId = memoId;
         this.type = type;
         this.name = name;
         this.relationDepartment = relationDepartment;
         this.uniMemoDepartmentList = uniMemoDepartmentList;
+        this.time = time;
     }
 }

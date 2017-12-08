@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,24 +42,17 @@ public class CreditSearchController {
     })
     public Object personDetail(String pid) {
         PersonDetail personDetail = new PersonDetail();
-        PersonInfo personInfo = new PersonInfo("张晓多", "北京市海淀区西土城路十号", "110100198907180902", "1");
+        PersonInfo personInfo = new PersonInfo("1", "张晓多", "110100198907180902", "北京市海淀区西土城路十号", "男");
         personDetail.setInfo(personInfo);
 
         List<CreditMemoEntry> memoEntryList = Lists.newArrayList();
-        List<UniMemoDepartment> testUnimemoDeps = Lists.newArrayList();
+        List<MemoDepartmentItem> testUnimemoDeps = Lists.newArrayList();
+        testUnimemoDeps.add(new MemoDepartmentItem("犯法", "法律110条", "人民法院"));
+        memoEntryList.add(new CreditMemoEntry(1L, "PUNISH", "企业联合执法", "法院", testUnimemoDeps, new Date()));
 
-        UniMemoDepartment uniMemoDepartment = new UniMemoDepartment();
-        uniMemoDepartment.setMeasure("触发");
-        uniMemoDepartment.setReason("犯法");
-        testUnimemoDeps.add(uniMemoDepartment);
-        memoEntryList.add(new CreditMemoEntry(1L, "PUNISH", "企业联合执法", "法院", testUnimemoDeps));
-
-        List<UniMemoDepartment> testBonusUnimemoDeps = Lists.newArrayList();
-        UniMemoDepartment bonusDepartment = new UniMemoDepartment();
-        bonusDepartment.setMeasure("奖励条例第100条");
-        bonusDepartment.setReason("奖励");
-        testBonusUnimemoDeps.add(bonusDepartment);
-        memoEntryList.add(new CreditMemoEntry(2L, "BONUS", "奖励备忘录", "法院", testBonusUnimemoDeps));
+        List<MemoDepartmentItem> testBonusUnimemoDeps = Lists.newArrayList();
+        testBonusUnimemoDeps.add(new MemoDepartmentItem("做好事", "好法110条", "人民法院"));
+        memoEntryList.add(new CreditMemoEntry(2L, "BONUS", "奖励备忘录", "法院", testBonusUnimemoDeps, new Date()));
 
         personDetail.setCreditMemoList(memoEntryList);
 
@@ -92,6 +86,7 @@ public class CreditSearchController {
         tagList.add(new Tag("奖励措施", "BONUS"));
         tagList.add(new Tag("违法嫌疑人", "PUNISH"));
         personItem.setTagList(tagList);
+        personItems.add(personItem);
         return Response.success("成功", personItems);
     }
 
@@ -107,24 +102,17 @@ public class CreditSearchController {
     })
     public Object enterpriseDetail(String eid) {
         EnterpriseDetail enterpriseDetail = new EnterpriseDetail();
-        EnterpriseInfo enterpriseInfo = new EnterpriseInfo("1", "辉山乳业有限责任公司", "913710007628687892", "北京市惠山路1号", "有限责任公司（非自然人投资或控股的法人独资）", "张晓度", "2029年05月17日", "2009年05月18日");
+        EnterpriseInfo enterpriseInfo = new EnterpriseInfo("1", "913710007628687892", "辉山乳业有限责任公司", "张晓度", "有限责任公司（非自然人投资或控股的法人独资）", "北京市惠山路1号", "2029年05月17日", "2009年05月18日");
         enterpriseDetail.setInfo(enterpriseInfo);
         List<CreditMemoEntry> memoEntryList = Lists.newArrayList();
 
-        List<UniMemoDepartment> testUnimemoDeps = Lists.newArrayList();
-        UniMemoDepartment uniMemoDepartment = new UniMemoDepartment();
-        uniMemoDepartment.setMeasure("触发");
-        uniMemoDepartment.setReason("犯法");
-        testUnimemoDeps.add(uniMemoDepartment);
-        memoEntryList.add(new CreditMemoEntry(1L, "PUNISH", "企业联合执法", "法院", testUnimemoDeps));
+        List<MemoDepartmentItem> testUnimemoDeps = Lists.newArrayList();
+        testUnimemoDeps.add(new MemoDepartmentItem("犯法", "法律110条", "人民法院"));
+        memoEntryList.add(new CreditMemoEntry(1L, "PUNISH", "企业联合执法", "法院", testUnimemoDeps, new Date()));
 
-        List<UniMemoDepartment> testBonusUnimemoDeps = Lists.newArrayList();
-        UniMemoDepartment bonusDepartment = new UniMemoDepartment();
-        bonusDepartment.setMeasure("奖励条例第100条");
-        bonusDepartment.setReason("奖励");
-        testBonusUnimemoDeps.add(bonusDepartment);
-        memoEntryList.add(new CreditMemoEntry(2L, "BONUS", "奖励备忘录", "法院", testBonusUnimemoDeps));
-
+        List<MemoDepartmentItem> testBonusUnimemoDeps = Lists.newArrayList();
+        testBonusUnimemoDeps.add(new MemoDepartmentItem("做好事", "好法110条", "人民法院"));
+        memoEntryList.add(new CreditMemoEntry(2L, "BONUS", "奖励备忘录", "法院", testBonusUnimemoDeps, new Date()));
 
         enterpriseDetail.setCreditMemoList(memoEntryList);
 
