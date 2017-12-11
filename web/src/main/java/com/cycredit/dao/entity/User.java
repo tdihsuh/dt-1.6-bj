@@ -13,6 +13,8 @@ public class User implements Serializable {
 
     private String areaCode;
 
+    private String roleCode;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -53,5 +55,13 @@ public class User implements Serializable {
 
     public void setAreaCode(String areaCode) {
         this.areaCode = areaCode == null ? null : areaCode.trim();
+    }
+
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode == null ? null : roleCode.trim();
     }
 }

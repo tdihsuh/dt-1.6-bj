@@ -3,6 +3,7 @@ package com.cycredit.app.util.cache;
 import com.alibaba.fastjson.JSONObject;
 import com.cycredit.app.util.authc.UserToken;
 import com.cycredit.base.utils.cache.JedisUtils;
+import com.cycredit.dao.entity.User;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -18,20 +19,13 @@ public class UserTokenCache {
     }
 
     public static UserToken getUserToeknFromCache(String uid) {
-        String json = JedisUtils.get(fetchCacheKey(uid));
-        if (StringUtils.isNotEmpty(json)) {
-            return JSONObject.parseObject(json, UserToken.class);
-        }
-        return null;
+        return CacheService.getFromCache(fetchCacheKey(uid), UserToken.class);
+
     }
 
 
-    public static UserToken setUserTokenToCache(String uid, UserToken userToken) {
-
-        JedisUtils.jedisOperate(jedis -> {
-            jedis.set(fetchCacheKey(uid), JSONObject.toJSONString(userToken));
-        });
-        return null;
+    public static void setUserTokenToCache(String uid, UserToken userToken) {
+        CacheService.setToCache(fetchCacheKey(uid), userToken);
     }
 
 

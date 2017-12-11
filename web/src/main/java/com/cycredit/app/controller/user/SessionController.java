@@ -2,15 +2,20 @@ package com.cycredit.app.controller.user;
 
 import com.cycredit.app.controller.user.pojo.SessionReponse;
 import com.cycredit.app.util.authc.SecurityUtils;
+import com.cycredit.app.util.cache.pojo.UserInfo;
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.dao.entity.User;
+import com.cycredit.service.OriginService;
 import com.cycredit.service.UserService;
 import com.cycredit.service.UserTokenService;
+import com.cycredit.service.enums.Role;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
+import net.bytebuddy.asm.Advice;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,20 +36,10 @@ public class SessionController {
 
     @Resource
     UserService userService;
-
+    @Resource
+    OriginService originService;
     @Resource
     UserTokenService userTokenService;
-
-    enum Role {
-        infoCenterEmployee("信息中心职员"), infoCenterMajor("信息中心主任"),
-        dpEmployee("部位职员"), dpMajor("部位主任");
-
-        String name;
-
-        Role(String name) {
-            this.name = name;
-        }
-    }
 
 
     @RequestMapping(value = "/session", produces = "application/json;charset=UTF-8")
@@ -58,17 +53,42 @@ public class SessionController {
             Boolean checkResult = SecurityUtils.passwordCheck(user.getPassword(), pwd);
 
             if (checkResult) {
-                SecurityUtils.loginSuccess(user.getName(), user.getId(), user.getAreaCode(), user.getDepartmentCode(), response);
+
+                UserInfo cacheUser = new UserInfo();
+                cacheUser.setId(user.getId());
+                cacheUser.setAreaCode(user.getAreaCode());
+                cacheUser.setDepartmentCode(user.getDepartmentCode());
+                cacheUser.setName(user.getName());
+                cacheUser.setRoleCode(user.getRoleCode());
+                try {
+                    cacheUser.setRoleName(Role.getRoleByCode(user.getRoleCode()).getName());
+                } catch (Exception e) {
+                    return Response.fail("用户角色非法");
+                }
+                try {
+                    cacheUser.setDepartmentName(originService.getDepartment(user.getDepartmentCode()).getDepartmentName());
+                } catch (Exception e) {
+                    return Response.fail("用户部门非法");
+                }
+                try {
+                    cacheUser.setAreaName(originService.getAreaByCode(user.getAreaCode()).getAreaName());
+                } catch (Exception e) {
+                    return Response.fail("用户地区非法");
+                }
+
+
+                SecurityUtils.loginSuccess(cacheUser, response);
 
                 //TODO 需要翻译
-                return Response.success("登录成功", new SessionReponse(user.getId(), user.getName()
-                        , user.getDepartmentCode(), "省环保厅", Role.infoCenterMajor.name(), Role.infoCenterMajor.name, user.getAreaCode(), "郑州市"));
+                return Response.success("登录成功", new SessionReponse(cacheUser.getId(), cacheUser.getName()
+                        , cacheUser.getDepartmentCode(), cacheUser.getDepartmentName(), cacheUser.getRoleCode().toString(), cacheUser.getRoleName(), cacheUser.getAreaCode(), cacheUser.getAreaName()));
 
             } else {
                 return Response.fail("登录失败");
 
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return Response.fail("登录失败");
         }
     }

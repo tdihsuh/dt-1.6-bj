@@ -2,6 +2,7 @@ package com.cycredit.app.controller.memo;
 
 import com.cycredit.app.controller.memo.pojo.DepartmentItem;
 import com.cycredit.app.controller.memo.pojo.MemoDetail;
+import com.cycredit.app.util.cache.pojo.UserInfo;
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.common.PageInfo;
@@ -169,7 +170,7 @@ public class MemoController {
         uniMemo.setTags(tags);
         uniMemo.setStatus(0);
 
-        User user = UserInfoThreadLocal.getFromThread();
+        UserInfo user = UserInfoThreadLocal.getFromThread();
         uniMemo.setOperator(user.getId());
         uniMemo.setOperatrorDepartmentCode(user.getDepartmentCode());
         uniMemo.setOperatorAreaCode(user.getAreaCode());

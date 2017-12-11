@@ -1,5 +1,6 @@
 package com.cycredit.app.controller.credit;
 
+import com.cycredit.app.util.cache.pojo.UserInfo;
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.common.PageInfo;
@@ -63,7 +64,7 @@ public class CreditDealController {
 
 
         personDealResult.setPid(pid);
-        User user = UserInfoThreadLocal.getFromThread();
+        UserInfo user = UserInfoThreadLocal.getFromThread();
         personDealResult.setOperatorDepartmentCode(user.getDepartmentCode());
         personDealResult.setOperatorAreaCode(user.getAreaCode());
         personDealResult.setOperator(user.getId());
@@ -85,7 +86,7 @@ public class CreditDealController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object enterpriseOperation(@RequestParam(required = false,value = "eid") String eid, @RequestParam(required = false,value = "dealType") String dealType, @RequestParam(required = false,value = "description") String description) {
+    public Object enterpriseOperation(@RequestParam(required = false, value = "eid") String eid, @RequestParam(required = false, value = "dealType") String dealType, @RequestParam(required = false, value = "description") String description) {
         EnterpriseDealResult enterpriseDealResult = new EnterpriseDealResult();
         enterpriseDealResult.setUpdateTime(new Date());
         enterpriseDealResult.setCreateTime(new Date());
@@ -97,7 +98,7 @@ public class CreditDealController {
         enterpriseDealResult.setDealType(dealType);
 
         enterpriseDealResult.setEid(eid);
-        User user = UserInfoThreadLocal.getFromThread();
+        UserInfo user = UserInfoThreadLocal.getFromThread();
         enterpriseDealResult.setOperatorDepartmentCode(user.getDepartmentCode());
         enterpriseDealResult.setOperatorAreaCode(user.getAreaCode());
         enterpriseDealResult.setOperator(user.getId());
@@ -119,7 +120,7 @@ public class CreditDealController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object personList(String name, String identityCard, Long startTime, Long endTime, Integer pageNum, Integer limitSize) {
-        User user = UserInfoThreadLocal.getFromThread();
+        UserInfo user = UserInfoThreadLocal.getFromThread();
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         Date startDate = startTime == null ? null : new Date(startTime);
         Date endDate = endTime == null ? null : new Date(endTime);
@@ -136,7 +137,7 @@ public class CreditDealController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
     public Object enterpriseList(String name, String code, Long startTime, Long endTime, Integer pageNum, Integer limitSize) {
-        User user = UserInfoThreadLocal.getFromThread();
+        UserInfo user = UserInfoThreadLocal.getFromThread();
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         Date startDate = startTime == null ? null : new Date(startTime);
         Date endDate = endTime == null ? null : new Date(endTime);

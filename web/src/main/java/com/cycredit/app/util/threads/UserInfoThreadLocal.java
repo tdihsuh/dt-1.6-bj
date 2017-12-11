@@ -1,6 +1,7 @@
 package com.cycredit.app.util.threads;
 
 import com.cycredit.app.util.authc.UserToken;
+import com.cycredit.app.util.cache.pojo.UserInfo;
 import com.cycredit.dao.entity.User;
 
 /**
@@ -10,13 +11,13 @@ import com.cycredit.dao.entity.User;
  */
 public class UserInfoThreadLocal {
 
-    private static ThreadLocal<User> userThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<UserInfo> userThreadLocal = new ThreadLocal<>();
 
-    public static void putIntoThread(User user) {
+    public static void putIntoThread(UserInfo user) {
         userThreadLocal.set(user);
     }
 
-    public static User getFromThread() {
+    public static UserInfo getFromThread() {
         return userThreadLocal.get();
     }
 

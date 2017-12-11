@@ -132,5 +132,18 @@
             <generatedKey column="id" identity="true" sqlStatement="mysql"/>
         </table>
 
+        <table tableName="department" domainObjectName="Department"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        </table>
+
+        <table tableName="area" domainObjectName="Area"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="false">
+            <generatedKey column="id" identity="true" sqlStatement="mysql"/>
+        </table>
+
+
     </context>
 </generatorConfiguration>

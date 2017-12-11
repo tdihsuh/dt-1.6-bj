@@ -2,9 +2,11 @@ package com.cycredit.app.util.authc;
 
 import com.cycredit.app.util.cache.UserInfoCache;
 import com.cycredit.app.util.cache.UserTokenCache;
+import com.cycredit.app.util.cache.pojo.UserInfo;
 import com.cycredit.app.util.threads.UserTokenThreadLocal;
 import com.cycredit.base.utils.Encodes;
 import com.cycredit.dao.entity.User;
+import com.cycredit.service.OriginService;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
@@ -39,30 +41,26 @@ public class SecurityUtils {
 
     //token -> user
 
-    public static void loginSuccess(String username, Long uid, String areaCode, String departmentCode, HttpServletResponse response) {
+    public static void loginSuccess(UserInfo userInfo, HttpServletResponse response) {
 
         //add user token cache
         String token = UUID.randomUUID().toString();
         UserToken userToken = new UserToken();
-        userToken.setUsername(username);
-        userToken.setUid(uid);
+        userToken.setUsername(userInfo.getName());
+        userToken.setUid(userInfo.getId());
         userToken.setToken(token);
         userToken.setCreateTime(new Date());
-        UserTokenCache.setUserTokenToCache(uid.toString(), userToken);
+        UserTokenCache.setUserTokenToCache(userInfo.getId().toString(), userToken);
 //        UserTokenThreadLocal.putIntoThread(userToken);
 
         //add userinfo cache
-        User user = new User();
-        user.setId(uid);
-        user.setAreaCode(areaCode);
-        user.setDepartmentCode(departmentCode);
-        user.setName(username);
+
         //TODO add 用户权限
-        UserInfoCache.setToCache(uid.toString(), user);
+        UserInfoCache.setToCache(userInfo.getId().toString(), userInfo);
 
 
         //write cookie to api path
-        Cookie cookie1 = new Cookie("uid", uid.toString());
+        Cookie cookie1 = new Cookie("uid", userInfo.getId().toString());
         cookie1.setPath("/");
         response.addCookie(cookie1);
         Cookie cookie2 = new Cookie("token", token);
