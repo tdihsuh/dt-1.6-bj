@@ -56,10 +56,14 @@ public class CreditSearchController {
 
         personDetail.setCreditMemoList(memoEntryList);
 
-
+        List<EventDetail> eventDetailList = Lists.newArrayList();
+        EventDetail e1 = new EventDetail();
+        e1.setEventName("测试案件");
         List<CreditDetailEntry> detailEntryList = Lists.newArrayList();
         detailEntryList.add(new CreditDetailEntry("法院", "认命法院"));
-        personDetail.setCreditDetailList(detailEntryList);
+        e1.setEventDetail(detailEntryList);
+        eventDetailList.add(e1);
+        personDetail.setCreditDetailList(eventDetailList);
 
         return Response.success("成功", personDetail);
     }
@@ -117,9 +121,14 @@ public class CreditSearchController {
         enterpriseDetail.setCreditMemoList(memoEntryList);
 
 
+        List<EventDetail> eventDetailList = Lists.newArrayList();
+        EventDetail e1 = new EventDetail();
+        e1.setEventName("测试案件");
         List<CreditDetailEntry> detailEntryList = Lists.newArrayList();
         detailEntryList.add(new CreditDetailEntry("法院", "认命法院"));
-        enterpriseDetail.setCreditDetailList(detailEntryList);
+        e1.setEventDetail(detailEntryList);
+        eventDetailList.add(e1);
+        enterpriseDetail.setCreditDetailList(eventDetailList);
 
 
         return Response.success("成功", enterpriseDetail);

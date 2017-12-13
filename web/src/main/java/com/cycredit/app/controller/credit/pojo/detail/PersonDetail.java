@@ -11,7 +11,8 @@ public class PersonDetail {
 
     PersonInfo info;
     List<CreditMemoEntry> creditMemoList;
-    List<CreditDetailEntry> creditDetailList;
+
+    List<EventDetail> creditDetailList;
 
     public PersonInfo getInfo() {
         return info;
@@ -29,11 +30,11 @@ public class PersonDetail {
         this.creditMemoList = creditMemoList;
     }
 
-    public List<CreditDetailEntry> getCreditDetailList() {
+    public List<EventDetail> getCreditDetailList() {
         return creditDetailList;
     }
 
-    public void setCreditDetailList(List<CreditDetailEntry> creditDetailList) {
+    public void setCreditDetailList(List<EventDetail> creditDetailList) {
         this.creditDetailList = creditDetailList;
     }
 }
