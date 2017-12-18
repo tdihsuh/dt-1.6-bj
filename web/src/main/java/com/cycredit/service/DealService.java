@@ -27,6 +27,11 @@ public class DealService {
     @Resource
     EnterpriseDealResultMapper enterpriseDealResultMapper;
 
+    public PersonDealResult findPersonDealDetail(Long id) {
+        return personDealResultMapper.selectByPrimaryKey(id);
+    }
+
+
     public List<PersonDealResult> findMyPersonDeal(String name, String code, Date startTime, Date endTime, Long uid, PageInfo pageInfo) {
 
         PersonDealResultExample personDealResultExample = new PersonDealResultExample();
@@ -52,6 +57,11 @@ public class DealService {
         personDealResultExample.setLimit(pageInfo.getLimitSize());
         return personDealResultMapper.selectByExample(personDealResultExample);
     }
+
+    public EnterpriseDealResult findEnterpriseDealDetail(Long id) {
+        return enterpriseDealResultMapper.selectByPrimaryKey(id);
+    }
+
 
     public List<EnterpriseDealResult> findMyEnterpriseDeal(String name, String code, Date startTime, Date endTime, Long uid, PageInfo pageInfo) {
         EnterpriseDealResultExample enterpriseDealResultExample = new EnterpriseDealResultExample();

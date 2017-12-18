@@ -39,6 +39,13 @@ public class MemoService {
         uniMemoMapper.updateByPrimaryKeySelective(uniMemo);
     }
 
+    public void completeMemo(Long id) {
+        UniMemo uniMemo = new UniMemo();
+        uniMemo.setId(id);
+        uniMemo.setStatus(0);
+        uniMemoMapper.updateByPrimaryKeySelective(uniMemo);
+    }
+
 
     public UniMemo findById(Long id) {
         return uniMemoMapper.selectByPrimaryKey(id);
@@ -57,6 +64,16 @@ public class MemoService {
     public List<UniMemo> findPendingMemo(PageInfo pageInfo) {
         UniMemoExample uniMemoExample = new UniMemoExample();
         UniMemoExample.Criteria criteria = uniMemoExample.createCriteria().andStatusEqualTo(0);
+        pageInfo.setTotalCount(uniMemoMapper.countByExample(uniMemoExample));
+        uniMemoExample.setOffset(pageInfo.getOffset());
+        uniMemoExample.setLimit(pageInfo.getLimitSize());
+        return uniMemoMapper.selectByExample(uniMemoExample);
+    }
+
+
+    public List<UniMemo> findModifyMemo(PageInfo pageInfo) {
+        UniMemoExample uniMemoExample = new UniMemoExample();
+        UniMemoExample.Criteria criteria = uniMemoExample.createCriteria().andStatusEqualTo(-1);
         pageInfo.setTotalCount(uniMemoMapper.countByExample(uniMemoExample));
         uniMemoExample.setOffset(pageInfo.getOffset());
         uniMemoExample.setLimit(pageInfo.getLimitSize());

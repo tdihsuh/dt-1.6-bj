@@ -16,6 +16,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import net.bytebuddy.asm.Advice;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -43,7 +44,7 @@ public class SessionController {
 
 
     @RequestMapping(value = "/session", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "session", httpMethod = "POST", value = "登录")
+    @ApiOperation(notes = "session", httpMethod = "POST", value = "登录",consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Object addCreditSelect(@RequestParam(required = false, value = "uname") String uname, @RequestParam(required = false, value = "pwd") String pwd,
                                   HttpServletRequest request,
                                   HttpServletResponse response) {

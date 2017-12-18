@@ -1,5 +1,7 @@
 package com.cycredit.app.controller.credit;
 
+import com.cycredit.app.controller.credit.pojo.deal.EnterpriseDealItem;
+import com.cycredit.app.controller.credit.pojo.deal.PersonDealItem;
 import com.cycredit.app.util.cache.pojo.UserInfo;
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
@@ -8,18 +10,23 @@ import com.cycredit.dao.entity.EnterpriseDealResult;
 import com.cycredit.dao.entity.PersonDealResult;
 import com.cycredit.dao.entity.User;
 import com.cycredit.service.DealService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import com.google.common.collect.Lists;
+import io.swagger.annotations.*;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,6 +46,44 @@ public class CreditDealController {
     /**
      * 联合个人备忘录处理
      *
+     * @return
+     */
+    @RequestMapping(value = "/download", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    @ApiOperation(notes = "报告下载", httpMethod = "POST", value = "下载")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public Object download(@ApiParam("0:个人 ,1:企业") @RequestParam String type, @ApiParam("报告Id") @RequestParam String id, HttpServletResponse response) {
+
+        byte[] data = "hello".getBytes();
+
+
+        response.setContentType("application/force-download");// 设置强制下载不打开
+        response.addHeader("Content-Disposition",
+                "attachment;fileName=1.txt");// 设置文件名
+
+        response.addHeader("Content-Length", "" + data.length);
+        response.setContentType("application/octet-stream;charset=UTF-8");
+        OutputStream outputStream = null;
+        try {
+            outputStream = new BufferedOutputStream(response.getOutputStream());
+            outputStream.write(data);
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+
+    /**
+     * 联合个人备忘录处理
+     *
      * @param pid
      * @param dealType
      * @param description
@@ -51,7 +96,7 @@ public class CreditDealController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object personOperation(@RequestParam(required = false, value = "pid") String pid, @RequestParam(required = false, value = "dealType") String dealType, @RequestParam(required = false, value = "description") String description) {
+    public Object personOperation(@RequestParam(required = false, value = "pid") String pid, @ApiParam("0:'行政许可严格办理' 1:'行政许可加速审核'") @RequestParam(required = false, value = "dealType") String dealType, @RequestParam(required = false, value = "description") String description) {
         PersonDealResult personDealResult = new PersonDealResult();
         personDealResult.setUpdateTime(new Date());
         personDealResult.setCreateTime(new Date());
@@ -60,7 +105,7 @@ public class CreditDealController {
 
         personDealResult.setIdentityCard("123");
         personDealResult.setName("张三");
-        personDealResult.setTags("重大税收违法,test");
+        personDealResult.setTags("1,2,101");
 
 
         personDealResult.setPid(pid);
@@ -69,7 +114,7 @@ public class CreditDealController {
         personDealResult.setOperatorAreaCode(user.getAreaCode());
         personDealResult.setOperator(user.getId());
         dealService.dealPerson(personDealResult);
-        return Response.success("成功");
+        return Response.success("成功", personDealResult.getId());
     }
 
     /**
@@ -86,13 +131,13 @@ public class CreditDealController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object enterpriseOperation(@RequestParam(required = false, value = "eid") String eid, @RequestParam(required = false, value = "dealType") String dealType, @RequestParam(required = false, value = "description") String description) {
+    public Object enterpriseOperation(HttpServletRequest request, @RequestParam(required = false, value = "eid") String eid, @ApiParam("0:'行政许可严格办理' 1:'行政许可加速审核'") @RequestParam(required = false, value = "dealType") String dealType, @RequestParam(required = false, value = "description") String description) {
         EnterpriseDealResult enterpriseDealResult = new EnterpriseDealResult();
         enterpriseDealResult.setUpdateTime(new Date());
         enterpriseDealResult.setCreateTime(new Date());
         enterpriseDealResult.setCode("123");
         enterpriseDealResult.setName("测试企业");
-        enterpriseDealResult.setTags("重大税收违法,test");
+        enterpriseDealResult.setTags("1,2,101");
 
         enterpriseDealResult.setDescription(description);
         enterpriseDealResult.setDealType(dealType);
@@ -103,7 +148,42 @@ public class CreditDealController {
         enterpriseDealResult.setOperatorAreaCode(user.getAreaCode());
         enterpriseDealResult.setOperator(user.getId());
         dealService.dealEnterprise(enterpriseDealResult);
-        return Response.success("成功");
+        return Response.success("成功", enterpriseDealResult.getId());
+    }
+
+    /**
+     * 联合个人备忘录处理
+     *
+     * @return
+     */
+    @RequestMapping(value = "/person/detail", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    @ApiOperation(notes = "个人信用主体处理记录详情", httpMethod = "GET", value = "个人信用主体处理记录详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public Object personDetail(Long id) {
+
+        return Response.success("查询成功", dealService.findPersonDealDetail(id));
+    }
+
+
+    /**
+     * 联合个人备忘录处理
+     *
+     * @return
+     */
+    @RequestMapping(value = "/enterprise/detail", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    @ApiOperation(notes = "企业主体处理记录详情", httpMethod = "GET", value = "企业主体处理记录详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public Object enterpriseDetail(Long id) {
+
+        return Response.success("查询成功", dealService.findEnterpriseDealDetail(id));
     }
 
 
@@ -124,8 +204,13 @@ public class CreditDealController {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         Date startDate = startTime == null ? null : new Date(startTime);
         Date endDate = endTime == null ? null : new Date(endTime);
-        return Response.success("查询成功", dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getId()
-                , pageInfo)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
+
+        List<PersonDealResult> list = dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getId()
+                , pageInfo);
+        List<PersonDealItem> responseList = Lists.transform(list, x -> PersonDealItem.convertToThis(x));
+
+
+        return Response.success("查询成功", responseList).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 
@@ -141,8 +226,10 @@ public class CreditDealController {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         Date startDate = startTime == null ? null : new Date(startTime);
         Date endDate = endTime == null ? null : new Date(endTime);
-        //TODO 需要处理分页
-        return Response.success("查询成功", dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getId(), pageInfo)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
+        List<EnterpriseDealResult> list = dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getId(), pageInfo);
+        List<EnterpriseDealItem> responseList = Lists.transform(list, x -> EnterpriseDealItem.convertToThis(x));
+
+        return Response.success("查询成功", responseList).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 

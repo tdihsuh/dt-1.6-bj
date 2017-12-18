@@ -13,10 +13,8 @@ import com.cycredit.service.MemoDepartmentService;
 import com.cycredit.service.MemoService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -85,14 +83,32 @@ public class MemoController {
      */
     @RequestMapping(value = "/pending/list", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    @ApiOperation(notes = "未发布备忘录列表", httpMethod = "GET", value = "已发布备忘录列表")
+    @ApiOperation(notes = "未发布备忘录列表", httpMethod = "GET", value = "未发布备忘录列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object list(Integer pageNum, Integer limitSize) {
+    public Object pendingList(Integer pageNum, Integer limitSize) {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         List<UniMemo> list = memoService.findPendingMemo(pageInfo);
+        //todo 需要调活分页
+        return Response.success("成功", list).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
+    }
+
+
+    /**
+     * @return
+     */
+    @RequestMapping(value = "/modify/list", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    @ApiOperation(notes = "暂存备忘录列表", httpMethod = "GET", value = "暂存备忘录列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public Object modifyList(Integer pageNum, Integer limitSize) {
+        PageInfo pageInfo = new PageInfo(pageNum, limitSize);
+        List<UniMemo> list = memoService.findModifyMemo(pageInfo);
         //todo 需要调活分页
         return Response.success("成功", list).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
@@ -107,8 +123,23 @@ public class MemoController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object pass(@RequestParam(required = false, value = "id") Long id) {
+    public Object publishMemo(@RequestParam(required = false, value = "id") Long id) {
         memoService.publishMemo(id);
+        return Response.success("成功");
+    }
+
+
+    /**
+     * @return
+     */
+    @RequestMapping(value = "/complete", produces = "application/json;charset=UTF-8")
+    @ApiOperation(notes = "完成备忘录", httpMethod = "POST", value = "完成备忘录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public Object completeMemo(@RequestParam(required = false, value = "id") Long id) {
+        memoService.completeMemo(id);
         return Response.success("成功");
     }
 
@@ -161,14 +192,14 @@ public class MemoController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false)}
     )
-    public Object add(@RequestParam(required = false, value = "id") Long id, @RequestParam(required = false, value = "name") String name, @RequestParam(required = false, value = "type") String type, @RequestParam(required = false, value = "relationDepartment") String relationDepartment, @RequestParam(required = false, value = "tags") String tags) {
+    public Object add(@ApiParam("传入ID时表示修改备忘录") @RequestParam(required = false, value = "id") Long id, @RequestParam(required = false, value = "name") String name, @RequestParam(required = false, value = "type") String type, @RequestParam(required = false, value = "relationDepartment") String relationDepartment, @RequestParam(required = false, value = "tags") String tags, @ApiParam("-1 修改中 0待发布") @RequestParam(defaultValue = "-1") Integer status) {
         UniMemo uniMemo = new UniMemo();
         uniMemo.setId(id);
         uniMemo.setName(name);
         uniMemo.setType(type);
         uniMemo.setRelationDepartment(relationDepartment);
         uniMemo.setTags(tags);
-        uniMemo.setStatus(0);
+        uniMemo.setStatus(status);
 
         UserInfo user = UserInfoThreadLocal.getFromThread();
         uniMemo.setOperator(user.getId());
@@ -183,12 +214,12 @@ public class MemoController {
 
 
     @RequestMapping(value = "/department/add", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "备忘录新增关联部门", httpMethod = "POST", value = "备忘录新增关联部门")
+    @ApiOperation(notes = "备忘录新增或者修改关联部门措施", httpMethod = "POST", value = "备忘录新增或者修改关联部门措施")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object departmentAdd(@RequestParam(required = false, value = "memoId") Long memoId, @RequestParam(required = false, value = "departmentCode") String departmentCode, @RequestParam(required = false, value = "measure") String measure, @RequestParam(required = false, value = "reason") String reason) {
+    public Object departmentAdd(@ApiParam("传入ID更新不传入则保存") @RequestParam(required = false, value = "id") Long id, @RequestParam(required = false, value = "memoId") Long memoId, @RequestParam(required = false, value = "departmentCode") String departmentCode, @RequestParam(required = false, value = "measure") String measure, @RequestParam(required = false, value = "reason") String reason) {
         UniMemoDepartment uniMemoDepartment = new UniMemoDepartment();
         uniMemoDepartment.setDepartmentCode(departmentCode);
         uniMemoDepartment.setMeasure(measure);
@@ -196,13 +227,13 @@ public class MemoController {
         uniMemoDepartment.setCreateTime(new Date());
         uniMemoDepartment.setMemoId(memoId);
         memoDepartmentService.saveDepartment(uniMemoDepartment);
-        return Response.success("成功");
+        return Response.success("成功", uniMemoDepartment.getId());
 
     }
 
 
     @RequestMapping(value = "/department/delete", produces = "application/json;charset=UTF-8")
-    @ApiOperation(notes = "备忘录删除关联部门", httpMethod = "POST", value = "备忘录删除关联部门")
+    @ApiOperation(notes = "备忘录删除关联部门措施", httpMethod = "POST", value = "备忘录删除关联部门措施")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),

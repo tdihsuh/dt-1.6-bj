@@ -2,9 +2,12 @@ package com.cycredit.app.controller.credit;
 
 import com.cycredit.app.controller.credit.pojo.*;
 import com.cycredit.app.controller.credit.pojo.detail.*;
+import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.common.Tag;
 import com.cycredit.dao.entity.UniMemoDepartment;
+import com.cycredit.service.OriginService;
+import com.cycredit.service.SearchCountService;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.Api;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +33,9 @@ import java.util.List;
 @Api(value = "credit", description = "信用主体搜索接口")
 public class CreditSearchController {
 
+
+    @Resource
+    SearchCountService searchCountService;
 
     /**
      * @param pid
@@ -84,13 +91,12 @@ public class CreditSearchController {
         personItem.setIdentityCard("110100198907180902");
         personItem.setPid("1");
         personItem.setName("张晓多");
-        personItem.setTags("失信被执行人,奖励措施,违法嫌疑人");
-        List<Tag> tagList = Lists.newArrayList();
-        tagList.add(new Tag("失信被执行人", "PUNISH"));
-        tagList.add(new Tag("奖励措施", "BONUS"));
-        tagList.add(new Tag("违法嫌疑人", "PUNISH"));
-        personItem.setTagList(tagList);
+
+        personItem.setTagList(Lists.newArrayList(OriginService.tagMap.values()));
         personItems.add(personItem);
+
+        searchCountService.saveCount(SearchCountService.SearchType.person, UserInfoThreadLocal.getFromThread());
+
         return Response.success("成功", personItems);
     }
 
@@ -150,13 +156,12 @@ public class CreditSearchController {
         enterpriseItem.setCode("913710007628687892");
         enterpriseItem.setEid("1");
         enterpriseItem.setName("辉山乳业有限责任公司");
-        enterpriseItem.setTags("失信被执行人,奖励措施,违法嫌疑人");
         List<Tag> tagList = Lists.newArrayList();
-        tagList.add(new Tag("失信被执行人", "PUNISH"));
-        tagList.add(new Tag("奖励措施", "BONUS"));
-        tagList.add(new Tag("违法嫌疑人", "PUNISH"));
-        enterpriseItem.setTagList(tagList);
+
+        enterpriseItem.setTagList(Lists.newArrayList(OriginService.tagMap.values()));
         enterpriseItemList.add(enterpriseItem);
+        searchCountService.saveCount(SearchCountService.SearchType.enterprise, UserInfoThreadLocal.getFromThread());
+
         return Response.success("成功", enterpriseItemList);
     }
 
