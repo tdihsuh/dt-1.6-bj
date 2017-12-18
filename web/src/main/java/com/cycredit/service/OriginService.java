@@ -71,6 +71,7 @@ public class OriginService {
         return area;
     }
 
+
     public Department getDepartment(String code) {
         String key = fetchCacheKey(DEPARTMENT_CACHE, code);
         Department department = CacheService.getFromCache(key, Department.class);
@@ -86,5 +87,4 @@ public class OriginService {
         }
         return department;
     }
-
 }

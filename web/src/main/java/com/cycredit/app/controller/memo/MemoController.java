@@ -1,6 +1,7 @@
 package com.cycredit.app.controller.memo;
 
 import com.cycredit.app.controller.memo.pojo.DepartmentItem;
+import com.cycredit.app.controller.memo.pojo.DepartmentMergeItem;
 import com.cycredit.app.controller.memo.pojo.MemoDetail;
 import com.cycredit.app.util.cache.pojo.UserInfo;
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
@@ -11,9 +12,11 @@ import com.cycredit.dao.entity.UniMemoDepartment;
 import com.cycredit.dao.entity.User;
 import com.cycredit.service.MemoDepartmentService;
 import com.cycredit.service.MemoService;
+import com.cycredit.service.OriginService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import io.swagger.annotations.*;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +42,8 @@ public class MemoController {
     MemoService memoService;
     @Resource
     MemoDepartmentService memoDepartmentService;
+    @Resource
+    OriginService originService;
 
 
     /**
@@ -164,16 +169,30 @@ public class MemoController {
         memoDetail.setTags(uniMemo.getTags());
         memoDetail.setType(uniMemo.getType());
         List<DepartmentItem> departmentItems = Lists.newArrayList();
+
+        Map<String, DepartmentItem> map = Maps.newHashMap();
+
         for (UniMemoDepartment uniMemoDepartment : departmentList) {
-            DepartmentItem temp = new DepartmentItem();
-            temp.setDepartmentCode(uniMemoDepartment.getDepartmentCode());
-            //TODO 需要翻译
-            temp.setDepartmentName("省环保厅");
-            temp.setMeasure(uniMemoDepartment.getMeasure());
-            temp.setMemoId(uniMemoDepartment.getMemoId());
-            temp.setReason(uniMemoDepartment.getReason());
-            temp.setId(uniMemoDepartment.getId());
-            departmentItems.add(temp);
+
+            DepartmentItem temp = map.get(uniMemoDepartment.getDepartmentCode());
+            if (temp == null) {
+
+                temp = new DepartmentItem();
+                temp.setDepartmentCode(uniMemoDepartment.getDepartmentCode());
+                //TODO 需要翻译
+                temp.setDepartmentName(originService.getDepartment(uniMemoDepartment.getDepartmentCode()).getDepartmentName());
+                temp.setMemoId(uniMemoDepartment.getMemoId());
+                temp.setDepartmentMergeItemList(Lists.newArrayList());
+                departmentItems.add(temp);
+                map.put(uniMemoDepartment.getDepartmentCode(), temp);
+            }
+
+            DepartmentMergeItem departmentMergeItem = new DepartmentMergeItem();
+            departmentMergeItem.setId(uniMemoDepartment.getId());
+            departmentMergeItem.setMeasure(uniMemoDepartment.getMeasure());
+            departmentMergeItem.setReason(uniMemoDepartment.getReason());
+
+            temp.getDepartmentMergeItemList().add(departmentMergeItem);
         }
         memoDetail.setDepartmentItems(departmentItems);
         return Response.success("成功", memoDetail);
@@ -208,7 +227,7 @@ public class MemoController {
 
         memoService.save(uniMemo);
 
-        return Response.success("暂存备忘录成功");
+        return Response.success("暂存备忘录成功", uniMemo.getId());
 
     }
 

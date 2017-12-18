@@ -1,5 +1,7 @@
 package com.cycredit.app.controller.memo.pojo;
 
+import java.util.List;
+
 /**
  * Created by qiyubin on 2017/12/5 0005.
  *
@@ -7,21 +9,13 @@ package com.cycredit.app.controller.memo.pojo;
  */
 public class DepartmentItem {
 
-    private Long id;
+
     private Long memoId;
     private String departmentName;
     private String departmentCode;
-    private String reason;
-    private String measure;
 
+    private List<DepartmentMergeItem> departmentMergeItemList;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getMemoId() {
         return memoId;
@@ -47,19 +41,12 @@ public class DepartmentItem {
         this.departmentCode = departmentCode;
     }
 
-    public String getReason() {
-        return reason;
+
+    public List<DepartmentMergeItem> getDepartmentMergeItemList() {
+        return departmentMergeItemList;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
-    public String getMeasure() {
-        return measure;
-    }
-
-    public void setMeasure(String measure) {
-        this.measure = measure;
+    public void setDepartmentMergeItemList(List<DepartmentMergeItem> departmentMergeItemList) {
+        this.departmentMergeItemList = departmentMergeItemList;
     }
 }
