@@ -227,7 +227,7 @@ public class MemoController {
 
         memoService.save(uniMemo);
 
-        return Response.success("暂存备忘录成功", uniMemo.getId());
+        return Response.success("暂存备忘录成功", uniMemo);
 
     }
 
