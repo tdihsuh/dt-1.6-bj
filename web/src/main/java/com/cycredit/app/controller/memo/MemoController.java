@@ -168,6 +168,7 @@ public class MemoController {
         memoDetail.setRelationDepartment(uniMemo.getRelationDepartment());
         memoDetail.setTags(uniMemo.getTags());
         memoDetail.setType(uniMemo.getType());
+        memoDetail.setStatus(uniMemo.getStatus());
         List<DepartmentItem> departmentItems = Lists.newArrayList();
 
         Map<String, DepartmentItem> map = Maps.newHashMap();
@@ -212,6 +213,11 @@ public class MemoController {
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false)}
     )
     public Object add(@ApiParam("传入ID时表示修改备忘录") @RequestParam(required = false, value = "id") Long id, @RequestParam(required = false, value = "name") String name, @RequestParam(required = false, value = "type") String type, @RequestParam(required = false, value = "relationDepartment") String relationDepartment, @RequestParam(required = false, value = "tags") String tags, @ApiParam("-1 修改中 0待发布") @RequestParam(defaultValue = "-1") Integer status) {
+        if (!(status == 0 || status == -1)) {
+            return Response.fail("暂存备忘录失败");
+        }
+
+
         UniMemo uniMemo = new UniMemo();
         uniMemo.setId(id);
         uniMemo.setName(name);
@@ -227,7 +233,7 @@ public class MemoController {
 
         memoService.save(uniMemo);
 
-        return Response.success("暂存备忘录成功", uniMemo);
+        return Response.success("暂存备忘录成功", uniMemo.getId());
 
     }
 

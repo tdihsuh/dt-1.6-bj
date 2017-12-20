@@ -15,6 +15,7 @@ public class MemoDetail {
     private String relationDepartment;
     private String type;
     private String tags;
+    private Integer status;
     private List<DepartmentItem> departmentItems;
 
 
@@ -64,5 +65,13 @@ public class MemoDetail {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
