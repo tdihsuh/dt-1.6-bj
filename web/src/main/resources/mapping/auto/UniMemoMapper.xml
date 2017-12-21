@@ -8,10 +8,13 @@
     <result column="relation_department" jdbcType="VARCHAR" property="relationDepartment" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="department_count" jdbcType="INTEGER" property="departmentCount" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="operator" jdbcType="BIGINT" property="operator" />
     <result column="operator_area_code" jdbcType="VARCHAR" property="operatorAreaCode" />
     <result column="operatror_department_code" jdbcType="VARCHAR" property="operatrorDepartmentCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, source, relation_department, type, tags, status, operator, operator_area_code, 
-    operatror_department_code
+    id, name, source, relation_department, type, tags, department_count, status, operator, 
+    operator_area_code, operatror_department_code, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.UniMemoExample" resultMap="BaseResultMap">
     select
@@ -119,13 +122,15 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into uni_memo (name, source, relation_department, 
-      type, tags, status, 
-      operator, operator_area_code, operatror_department_code
-      )
+      type, tags, department_count, 
+      status, operator, operator_area_code, 
+      operatror_department_code, create_time, 
+      update_time)
     values (#{name,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{relationDepartment,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
-      #{operator,jdbcType=BIGINT}, #{operatorAreaCode,jdbcType=VARCHAR}, #{operatrorDepartmentCode,jdbcType=VARCHAR}
-      )
+      #{type,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{departmentCount,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{operator,jdbcType=BIGINT}, #{operatorAreaCode,jdbcType=VARCHAR}, 
+      #{operatrorDepartmentCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.UniMemo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -148,7 +153,12 @@
       <if test="tags != null">
         tags,
       </if>
-      status,
+      <if test="departmentCount != null">
+        department_count,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
       <if test="operator != null">
         operator,
       </if>
@@ -157,6 +167,12 @@
       </if>
       <if test="operatrorDepartmentCode != null">
         operatror_department_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -175,7 +191,12 @@
       <if test="tags != null">
         #{tags,jdbcType=VARCHAR},
       </if>
-      #{status,jdbcType=TINYINT},
+      <if test="departmentCount != null">
+        #{departmentCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
       <if test="operator != null">
         #{operator,jdbcType=BIGINT},
       </if>
@@ -184,6 +205,12 @@
       </if>
       <if test="operatrorDepartmentCode != null">
         #{operatrorDepartmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -214,6 +241,9 @@
       <if test="record.tags != null">
         tags = #{record.tags,jdbcType=VARCHAR},
       </if>
+      <if test="record.departmentCount != null">
+        department_count = #{record.departmentCount,jdbcType=INTEGER},
+      </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=TINYINT},
       </if>
@@ -225,6 +255,12 @@
       </if>
       <if test="record.operatrorDepartmentCode != null">
         operatror_department_code = #{record.operatrorDepartmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -239,10 +275,13 @@
       relation_department = #{record.relationDepartment,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=VARCHAR},
       tags = #{record.tags,jdbcType=VARCHAR},
+      department_count = #{record.departmentCount,jdbcType=INTEGER},
       status = #{record.status,jdbcType=TINYINT},
       operator = #{record.operator,jdbcType=BIGINT},
       operator_area_code = #{record.operatorAreaCode,jdbcType=VARCHAR},
-      operatror_department_code = #{record.operatrorDepartmentCode,jdbcType=VARCHAR}
+      operatror_department_code = #{record.operatrorDepartmentCode,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -265,6 +304,9 @@
       <if test="tags != null">
         tags = #{tags,jdbcType=VARCHAR},
       </if>
+      <if test="departmentCount != null">
+        department_count = #{departmentCount,jdbcType=INTEGER},
+      </if>
       <if test="status != null">
         status = #{status,jdbcType=TINYINT},
       </if>
@@ -277,6 +319,12 @@
       <if test="operatrorDepartmentCode != null">
         operatror_department_code = #{operatrorDepartmentCode,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -287,10 +335,13 @@
       relation_department = #{relationDepartment,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
       tags = #{tags,jdbcType=VARCHAR},
+      department_count = #{departmentCount,jdbcType=INTEGER},
       status = #{status,jdbcType=TINYINT},
       operator = #{operator,jdbcType=BIGINT},
       operator_area_code = #{operatorAreaCode,jdbcType=VARCHAR},
-      operatror_department_code = #{operatrorDepartmentCode,jdbcType=VARCHAR}
+      operatror_department_code = #{operatrorDepartmentCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

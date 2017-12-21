@@ -10,6 +10,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,6 +37,7 @@ public class MemoService {
         UniMemo uniMemo = new UniMemo();
         uniMemo.setId(id);
         uniMemo.setStatus(1);
+        uniMemo.setUpdateTime(new Date());
         uniMemoMapper.updateByPrimaryKeySelective(uniMemo);
     }
 
@@ -43,6 +45,15 @@ public class MemoService {
         UniMemo uniMemo = new UniMemo();
         uniMemo.setId(id);
         uniMemo.setStatus(0);
+        uniMemo.setUpdateTime(new Date());
+        uniMemoMapper.updateByPrimaryKeySelective(uniMemo);
+    }
+
+    public void backMemo(Long id) {
+        UniMemo uniMemo = new UniMemo();
+        uniMemo.setId(id);
+        uniMemo.setStatus(-1);
+        uniMemo.setUpdateTime(new Date());
         uniMemoMapper.updateByPrimaryKeySelective(uniMemo);
     }
 

@@ -7,7 +7,7 @@
     <result column="eid" jdbcType="VARCHAR" property="eid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="deal_type" jdbcType="VARCHAR" property="dealType" />
+    <result column="deal_type" jdbcType="CHAR" property="dealType" />
     <result column="operator" jdbcType="BIGINT" property="operator" />
     <result column="operator_department_code" jdbcType="VARCHAR" property="operatorDepartmentCode" />
     <result column="operator_area_code" jdbcType="VARCHAR" property="operatorAreaCode" />
@@ -126,7 +126,7 @@
       tags, create_time, update_time
       )
     values (#{description,jdbcType=VARCHAR}, #{eid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{code,jdbcType=VARCHAR}, #{dealType,jdbcType=VARCHAR}, #{operator,jdbcType=BIGINT}, 
+      #{code,jdbcType=VARCHAR}, #{dealType,jdbcType=CHAR}, #{operator,jdbcType=BIGINT}, 
       #{operatorDepartmentCode,jdbcType=VARCHAR}, #{operatorAreaCode,jdbcType=VARCHAR}, 
       #{tags,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
@@ -185,7 +185,7 @@
         #{code,jdbcType=VARCHAR},
       </if>
       <if test="dealType != null">
-        #{dealType,jdbcType=VARCHAR},
+        #{dealType,jdbcType=CHAR},
       </if>
       <if test="operator != null">
         #{operator,jdbcType=BIGINT},
@@ -232,7 +232,7 @@
         code = #{record.code,jdbcType=VARCHAR},
       </if>
       <if test="record.dealType != null">
-        deal_type = #{record.dealType,jdbcType=VARCHAR},
+        deal_type = #{record.dealType,jdbcType=CHAR},
       </if>
       <if test="record.operator != null">
         operator = #{record.operator,jdbcType=BIGINT},
@@ -264,7 +264,7 @@
       eid = #{record.eid,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
-      deal_type = #{record.dealType,jdbcType=VARCHAR},
+      deal_type = #{record.dealType,jdbcType=CHAR},
       operator = #{record.operator,jdbcType=BIGINT},
       operator_department_code = #{record.operatorDepartmentCode,jdbcType=VARCHAR},
       operator_area_code = #{record.operatorAreaCode,jdbcType=VARCHAR},
@@ -291,7 +291,7 @@
         code = #{code,jdbcType=VARCHAR},
       </if>
       <if test="dealType != null">
-        deal_type = #{dealType,jdbcType=VARCHAR},
+        deal_type = #{dealType,jdbcType=CHAR},
       </if>
       <if test="operator != null">
         operator = #{operator,jdbcType=BIGINT},
@@ -320,7 +320,7 @@
       eid = #{eid,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
-      deal_type = #{dealType,jdbcType=VARCHAR},
+      deal_type = #{dealType,jdbcType=CHAR},
       operator = #{operator,jdbcType=BIGINT},
       operator_department_code = #{operatorDepartmentCode,jdbcType=VARCHAR},
       operator_area_code = #{operatorAreaCode,jdbcType=VARCHAR},

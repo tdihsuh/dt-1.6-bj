@@ -10,7 +10,7 @@
     <result column="operator" jdbcType="BIGINT" property="operator" />
     <result column="operator_area_code" jdbcType="VARCHAR" property="operatorAreaCode" />
     <result column="operator_department_code" jdbcType="VARCHAR" property="operatorDepartmentCode" />
-    <result column="deal_type" jdbcType="VARCHAR" property="dealType" />
+    <result column="deal_type" jdbcType="CHAR" property="dealType" />
     <result column="tags" jdbcType="VARCHAR" property="tags" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -126,7 +126,7 @@
       update_time, create_time)
     values (#{description,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{identityCard,jdbcType=VARCHAR}, #{operator,jdbcType=BIGINT}, #{operatorAreaCode,jdbcType=VARCHAR}, 
-      #{operatorDepartmentCode,jdbcType=VARCHAR}, #{dealType,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, 
+      #{operatorDepartmentCode,jdbcType=VARCHAR}, #{dealType,jdbcType=CHAR}, #{tags,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.PersonDealResult">
@@ -192,7 +192,7 @@
         #{operatorDepartmentCode,jdbcType=VARCHAR},
       </if>
       <if test="dealType != null">
-        #{dealType,jdbcType=VARCHAR},
+        #{dealType,jdbcType=CHAR},
       </if>
       <if test="tags != null">
         #{tags,jdbcType=VARCHAR},
@@ -239,7 +239,7 @@
         operator_department_code = #{record.operatorDepartmentCode,jdbcType=VARCHAR},
       </if>
       <if test="record.dealType != null">
-        deal_type = #{record.dealType,jdbcType=VARCHAR},
+        deal_type = #{record.dealType,jdbcType=CHAR},
       </if>
       <if test="record.tags != null">
         tags = #{record.tags,jdbcType=VARCHAR},
@@ -265,7 +265,7 @@
       operator = #{record.operator,jdbcType=BIGINT},
       operator_area_code = #{record.operatorAreaCode,jdbcType=VARCHAR},
       operator_department_code = #{record.operatorDepartmentCode,jdbcType=VARCHAR},
-      deal_type = #{record.dealType,jdbcType=VARCHAR},
+      deal_type = #{record.dealType,jdbcType=CHAR},
       tags = #{record.tags,jdbcType=VARCHAR},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
@@ -298,7 +298,7 @@
         operator_department_code = #{operatorDepartmentCode,jdbcType=VARCHAR},
       </if>
       <if test="dealType != null">
-        deal_type = #{dealType,jdbcType=VARCHAR},
+        deal_type = #{dealType,jdbcType=CHAR},
       </if>
       <if test="tags != null">
         tags = #{tags,jdbcType=VARCHAR},
@@ -321,7 +321,7 @@
       operator = #{operator,jdbcType=BIGINT},
       operator_area_code = #{operatorAreaCode,jdbcType=VARCHAR},
       operator_department_code = #{operatorDepartmentCode,jdbcType=VARCHAR},
-      deal_type = #{dealType,jdbcType=VARCHAR},
+      deal_type = #{dealType,jdbcType=CHAR},
       tags = #{tags,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP}

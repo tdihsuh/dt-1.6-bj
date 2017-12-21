@@ -91,7 +91,7 @@
                enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
                enableSelectByExample="true" selectByExampleQueryId="false">
             <generatedKey column="id" identity="true" sqlStatement="mysql"/>
-            <columnOverride column="status" javaType="int"/>
+            <columnOverride column="status" javaType="java.lang.Integer"/>
         </table>
 
         <table tableName="uni_memo_department" domainObjectName="UniMemoDepartment"

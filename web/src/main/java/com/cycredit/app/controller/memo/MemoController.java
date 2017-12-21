@@ -3,6 +3,8 @@ package com.cycredit.app.controller.memo;
 import com.cycredit.app.controller.memo.pojo.DepartmentItem;
 import com.cycredit.app.controller.memo.pojo.DepartmentMergeItem;
 import com.cycredit.app.controller.memo.pojo.MemoDetail;
+import com.cycredit.app.controller.memo.pojo.MemoItem;
+import com.cycredit.app.util.cache.UserInfoCache;
 import com.cycredit.app.util.cache.pojo.UserInfo;
 import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
@@ -16,11 +18,13 @@ import com.cycredit.service.OriginService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import io.swagger.annotations.*;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +69,32 @@ public class MemoController {
     }
 
 
+    private List<MemoItem> transferToMemoResponseList(List<UniMemo> list) {
+
+        List<MemoItem> memoItemList = Lists.transform(list, x -> {
+            MemoItem memoItem = new MemoItem();
+            try {
+                BeanUtils.copyProperties(memoItem, x);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            if (x.getOperator() != null) {
+                String oid = x.getOperator().toString();
+                UserInfo userInfo = UserInfoCache.getFromCache(oid);
+                if (userInfo != null) {
+                    memoItem.setOperatorName(userInfo.getName());
+                }
+            }
+
+            return memoItem;
+
+        });
+        return memoItemList;
+    }
+
+
     /**
      * @return
      */
@@ -78,8 +108,9 @@ public class MemoController {
     public Object publishList(Integer pageNum, Integer limitSize) {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         List<UniMemo> list = memoService.findPublishMemo(pageInfo);
+
         //todo 需要调活分页
-        return Response.success("成功", list).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
+        return Response.success("成功", transferToMemoResponseList(list)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 
@@ -97,7 +128,7 @@ public class MemoController {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         List<UniMemo> list = memoService.findPendingMemo(pageInfo);
         //todo 需要调活分页
-        return Response.success("成功", list).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
+        return Response.success("成功", transferToMemoResponseList(list)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 
@@ -115,7 +146,7 @@ public class MemoController {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         List<UniMemo> list = memoService.findModifyMemo(pageInfo);
         //todo 需要调活分页
-        return Response.success("成功", list).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
+        return Response.success("成功", transferToMemoResponseList(list)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
 
@@ -145,6 +176,20 @@ public class MemoController {
     })
     public Object completeMemo(@RequestParam(required = false, value = "id") Long id) {
         memoService.completeMemo(id);
+        return Response.success("成功");
+    }
+
+    /**
+     * @return
+     */
+    @RequestMapping(value = "/back", produces = "application/json;charset=UTF-8")
+    @ApiOperation(notes = "完成备忘录", httpMethod = "POST", value = "完成备忘录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
+            @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
+    })
+    public Object back(@RequestParam(required = false, value = "id") Long id) {
+        memoService.backMemo(id);
         return Response.success("成功");
     }
 
@@ -230,7 +275,8 @@ public class MemoController {
         uniMemo.setOperator(user.getId());
         uniMemo.setOperatrorDepartmentCode(user.getDepartmentCode());
         uniMemo.setOperatorAreaCode(user.getAreaCode());
-
+        uniMemo.setCreateTime(new Date());
+        uniMemo.setUpdateTime(new Date());
         memoService.save(uniMemo);
 
         return Response.success("暂存备忘录成功", uniMemo.getId());
@@ -252,6 +298,10 @@ public class MemoController {
         uniMemoDepartment.setCreateTime(new Date());
         uniMemoDepartment.setMemoId(memoId);
         memoDepartmentService.saveDepartment(uniMemoDepartment);
+
+
+        memoDepartmentService.updateUnimo(memoId);
+
         return Response.success("成功", uniMemoDepartment.getId());
 
     }

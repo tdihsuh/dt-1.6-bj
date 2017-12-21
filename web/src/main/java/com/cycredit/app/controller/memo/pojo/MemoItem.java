@@ -1,9 +1,14 @@
-package com.cycredit.dao.entity;
+package com.cycredit.app.controller.memo.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class UniMemo implements Serializable {
+/**
+ * Created by qiyubin on 2017/12/20 0020.
+ *
+ * @author qiyubin
+ */
+public class MemoItem {
+
     private Long id;
 
     private String name;
@@ -18,7 +23,7 @@ public class UniMemo implements Serializable {
 
     private Integer departmentCount;
 
-    private Integer status;
+    private int status;
 
     private Long operator;
 
@@ -30,7 +35,7 @@ public class UniMemo implements Serializable {
 
     private Date updateTime;
 
-    private static final long serialVersionUID = 1L;
+    private String operatorName;
 
     public Long getId() {
         return id;
@@ -45,7 +50,7 @@ public class UniMemo implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getSource() {
@@ -53,7 +58,7 @@ public class UniMemo implements Serializable {
     }
 
     public void setSource(String source) {
-        this.source = source == null ? null : source.trim();
+        this.source = source;
     }
 
     public String getRelationDepartment() {
@@ -61,7 +66,7 @@ public class UniMemo implements Serializable {
     }
 
     public void setRelationDepartment(String relationDepartment) {
-        this.relationDepartment = relationDepartment == null ? null : relationDepartment.trim();
+        this.relationDepartment = relationDepartment;
     }
 
     public String getType() {
@@ -69,7 +74,7 @@ public class UniMemo implements Serializable {
     }
 
     public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+        this.type = type;
     }
 
     public String getTags() {
@@ -77,7 +82,7 @@ public class UniMemo implements Serializable {
     }
 
     public void setTags(String tags) {
-        this.tags = tags == null ? null : tags.trim();
+        this.tags = tags;
     }
 
     public Integer getDepartmentCount() {
@@ -88,11 +93,11 @@ public class UniMemo implements Serializable {
         this.departmentCount = departmentCount;
     }
 
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -109,7 +114,7 @@ public class UniMemo implements Serializable {
     }
 
     public void setOperatorAreaCode(String operatorAreaCode) {
-        this.operatorAreaCode = operatorAreaCode == null ? null : operatorAreaCode.trim();
+        this.operatorAreaCode = operatorAreaCode;
     }
 
     public String getOperatrorDepartmentCode() {
@@ -117,7 +122,7 @@ public class UniMemo implements Serializable {
     }
 
     public void setOperatrorDepartmentCode(String operatrorDepartmentCode) {
-        this.operatrorDepartmentCode = operatrorDepartmentCode == null ? null : operatrorDepartmentCode.trim();
+        this.operatrorDepartmentCode = operatrorDepartmentCode;
     }
 
     public Date getCreateTime() {
@@ -134,5 +139,13 @@ public class UniMemo implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getOperatorName() {
+        return operatorName;
+    }
+
+    public void setOperatorName(String operatorName) {
+        this.operatorName = operatorName;
     }
 }
