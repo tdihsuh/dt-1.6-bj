@@ -204,9 +204,15 @@ public class CreditDealController {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         Date startDate = startTime == null ? null : new Date(startTime);
         Date endDate = endTime == null ? null : new Date(endTime);
+        List<PersonDealResult> list = null;
+        //根据Role判断  高级Role查询地区下所有处理结果
+        if (user.getRoleCode().equals("4")) {
+            list = dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getAreaCode(), pageInfo);
+        } else {
+            list = dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getId()
+                    , pageInfo);
+        }
 
-        List<PersonDealResult> list = dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getId()
-                , pageInfo);
         List<PersonDealItem> responseList = Lists.transform(list, x -> PersonDealItem.convertToThis(x));
 
 
@@ -226,7 +232,14 @@ public class CreditDealController {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         Date startDate = startTime == null ? null : new Date(startTime);
         Date endDate = endTime == null ? null : new Date(endTime);
-        List<EnterpriseDealResult> list = dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getId(), pageInfo);
+        List<EnterpriseDealResult> list;
+        if (user.getRoleCode().equals("4")) {
+            list = dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getAreaCode(), pageInfo);
+
+        } else {
+            list = dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getId(), pageInfo);
+        }
+
         List<EnterpriseDealItem> responseList = Lists.transform(list, x -> EnterpriseDealItem.convertToThis(x));
 
         return Response.success("查询成功", responseList).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());

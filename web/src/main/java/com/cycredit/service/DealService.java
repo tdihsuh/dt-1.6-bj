@@ -32,11 +32,7 @@ public class DealService {
     }
 
 
-    public List<PersonDealResult> findMyPersonDeal(String name, String code, Date startTime, Date endTime, Long uid, PageInfo pageInfo) {
-
-        PersonDealResultExample personDealResultExample = new PersonDealResultExample();
-        PersonDealResultExample.Criteria criteria = personDealResultExample.createCriteria().andOperatorEqualTo(uid);
-
+    private void completePersonCondition(String name, String code, Date startTime, Date endTime, PersonDealResultExample.Criteria criteria) {
         if (StringUtils.isNotEmpty(name)) {
             criteria.andNameLike("%" + name + "%");
         }
@@ -44,12 +40,32 @@ public class DealService {
             criteria.andIdentityCardLike("%" + code + "%");
         }
         if (startTime != null) {
-            criteria.andCreateTimeGreaterThan(startTime);
+            criteria.andCreateTimeGreaterThanOrEqualTo(startTime);
         }
         if (endTime != null) {
-            criteria.andCreateTimeLessThan(endTime);
+            criteria.andCreateTimeLessThanOrEqualTo(endTime);
         }
+    }
 
+    public List<PersonDealResult> findMyPersonDeal(String name, String code, Date startTime, Date endTime, String areaCode, PageInfo pageInfo) {
+
+        PersonDealResultExample personDealResultExample = new PersonDealResultExample();
+        PersonDealResultExample.Criteria criteria = personDealResultExample.createCriteria().andOperatorAreaCodeEqualTo(areaCode);
+        completePersonCondition(name, code, startTime, endTime, criteria);
+
+        pageInfo.setTotalCount(personDealResultMapper.countByExample(personDealResultExample));
+
+        personDealResultExample.setOffset(pageInfo.getOffset());
+        personDealResultExample.setLimit(pageInfo.getLimitSize());
+        return personDealResultMapper.selectByExample(personDealResultExample);
+    }
+
+
+    public List<PersonDealResult> findMyPersonDeal(String name, String code, Date startTime, Date endTime, Long uid, PageInfo pageInfo) {
+
+        PersonDealResultExample personDealResultExample = new PersonDealResultExample();
+        PersonDealResultExample.Criteria criteria = personDealResultExample.createCriteria().andOperatorEqualTo(uid);
+        completePersonCondition(name, code, startTime, endTime, criteria);
 
         pageInfo.setTotalCount(personDealResultMapper.countByExample(personDealResultExample));
 
@@ -63,10 +79,7 @@ public class DealService {
     }
 
 
-    public List<EnterpriseDealResult> findMyEnterpriseDeal(String name, String code, Date startTime, Date endTime, Long uid, PageInfo pageInfo) {
-        EnterpriseDealResultExample enterpriseDealResultExample = new EnterpriseDealResultExample();
-        EnterpriseDealResultExample.Criteria criteria = enterpriseDealResultExample.createCriteria().andOperatorEqualTo(uid);
-
+    private void completeEnterpriseCondition(String name, String code, Date startTime, Date endTime, EnterpriseDealResultExample.Criteria criteria) {
         if (StringUtils.isNotEmpty(name)) {
             criteria.andNameLike("%" + name + "%");
         }
@@ -79,6 +92,24 @@ public class DealService {
         if (endTime != null) {
             criteria.andCreateTimeLessThan(endTime);
         }
+    }
+
+    public List<EnterpriseDealResult> findMyEnterpriseDeal(String name, String code, Date startTime, Date endTime, String areaCode, PageInfo pageInfo) {
+        EnterpriseDealResultExample enterpriseDealResultExample = new EnterpriseDealResultExample();
+        EnterpriseDealResultExample.Criteria criteria = enterpriseDealResultExample.createCriteria().andOperatorAreaCodeEqualTo(areaCode);
+        completeEnterpriseCondition(name, code, startTime, endTime, criteria);
+
+        pageInfo.setTotalCount(enterpriseDealResultMapper.countByExample(enterpriseDealResultExample));
+
+        enterpriseDealResultExample.setLimit(pageInfo.getLimitSize());
+        enterpriseDealResultExample.setOffset(pageInfo.getOffset());
+        return enterpriseDealResultMapper.selectByExample(enterpriseDealResultExample);
+    }
+
+    public List<EnterpriseDealResult> findMyEnterpriseDeal(String name, String code, Date startTime, Date endTime, Long uid, PageInfo pageInfo) {
+        EnterpriseDealResultExample enterpriseDealResultExample = new EnterpriseDealResultExample();
+        EnterpriseDealResultExample.Criteria criteria = enterpriseDealResultExample.createCriteria().andOperatorEqualTo(uid);
+        completeEnterpriseCondition(name, code, startTime, endTime, criteria);
 
         pageInfo.setTotalCount(enterpriseDealResultMapper.countByExample(enterpriseDealResultExample));
 

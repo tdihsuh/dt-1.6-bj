@@ -37,6 +37,14 @@ public class CreditSearchController {
     @Resource
     SearchCountService searchCountService;
 
+
+    private String mockPName = "洪祖文";
+    private String mockPIdentity = "350582197707144512";
+    private String mockPAddress = "河南";
+    private String mockPGender = "男";
+    private String mockPEventNum = "2017豫01民初2993号";
+
+
     /**
      * @param pid
      * @return
@@ -49,7 +57,7 @@ public class CreditSearchController {
     })
     public Object personDetail(String pid) {
         PersonDetail personDetail = new PersonDetail();
-        PersonInfo personInfo = new PersonInfo("1", "张晓多", "110100198907180902", "北京市海淀区西土城路十号", "男");
+        PersonInfo personInfo = new PersonInfo("1", mockPName, mockPIdentity, mockPAddress, mockPGender);
         personDetail.setInfo(personInfo);
 
         List<CreditMemoEntry> memoEntryList = Lists.newArrayList();
@@ -65,9 +73,11 @@ public class CreditSearchController {
 
         List<EventDetail> eventDetailList = Lists.newArrayList();
         EventDetail e1 = new EventDetail();
-        e1.setEventName("测试案件");
+        e1.setEventName(mockPEventNum);
         List<CreditDetailEntry> detailEntryList = Lists.newArrayList();
-        detailEntryList.add(new CreditDetailEntry("法院", "认命法院"));
+        detailEntryList.add(new CreditDetailEntry("法院", "郑州市中级人民法院"));
+        detailEntryList.add(new CreditDetailEntry("执行依据文号", "2017豫01民初2993号"));
+        detailEntryList.add(new CreditDetailEntry("法律生效文书确定的义务：", "偿还欠款本金3500万元及利息"));
         e1.setEventDetail(detailEntryList);
         eventDetailList.add(e1);
         personDetail.setCreditDetailList(eventDetailList);
@@ -88,9 +98,9 @@ public class CreditSearchController {
     public Object personSearch(String key) {
         List<PersonItem> personItems = Lists.newArrayList();
         PersonItem personItem = new PersonItem();
-        personItem.setIdentityCard("110100198907180902");
         personItem.setPid("1");
-        personItem.setName("张晓多");
+        personItem.setName(mockPName);
+        personItem.setIdentityCard(mockPIdentity);
 
         personItem.setTagList(Lists.newArrayList(OriginService.tagMap.values()));
         personItems.add(personItem);
@@ -100,6 +110,14 @@ public class CreditSearchController {
         return Response.success("成功", personItems);
     }
 
+
+    private String mockEName = "周口裕华房地产开发有限公司";
+    private String mockELeagal = "吕永广";
+    private String mockECode = "91411600753860259R";
+    private String mockEType = "有限责任公司(自然人投资或控股)";
+    private String mockEAddress = "周口市八一路中段";
+    private String mockEcreateTime = "2003-08-29";
+    private String mockEvalidTime = "2015-08-15";
 
     /**
      * @return
@@ -112,7 +130,7 @@ public class CreditSearchController {
     })
     public Object enterpriseDetail(String eid) {
         EnterpriseDetail enterpriseDetail = new EnterpriseDetail();
-        EnterpriseInfo enterpriseInfo = new EnterpriseInfo("1", "913710007628687892", "辉山乳业有限责任公司", "张晓度", "有限责任公司（非自然人投资或控股的法人独资）", "北京市惠山路1号", "2029年05月17日", "2009年05月18日");
+        EnterpriseInfo enterpriseInfo = new EnterpriseInfo("1", mockECode, mockEName, mockELeagal, mockEType, mockEAddress, mockEcreateTime, mockEvalidTime);
         enterpriseDetail.setInfo(enterpriseInfo);
         List<CreditMemoEntry> memoEntryList = Lists.newArrayList();
 
@@ -129,9 +147,10 @@ public class CreditSearchController {
 
         List<EventDetail> eventDetailList = Lists.newArrayList();
         EventDetail e1 = new EventDetail();
-        e1.setEventName("测试案件");
+        e1.setEventName("(2017)豫01执1072号");
         List<CreditDetailEntry> detailEntryList = Lists.newArrayList();
-        detailEntryList.add(new CreditDetailEntry("法院", "认命法院"));
+        detailEntryList.add(new CreditDetailEntry("执行法院：", "郑州市中级人民法院"));
+        detailEntryList.add(new CreditDetailEntry("法律生效文书确定的义务：", "偿还本息合计5017万元"));
         e1.setEventDetail(detailEntryList);
         eventDetailList.add(e1);
         enterpriseDetail.setCreditDetailList(eventDetailList);
@@ -153,9 +172,10 @@ public class CreditSearchController {
     public Object enterpriseSearch(String key) {
         List<EnterpriseItem> enterpriseItemList = Lists.newArrayList();
         EnterpriseItem enterpriseItem = new EnterpriseItem();
-        enterpriseItem.setCode("913710007628687892");
         enterpriseItem.setEid("1");
-        enterpriseItem.setName("辉山乳业有限责任公司");
+        enterpriseItem.setName(mockEName);
+        enterpriseItem.setCode(mockECode);
+
         List<Tag> tagList = Lists.newArrayList();
 
         enterpriseItem.setTagList(Lists.newArrayList(OriginService.tagMap.values()));

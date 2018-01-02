@@ -290,7 +290,7 @@ public class MemoController {
             @ApiImplicitParam(name = "token", paramType = "header", value = "token", required = false),
             @ApiImplicitParam(name = "uid", paramType = "header", value = "uid", required = false),
     })
-    public Object departmentAdd(@ApiParam("传入ID更新不传入则保存") @RequestParam(required = false, value = "id") Long id, @RequestParam(required = false, value = "memoId") Long memoId, @RequestParam(required = false, value = "departmentCode") String departmentCode, @RequestParam(required = false, value = "measure") String measure, @RequestParam(required = false, value = "reason") String reason) {
+    public Object departmentAdd(@RequestBody String f , @ApiParam("传入ID更新不传入则保存") @RequestParam(required = false, value = "id") Long id, @RequestParam(required = false, value = "memoId") Long memoId, @RequestParam(required = false, value = "departmentCode") String departmentCode, @RequestParam(required = false, value = "measure") String measure, @RequestParam(required = false, value = "reason") String reason) {
         UniMemoDepartment uniMemoDepartment = new UniMemoDepartment();
         uniMemoDepartment.setDepartmentCode(departmentCode);
         uniMemoDepartment.setMeasure(measure);
