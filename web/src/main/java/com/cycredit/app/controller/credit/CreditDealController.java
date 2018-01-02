@@ -102,7 +102,7 @@ public class CreditDealController {
         personDealResult.setCreateTime(new Date());
         personDealResult.setDescription(description);
         personDealResult.setDealType(dealType);
-
+        //TODO 此处需要接口联调后 调取接口数据
         personDealResult.setIdentityCard("123");
         personDealResult.setName("张三");
         personDealResult.setTags("1,2,101");
@@ -135,6 +135,8 @@ public class CreditDealController {
         EnterpriseDealResult enterpriseDealResult = new EnterpriseDealResult();
         enterpriseDealResult.setUpdateTime(new Date());
         enterpriseDealResult.setCreateTime(new Date());
+
+        //TODO 此处需要接口联调后 调取接口数据
         enterpriseDealResult.setCode("123");
         enterpriseDealResult.setName("测试企业");
         enterpriseDealResult.setTags("1,2,101");
