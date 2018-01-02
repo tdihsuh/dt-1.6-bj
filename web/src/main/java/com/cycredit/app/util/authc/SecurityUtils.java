@@ -54,10 +54,8 @@ public class SecurityUtils {
 //        UserTokenThreadLocal.putIntoThread(userToken);
 
         //add userinfo cache
-
         //TODO add 用户权限
         UserInfoCache.setToCache(userInfo.getId().toString(), userInfo);
-
 
         //write cookie to api path
         Cookie cookie1 = new Cookie("uid", userInfo.getId().toString());

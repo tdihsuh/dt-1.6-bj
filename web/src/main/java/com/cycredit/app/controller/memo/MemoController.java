@@ -108,8 +108,6 @@ public class MemoController {
     public Object publishList(Integer pageNum, Integer limitSize) {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         List<UniMemo> list = memoService.findPublishMemo(pageInfo);
-
-        //todo 需要调活分页
         return Response.success("成功", transferToMemoResponseList(list)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
@@ -127,7 +125,6 @@ public class MemoController {
     public Object pendingList(Integer pageNum, Integer limitSize) {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         List<UniMemo> list = memoService.findPendingMemo(pageInfo);
-        //todo 需要调活分页
         return Response.success("成功", transferToMemoResponseList(list)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
@@ -145,7 +142,6 @@ public class MemoController {
     public Object modifyList(Integer pageNum, Integer limitSize) {
         PageInfo pageInfo = new PageInfo(pageNum, limitSize);
         List<UniMemo> list = memoService.findModifyMemo(pageInfo);
-        //todo 需要调活分页
         return Response.success("成功", transferToMemoResponseList(list)).setPageInfo(pageInfo.getPageNo(), pageInfo.getTotalCount());
     }
 
@@ -225,7 +221,6 @@ public class MemoController {
 
                 temp = new DepartmentItem();
                 temp.setDepartmentCode(uniMemoDepartment.getDepartmentCode());
-                //TODO 需要翻译
                 temp.setDepartmentName(originService.getDepartment(uniMemoDepartment.getDepartmentCode()).getDepartmentName());
                 temp.setMemoId(uniMemoDepartment.getMemoId());
                 temp.setDepartmentMergeItemList(Lists.newArrayList());

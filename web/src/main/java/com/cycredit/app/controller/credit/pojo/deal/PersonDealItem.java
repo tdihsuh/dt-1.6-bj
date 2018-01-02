@@ -1,5 +1,7 @@
 package com.cycredit.app.controller.credit.pojo.deal;
 
+import com.cycredit.app.util.cache.UserInfoCache;
+import com.cycredit.app.util.cache.pojo.UserInfo;
 import com.cycredit.common.Tag;
 import com.cycredit.dao.entity.EnterpriseDealResult;
 import com.cycredit.dao.entity.PersonDealResult;
@@ -45,8 +47,13 @@ public class PersonDealItem {
         personDealItem.setDealType(personDealResult.getDealType());
         personDealItem.setDescription(personDealResult.getDescription());
         personDealItem.setName(personDealResult.getName());
-        //todo 此处需要写活
-        personDealItem.setOperatorName("操作员");
+
+        if (personDealResult.getOperator() != null) {
+            UserInfo userInfo = UserInfoCache.getFromCache(personDealResult.getOperator().toString());
+            if (userInfo != null)
+                personDealItem.setOperatorName(userInfo.getName());
+        }
+
 
         List<Tag> list = Lists.newArrayList();
         for (String tag : personDealResult.getTags().split(",")) {

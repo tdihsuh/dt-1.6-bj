@@ -1,7 +1,10 @@
 package com.cycredit.app.controller.credit.pojo.deal;
 
+import com.cycredit.app.util.cache.UserInfoCache;
+import com.cycredit.app.util.cache.pojo.UserInfo;
 import com.cycredit.common.Tag;
 import com.cycredit.dao.entity.EnterpriseDealResult;
+import com.cycredit.dao.entity.User;
 import com.cycredit.service.OriginService;
 import com.google.common.collect.Lists;
 
@@ -44,8 +47,12 @@ public class EnterpriseDealItem {
         enterpriseDealItem.setDealType(enterpriseDealResult.getDealType());
         enterpriseDealItem.setDescription(enterpriseDealResult.getDescription());
         enterpriseDealItem.setName(enterpriseDealResult.getName());
-        //todo 此处需要写活
-        enterpriseDealItem.setOperatorName("操作员");
+
+        if (enterpriseDealResult.getOperator() != null) {
+            UserInfo userInfo = UserInfoCache.getFromCache(enterpriseDealResult.getOperator().toString());
+            if (userInfo != null)
+                enterpriseDealItem.setOperatorName(userInfo.getName());
+        }
 
         List<Tag> list = Lists.newArrayList();
         for (String tag : enterpriseDealResult.getTags().split(",")) {

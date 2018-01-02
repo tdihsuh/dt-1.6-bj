@@ -80,7 +80,6 @@ public class SessionController {
 
                 SecurityUtils.loginSuccess(cacheUser, response);
 
-                //TODO 需要翻译
                 return Response.success("登录成功", new SessionReponse(cacheUser.getId(), cacheUser.getName()
                         , cacheUser.getDepartmentCode(), cacheUser.getDepartmentName(), cacheUser.getRoleCode().toString(), cacheUser.getRoleName(), cacheUser.getAreaCode(), cacheUser.getAreaName()));
 
