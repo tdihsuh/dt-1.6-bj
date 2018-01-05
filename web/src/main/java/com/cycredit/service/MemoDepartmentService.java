@@ -29,6 +29,11 @@ public class MemoDepartmentService {
     @Resource
     UnimemoDepartmentManualMapper unimemoDepartmentManualMapper;
 
+
+    public UniMemoDepartment findMemoDepartmentById(Long id) {
+        return uniMemoDepartmentMapper.selectByPrimaryKey(id);
+    }
+
     public List<UniMemoDepartment> findMemoDepartment(Long memoId) {
         UniMemoDepartmentExample uniMemoDepartmentExample = new UniMemoDepartmentExample();
         uniMemoDepartmentExample.createCriteria().andMemoIdEqualTo(memoId);
