@@ -6,6 +6,7 @@ import com.cycredit.app.util.threads.UserInfoThreadLocal;
 import com.cycredit.base.utils.consts.Response;
 import com.cycredit.common.Tag;
 import com.cycredit.dao.entity.UniMemoDepartment;
+import com.cycredit.service.H3cService;
 import com.cycredit.service.OriginService;
 import com.cycredit.service.SearchCountService;
 import com.google.common.collect.ListMultimap;
@@ -37,6 +38,8 @@ public class CreditSearchController {
     @Resource
     SearchCountService searchCountService;
 
+    @Resource
+    H3cService h3cService;
 
     private String mockPName = "洪祖文";
     private String mockPIdentity = "350582197707144512";
@@ -97,14 +100,15 @@ public class CreditSearchController {
     })
     public Object personSearch(String key) {
         List<PersonItem> personItems = Lists.newArrayList();
-        PersonItem personItem = new PersonItem();
-        personItem.setPid("1");
-        personItem.setName(mockPName);
-        personItem.setIdentityCard(mockPIdentity);
+//        PersonItem personItem = new PersonItem();
+//        personItem.setPid("1");
+//        personItem.setName(mockPName);
+//        personItem.setIdentityCard(mockPIdentity);
+//        personItem.setTagList(Lists.newArrayList(OriginService.tagMap.values()));
 
-        personItem.setTagList(Lists.newArrayList(OriginService.tagMap.values()));
+
+        PersonItem personItem = H3cService.getPersonItem(key);
         personItems.add(personItem);
-
         searchCountService.saveCount(SearchCountService.SearchType.person, UserInfoThreadLocal.getFromThread());
 
         return Response.success("成功", personItems);

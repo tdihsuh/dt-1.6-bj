@@ -15,7 +15,13 @@
 
 
     <dependencies>
-        
+
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+        </dependency>
+
 
         <!-- json-->
         <dependency>
@@ -57,7 +63,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
-        
+
         <!--<dependency>-->
         <!--<groupId>com.oracle</groupId>-->
         <!--<artifactId>ojdbc6</artifactId>-->
