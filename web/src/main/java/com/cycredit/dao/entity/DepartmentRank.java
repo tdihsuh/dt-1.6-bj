@@ -16,7 +16,7 @@ public class DepartmentRank implements Serializable {
 
     private Integer uniCount;
 
-    private Integer uniPubnishCount;
+    private Integer uniPunishCount;
 
     private Integer uniBonusCount;
 
@@ -76,12 +76,12 @@ public class DepartmentRank implements Serializable {
         this.uniCount = uniCount;
     }
 
-    public Integer getUniPubnishCount() {
-        return uniPubnishCount;
+    public Integer getUniPunishCount() {
+        return uniPunishCount;
     }
 
-    public void setUniPubnishCount(Integer uniPubnishCount) {
-        this.uniPubnishCount = uniPubnishCount;
+    public void setUniPunishCount(Integer uniPunishCount) {
+        this.uniPunishCount = uniPunishCount;
     }
 
     public Integer getUniBonusCount() {

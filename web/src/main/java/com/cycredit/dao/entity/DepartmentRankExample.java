@@ -505,63 +505,63 @@ public class DepartmentRankExample {
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountIsNull() {
-            addCriterion("uni_pubnish_count is null");
+        public Criteria andUniPunishCountIsNull() {
+            addCriterion("uni_punish_count is null");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountIsNotNull() {
-            addCriterion("uni_pubnish_count is not null");
+        public Criteria andUniPunishCountIsNotNull() {
+            addCriterion("uni_punish_count is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountEqualTo(Integer value) {
-            addCriterion("uni_pubnish_count =", value, "uniPubnishCount");
+        public Criteria andUniPunishCountEqualTo(Integer value) {
+            addCriterion("uni_punish_count =", value, "uniPunishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountNotEqualTo(Integer value) {
-            addCriterion("uni_pubnish_count <>", value, "uniPubnishCount");
+        public Criteria andUniPunishCountNotEqualTo(Integer value) {
+            addCriterion("uni_punish_count <>", value, "uniPunishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountGreaterThan(Integer value) {
-            addCriterion("uni_pubnish_count >", value, "uniPubnishCount");
+        public Criteria andUniPunishCountGreaterThan(Integer value) {
+            addCriterion("uni_punish_count >", value, "uniPunishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("uni_pubnish_count >=", value, "uniPubnishCount");
+        public Criteria andUniPunishCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("uni_punish_count >=", value, "uniPunishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountLessThan(Integer value) {
-            addCriterion("uni_pubnish_count <", value, "uniPubnishCount");
+        public Criteria andUniPunishCountLessThan(Integer value) {
+            addCriterion("uni_punish_count <", value, "uniPunishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountLessThanOrEqualTo(Integer value) {
-            addCriterion("uni_pubnish_count <=", value, "uniPubnishCount");
+        public Criteria andUniPunishCountLessThanOrEqualTo(Integer value) {
+            addCriterion("uni_punish_count <=", value, "uniPunishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountIn(List<Integer> values) {
-            addCriterion("uni_pubnish_count in", values, "uniPubnishCount");
+        public Criteria andUniPunishCountIn(List<Integer> values) {
+            addCriterion("uni_punish_count in", values, "uniPunishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountNotIn(List<Integer> values) {
-            addCriterion("uni_pubnish_count not in", values, "uniPubnishCount");
+        public Criteria andUniPunishCountNotIn(List<Integer> values) {
+            addCriterion("uni_punish_count not in", values, "uniPunishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountBetween(Integer value1, Integer value2) {
-            addCriterion("uni_pubnish_count between", value1, value2, "uniPubnishCount");
+        public Criteria andUniPunishCountBetween(Integer value1, Integer value2) {
+            addCriterion("uni_punish_count between", value1, value2, "uniPunishCount");
             return (Criteria) this;
         }
 
-        public Criteria andUniPubnishCountNotBetween(Integer value1, Integer value2) {
-            addCriterion("uni_pubnish_count not between", value1, value2, "uniPubnishCount");
+        public Criteria andUniPunishCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("uni_punish_count not between", value1, value2, "uniPunishCount");
             return (Criteria) this;
         }
 

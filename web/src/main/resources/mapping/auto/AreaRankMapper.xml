@@ -10,7 +10,7 @@
     <result column="uni_punish_count" jdbcType="INTEGER" property="uniPunishCount" />
     <result column="uni_bonus_count" jdbcType="INTEGER" property="uniBonusCount" />
     <result column="select_count" jdbcType="INTEGER" property="selectCount" />
-    <result column="active_count" jdbcType="VARCHAR" property="activeCount" />
+    <result column="active_count" jdbcType="INTEGER" property="activeCount" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -124,7 +124,7 @@
       )
     values (#{areaCode,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER}, 
       #{uniCount,jdbcType=INTEGER}, #{uniPunishCount,jdbcType=INTEGER}, #{uniBonusCount,jdbcType=INTEGER}, 
-      #{selectCount,jdbcType=INTEGER}, #{activeCount,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      #{selectCount,jdbcType=INTEGER}, #{activeCount,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.cycredit.dao.entity.AreaRank">
@@ -184,7 +184,7 @@
         #{selectCount,jdbcType=INTEGER},
       </if>
       <if test="activeCount != null">
-        #{activeCount,jdbcType=VARCHAR},
+        #{activeCount,jdbcType=INTEGER},
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
@@ -225,7 +225,7 @@
         select_count = #{record.selectCount,jdbcType=INTEGER},
       </if>
       <if test="record.activeCount != null">
-        active_count = #{record.activeCount,jdbcType=VARCHAR},
+        active_count = #{record.activeCount,jdbcType=INTEGER},
       </if>
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -245,7 +245,7 @@
       uni_punish_count = #{record.uniPunishCount,jdbcType=INTEGER},
       uni_bonus_count = #{record.uniBonusCount,jdbcType=INTEGER},
       select_count = #{record.selectCount,jdbcType=INTEGER},
-      active_count = #{record.activeCount,jdbcType=VARCHAR},
+      active_count = #{record.activeCount,jdbcType=INTEGER},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -276,7 +276,7 @@
         select_count = #{selectCount,jdbcType=INTEGER},
       </if>
       <if test="activeCount != null">
-        active_count = #{activeCount,jdbcType=VARCHAR},
+        active_count = #{activeCount,jdbcType=INTEGER},
       </if>
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -293,7 +293,7 @@
       uni_punish_count = #{uniPunishCount,jdbcType=INTEGER},
       uni_bonus_count = #{uniBonusCount,jdbcType=INTEGER},
       select_count = #{selectCount,jdbcType=INTEGER},
-      active_count = #{activeCount,jdbcType=VARCHAR},
+      active_count = #{activeCount,jdbcType=INTEGER},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

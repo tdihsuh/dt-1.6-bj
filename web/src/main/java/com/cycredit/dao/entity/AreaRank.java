@@ -20,7 +20,7 @@ public class AreaRank implements Serializable {
 
     private Integer selectCount;
 
-    private String activeCount;
+    private Integer activeCount;
 
     private Date updateTime;
 
@@ -90,12 +90,12 @@ public class AreaRank implements Serializable {
         this.selectCount = selectCount;
     }
 
-    public String getActiveCount() {
+    public Integer getActiveCount() {
         return activeCount;
     }
 
-    public void setActiveCount(String activeCount) {
-        this.activeCount = activeCount == null ? null : activeCount.trim();
+    public void setActiveCount(Integer activeCount) {
+        this.activeCount = activeCount;
     }
 
     public Date getUpdateTime() {

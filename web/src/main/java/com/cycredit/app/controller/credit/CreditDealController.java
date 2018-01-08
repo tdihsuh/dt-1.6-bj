@@ -106,7 +106,7 @@ public class CreditDealController {
         personDealResult.setIdentityCard("123");
         personDealResult.setName("张三");
         personDealResult.setTags("1,2,101");
-
+        //TODO 目前奖惩类型都是0 处罚 要根据tag来判断是奖励还是处罚
 
         personDealResult.setPid(pid);
         UserInfo user = UserInfoThreadLocal.getFromThread();
@@ -209,7 +209,7 @@ public class CreditDealController {
         List<PersonDealResult> list = null;
         //根据Role判断  高级Role查询地区下所有处理结果
         if (user.getRoleCode().equals("4")) {
-            list = dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getAreaCode(), pageInfo);
+            list = dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getAreaCode(), user.getDepartmentCode(), pageInfo);
         } else {
             list = dealService.findMyPersonDeal(name, identityCard, startDate, endDate, user.getId()
                     , pageInfo);
@@ -236,7 +236,7 @@ public class CreditDealController {
         Date endDate = endTime == null ? null : new Date(endTime);
         List<EnterpriseDealResult> list;
         if (user.getRoleCode().equals("4")) {
-            list = dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getAreaCode(), pageInfo);
+            list = dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getAreaCode(), user.getDepartmentCode(), pageInfo);
 
         } else {
             list = dealService.findMyEnterpriseDeal(name, code, startDate, endDate, user.getId(), pageInfo);

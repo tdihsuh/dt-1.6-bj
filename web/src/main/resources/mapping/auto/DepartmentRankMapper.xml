@@ -8,7 +8,7 @@
     <result column="rank" jdbcType="INTEGER" property="rank" />
     <result column="join_count" jdbcType="INTEGER" property="joinCount" />
     <result column="uni_count" jdbcType="INTEGER" property="uniCount" />
-    <result column="uni_pubnish_count" jdbcType="INTEGER" property="uniPubnishCount" />
+    <result column="uni_punish_count" jdbcType="INTEGER" property="uniPunishCount" />
     <result column="uni_bonus_count" jdbcType="INTEGER" property="uniBonusCount" />
     <result column="select_count" jdbcType="INTEGER" property="selectCount" />
     <result column="active_count" jdbcType="INTEGER" property="activeCount" />
@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, department_code, department_name, rank, join_count, uni_count, uni_pubnish_count, 
+    id, department_code, department_name, rank, join_count, uni_count, uni_punish_count, 
     uni_bonus_count, select_count, active_count, update_time
   </sql>
   <select id="selectByExample" parameterType="com.cycredit.dao.entity.DepartmentRankExample" resultMap="BaseResultMap">
@@ -120,11 +120,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into department_rank (department_code, department_name, rank, 
-      join_count, uni_count, uni_pubnish_count, 
+      join_count, uni_count, uni_punish_count, 
       uni_bonus_count, select_count, active_count, 
       update_time)
     values (#{departmentCode,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER}, 
-      #{joinCount,jdbcType=INTEGER}, #{uniCount,jdbcType=INTEGER}, #{uniPubnishCount,jdbcType=INTEGER}, 
+      #{joinCount,jdbcType=INTEGER}, #{uniCount,jdbcType=INTEGER}, #{uniPunishCount,jdbcType=INTEGER}, 
       #{uniBonusCount,jdbcType=INTEGER}, #{selectCount,jdbcType=INTEGER}, #{activeCount,jdbcType=INTEGER}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -149,8 +149,8 @@
       <if test="uniCount != null">
         uni_count,
       </if>
-      <if test="uniPubnishCount != null">
-        uni_pubnish_count,
+      <if test="uniPunishCount != null">
+        uni_punish_count,
       </if>
       <if test="uniBonusCount != null">
         uni_bonus_count,
@@ -181,8 +181,8 @@
       <if test="uniCount != null">
         #{uniCount,jdbcType=INTEGER},
       </if>
-      <if test="uniPubnishCount != null">
-        #{uniPubnishCount,jdbcType=INTEGER},
+      <if test="uniPunishCount != null">
+        #{uniPunishCount,jdbcType=INTEGER},
       </if>
       <if test="uniBonusCount != null">
         #{uniBonusCount,jdbcType=INTEGER},
@@ -225,8 +225,8 @@
       <if test="record.uniCount != null">
         uni_count = #{record.uniCount,jdbcType=INTEGER},
       </if>
-      <if test="record.uniPubnishCount != null">
-        uni_pubnish_count = #{record.uniPubnishCount,jdbcType=INTEGER},
+      <if test="record.uniPunishCount != null">
+        uni_punish_count = #{record.uniPunishCount,jdbcType=INTEGER},
       </if>
       <if test="record.uniBonusCount != null">
         uni_bonus_count = #{record.uniBonusCount,jdbcType=INTEGER},
@@ -253,7 +253,7 @@
       rank = #{record.rank,jdbcType=INTEGER},
       join_count = #{record.joinCount,jdbcType=INTEGER},
       uni_count = #{record.uniCount,jdbcType=INTEGER},
-      uni_pubnish_count = #{record.uniPubnishCount,jdbcType=INTEGER},
+      uni_punish_count = #{record.uniPunishCount,jdbcType=INTEGER},
       uni_bonus_count = #{record.uniBonusCount,jdbcType=INTEGER},
       select_count = #{record.selectCount,jdbcType=INTEGER},
       active_count = #{record.activeCount,jdbcType=INTEGER},
@@ -280,8 +280,8 @@
       <if test="uniCount != null">
         uni_count = #{uniCount,jdbcType=INTEGER},
       </if>
-      <if test="uniPubnishCount != null">
-        uni_pubnish_count = #{uniPubnishCount,jdbcType=INTEGER},
+      <if test="uniPunishCount != null">
+        uni_punish_count = #{uniPunishCount,jdbcType=INTEGER},
       </if>
       <if test="uniBonusCount != null">
         uni_bonus_count = #{uniBonusCount,jdbcType=INTEGER},
@@ -305,7 +305,7 @@
       rank = #{rank,jdbcType=INTEGER},
       join_count = #{joinCount,jdbcType=INTEGER},
       uni_count = #{uniCount,jdbcType=INTEGER},
-      uni_pubnish_count = #{uniPubnishCount,jdbcType=INTEGER},
+      uni_punish_count = #{uniPunishCount,jdbcType=INTEGER},
       uni_bonus_count = #{uniBonusCount,jdbcType=INTEGER},
       select_count = #{selectCount,jdbcType=INTEGER},
       active_count = #{activeCount,jdbcType=INTEGER},

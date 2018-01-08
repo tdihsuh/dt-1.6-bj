@@ -28,6 +28,8 @@ public class EnterpriseDealResult implements Serializable {
 
     private Date updateTime;
 
+    private String creditType;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -124,5 +126,13 @@ public class EnterpriseDealResult implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getCreditType() {
+        return creditType;
+    }
+
+    public void setCreditType(String creditType) {
+        this.creditType = creditType == null ? null : creditType.trim();
     }
 }

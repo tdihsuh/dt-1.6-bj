@@ -28,6 +28,8 @@ public class PersonDealResult implements Serializable {
 
     private Date createTime;
 
+    private String creditType;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -124,5 +126,13 @@ public class PersonDealResult implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getCreditType() {
+        return creditType;
+    }
+
+    public void setCreditType(String creditType) {
+        this.creditType = creditType == null ? null : creditType.trim();
     }
 }

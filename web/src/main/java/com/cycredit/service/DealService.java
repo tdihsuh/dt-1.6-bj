@@ -47,10 +47,10 @@ public class DealService {
         }
     }
 
-    public List<PersonDealResult> findMyPersonDeal(String name, String code, Date startTime, Date endTime, String areaCode, PageInfo pageInfo) {
+    public List<PersonDealResult> findMyPersonDeal(String name, String code, Date startTime, Date endTime, String areaCode, String dpCode, PageInfo pageInfo) {
 
         PersonDealResultExample personDealResultExample = new PersonDealResultExample();
-        PersonDealResultExample.Criteria criteria = personDealResultExample.createCriteria().andOperatorAreaCodeEqualTo(areaCode);
+        PersonDealResultExample.Criteria criteria = personDealResultExample.createCriteria().andOperatorAreaCodeEqualTo(areaCode).andOperatorDepartmentCodeEqualTo(dpCode);
         completePersonCondition(name, code, startTime, endTime, criteria);
 
         pageInfo.setTotalCount(personDealResultMapper.countByExample(personDealResultExample));
@@ -94,9 +94,9 @@ public class DealService {
         }
     }
 
-    public List<EnterpriseDealResult> findMyEnterpriseDeal(String name, String code, Date startTime, Date endTime, String areaCode, PageInfo pageInfo) {
+    public List<EnterpriseDealResult> findMyEnterpriseDeal(String name, String code, Date startTime, Date endTime, String areaCode, String dpCode, PageInfo pageInfo) {
         EnterpriseDealResultExample enterpriseDealResultExample = new EnterpriseDealResultExample();
-        EnterpriseDealResultExample.Criteria criteria = enterpriseDealResultExample.createCriteria().andOperatorAreaCodeEqualTo(areaCode);
+        EnterpriseDealResultExample.Criteria criteria = enterpriseDealResultExample.createCriteria().andOperatorAreaCodeEqualTo(areaCode).andOperatorDepartmentCodeEqualTo(dpCode);
         completeEnterpriseCondition(name, code, startTime, endTime, criteria);
 
         pageInfo.setTotalCount(enterpriseDealResultMapper.countByExample(enterpriseDealResultExample));

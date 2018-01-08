@@ -924,6 +924,76 @@ public class PersonDealResultExample {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
+
+        public Criteria andCreditTypeIsNull() {
+            addCriterion("credit_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeIsNotNull() {
+            addCriterion("credit_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeEqualTo(String value) {
+            addCriterion("credit_type =", value, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeNotEqualTo(String value) {
+            addCriterion("credit_type <>", value, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeGreaterThan(String value) {
+            addCriterion("credit_type >", value, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("credit_type >=", value, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeLessThan(String value) {
+            addCriterion("credit_type <", value, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeLessThanOrEqualTo(String value) {
+            addCriterion("credit_type <=", value, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeLike(String value) {
+            addCriterion("credit_type like", value, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeNotLike(String value) {
+            addCriterion("credit_type not like", value, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeIn(List<String> values) {
+            addCriterion("credit_type in", values, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeNotIn(List<String> values) {
+            addCriterion("credit_type not in", values, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeBetween(String value1, String value2) {
+            addCriterion("credit_type between", value1, value2, "creditType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreditTypeNotBetween(String value1, String value2) {
+            addCriterion("credit_type not between", value1, value2, "creditType");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

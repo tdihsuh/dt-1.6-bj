@@ -635,62 +635,52 @@ public class AreaRankExample {
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountEqualTo(String value) {
+        public Criteria andActiveCountEqualTo(Integer value) {
             addCriterion("active_count =", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountNotEqualTo(String value) {
+        public Criteria andActiveCountNotEqualTo(Integer value) {
             addCriterion("active_count <>", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountGreaterThan(String value) {
+        public Criteria andActiveCountGreaterThan(Integer value) {
             addCriterion("active_count >", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountGreaterThanOrEqualTo(String value) {
+        public Criteria andActiveCountGreaterThanOrEqualTo(Integer value) {
             addCriterion("active_count >=", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountLessThan(String value) {
+        public Criteria andActiveCountLessThan(Integer value) {
             addCriterion("active_count <", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountLessThanOrEqualTo(String value) {
+        public Criteria andActiveCountLessThanOrEqualTo(Integer value) {
             addCriterion("active_count <=", value, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountLike(String value) {
-            addCriterion("active_count like", value, "activeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andActiveCountNotLike(String value) {
-            addCriterion("active_count not like", value, "activeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andActiveCountIn(List<String> values) {
+        public Criteria andActiveCountIn(List<Integer> values) {
             addCriterion("active_count in", values, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountNotIn(List<String> values) {
+        public Criteria andActiveCountNotIn(List<Integer> values) {
             addCriterion("active_count not in", values, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountBetween(String value1, String value2) {
+        public Criteria andActiveCountBetween(Integer value1, Integer value2) {
             addCriterion("active_count between", value1, value2, "activeCount");
             return (Criteria) this;
         }
 
-        public Criteria andActiveCountNotBetween(String value1, String value2) {
+        public Criteria andActiveCountNotBetween(Integer value1, Integer value2) {
             addCriterion("active_count not between", value1, value2, "activeCount");
             return (Criteria) this;
         }
