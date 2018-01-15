@@ -87,10 +87,10 @@ public class DealService {
             criteria.andCodeLike("%" + code + "%");
         }
         if (startTime != null) {
-            criteria.andCreateTimeGreaterThan(startTime);
+            criteria.andCreateTimeGreaterThanOrEqualTo(startTime);
         }
         if (endTime != null) {
-            criteria.andCreateTimeLessThan(endTime);
+            criteria.andCreateTimeLessThanOrEqualTo(endTime);
         }
     }
 

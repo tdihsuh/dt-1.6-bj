@@ -1,5 +1,7 @@
 package com.cycredit.app.controller.credit;
 
+import com.cycredit.app.controller.credit.pojo.EnterpriseItem;
+import com.cycredit.app.controller.credit.pojo.PersonItem;
 import com.cycredit.app.controller.credit.pojo.deal.EnterpriseDealItem;
 import com.cycredit.app.controller.credit.pojo.deal.PersonDealItem;
 import com.cycredit.app.util.cache.pojo.UserInfo;
@@ -10,6 +12,7 @@ import com.cycredit.dao.entity.EnterpriseDealResult;
 import com.cycredit.dao.entity.PersonDealResult;
 import com.cycredit.dao.entity.User;
 import com.cycredit.service.DealService;
+import com.cycredit.service.H3cService;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.*;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -42,6 +45,9 @@ public class CreditDealController {
 
     @Resource
     DealService dealService;
+    @Resource
+    H3cService h3cService;
+
 
     /**
      * 联合个人备忘录处理
@@ -103,9 +109,19 @@ public class CreditDealController {
         personDealResult.setDescription(description);
         personDealResult.setDealType(dealType);
         //TODO 此处需要接口联调后 调取接口数据
-        personDealResult.setIdentityCard("123");
-        personDealResult.setName("张三");
-        personDealResult.setTags("1,2,101");
+
+
+        try {
+            UserInfo thisUser = UserInfoThreadLocal.getFromThread();
+            PersonItem personItem = h3cService.getPersonItem(pid, thisUser.getDepartmentCode());
+            personDealResult.setIdentityCard(personItem.getIdentityCard());
+            personDealResult.setName(personItem.getName());
+            personDealResult.setTags(personItem.getTags());
+
+        } catch (Exception e) {
+            return Response.fail("华三数据接口异常");
+        }
+
         //TODO 目前奖惩类型都是0 处罚 要根据tag来判断是奖励还是处罚
 
         personDealResult.setPid(pid);
@@ -137,9 +153,17 @@ public class CreditDealController {
         enterpriseDealResult.setCreateTime(new Date());
 
         //TODO 此处需要接口联调后 调取接口数据
-        enterpriseDealResult.setCode("123");
-        enterpriseDealResult.setName("测试企业");
-        enterpriseDealResult.setTags("1,2,101");
+        try {
+            UserInfo thisUser = UserInfoThreadLocal.getFromThread();
+            EnterpriseItem enterpriseItem = h3cService.getEnterpriseItem(eid, thisUser.getDepartmentCode());
+            enterpriseDealResult.setCode(enterpriseItem.getCode());
+            enterpriseDealResult.setName(enterpriseItem.getName());
+            enterpriseDealResult.setTags(enterpriseItem.getTags());
+
+        } catch (Exception e) {
+            return Response.fail("华三数据接口异常");
+        }
+
 
         enterpriseDealResult.setDescription(description);
         enterpriseDealResult.setDealType(dealType);

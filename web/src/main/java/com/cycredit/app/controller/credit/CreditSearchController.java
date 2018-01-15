@@ -69,7 +69,8 @@ public class CreditSearchController {
 
 
         PersonItem personItem = h3cService.getPersonItem(key, thisUser.getDepartmentCode());
-        personItems.add(personItem);
+        if (personItem != null)
+            personItems.add(personItem);
         searchCountService.saveCount(SearchCountService.SearchType.person, UserInfoThreadLocal.getFromThread());
 
         return Response.success("成功", personItems);
@@ -148,7 +149,8 @@ public class CreditSearchController {
 //        enterpriseItem.setTagList(Lists.newArrayList(OriginService.tagMap.values()));
 
         EnterpriseItem enterpriseItem = h3cService.getEnterpriseItem(key, thisUser.getDepartmentCode());
-        enterpriseItemList.add(enterpriseItem);
+        if (enterpriseItem != null)
+            enterpriseItemList.add(enterpriseItem);
         searchCountService.saveCount(SearchCountService.SearchType.enterprise, UserInfoThreadLocal.getFromThread());
 
         return Response.success("成功", enterpriseItemList);

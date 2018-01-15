@@ -60,68 +60,6 @@
                 <deploy.type>run</deploy.type>
             </properties>
         </profile>
-
-        <profile>
-            <id>dev</id>
-            <properties>
-                <deploy.type>dev</deploy.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>dev1</id>
-            <properties>
-                <deploy.type>dev1</deploy.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>dev2</id>
-            <properties>
-                <deploy.type>dev2</deploy.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>dev3</id>
-            <properties>
-                <deploy.type>dev3</deploy.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>dev4</id>
-            <properties>
-                <deploy.type>dev4</deploy.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>beta</id>
-            <properties>
-                <deploy.type>beta</deploy.type>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>beta1</id>
-            <properties>
-                <deploy.type>beta1</deploy.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>beta2</id>
-            <properties>
-                <deploy.type>beta2</deploy.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>beta3</id>
-            <properties>
-                <deploy.type>beta3</deploy.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <deploy.type>prod</deploy.type>
-            </properties>
-        </profile>
     </profiles>
 
 
