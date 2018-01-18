@@ -196,46 +196,46 @@ public class H3cService {
 
     //http://ip:9763/services/ha_lhjc/ _get_person_simple?key=xx
     public static String getPersonSimple(String key) {
-        try {
-            return doGet(sps + key);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+//        try {
+//            return doGet(sps + key);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
 
-//        return "{\n" +
-//                "\t\"EntriesPersonSimple\": {\n" +
-//                "\t\t\"EntryPersonSimple\": [{\n" +
-//                "\t\t\t\"INAME\": \"张三\",\n" +
-//                "\t\t\t\"CARDNUM\": \"410402198911123212\",\n" +
-//                "\t\t\t\"CATEGORY\": \"1\"\n" +
-//                "\t\t},\n" +
-//                "\t\t{\n" +
-//                "\t\t\t\"INAME\": \"张三\",\n" +
-//                "\t\t\t\"CARDNUM\": \"410402198911123212\",\n" +
-//                "\t\t\t\"CATEGORY\": \"2\"\n" +
-//                "\t\t}]\n" +
-//                "\t}\n" +
-//                "}";
+        return "{\n" +
+                "\t\"EntriesPersonSimple\": {\n" +
+                "\t\t\"EntryPersonSimple\": [{\n" +
+                "\t\t\t\"INAME\": \"张三\",\n" +
+                "\t\t\t\"CARDNUM\": \"410402198911123212\",\n" +
+                "\t\t\t\"CATEGORY\": \"1\"\n" +
+                "\t\t},\n" +
+                "\t\t{\n" +
+                "\t\t\t\"INAME\": \"张三\",\n" +
+                "\t\t\t\"CARDNUM\": \"410402198911123212\",\n" +
+                "\t\t\t\"CATEGORY\": \"2\"\n" +
+                "\t\t}]\n" +
+                "\t}\n" +
+                "}";
     }
 
     //http://ip:9763/services/ha_lhjc/ _get_person_full?key=xx
     public static String getPersonFull(String key) {
-        try {
-            return doGet(spf + key);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-//        return "{\n" +
-//                "\t\"EntriesPersonFull\": {\n" +
-//                "\t\t\"EntryPersonFull\": [{\n" +
-//                "\t\t\t\"INAME\": \"张三\",\n" +
-//                "\t\t\t\"AGE\": \"32\",\n" +
-//                "\t\t\t\"CARDNUM\": \"410402198911123212\",\n" +
-//                "\t\t\t\"CARDTYPE\": \"0\",\n" +
-//                "\t\t\t\"CATEGORY\": \"1\",\n" +
-//                "\t\t\t\"DETAILS\": \"[{\\\"key\\\":\\\"执行法院\\\",\\\"value\\\":\\\"河南郑州中级人民法院\\\"},{\\\"key\\\":\\\"地区\\\",\\\"value\\\":\\\"河南\\\"},{\\\"key\\\":\\\"执行依据文号\\\",\\\"value\\\":\\\"(2013)市领导反馈及案例三等奖法律手段\\\"},{\\\"key\\\":\\\"做出执行依据单位\\\",\\\"value\\\":\\\"郑州市人民法院\\\"},{\\\"key\\\":\\\"生效法律文书确定的义务\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"履行情况\\\",\\\"value\\\":\\\"全部未履行\\\"},{\\\"key\\\":\\\"失信被执行人行为具体情形\\\",\\\"value\\\":\\\"其他有履行能力而拒不履行生效\\\"},{\\\"key\\\":\\\"登记时间\\\",\\\"value\\\":\\\"20131008\\\"},{\\\"key\\\":\\\"已履行\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"未履行\\\",\\\"value\\\":\\\"\\\"}]\"}]}}";
+//        try {
+//            return doGet(spf + key);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+        return "{\n" +
+                "\t\"EntriesPersonFull\": {\n" +
+                "\t\t\"EntryPersonFull\": [{\n" +
+                "\t\t\t\"INAME\": \"张三\",\n" +
+                "\t\t\t\"AGE\": \"32\",\n" +
+                "\t\t\t\"CARDNUM\": \"410402198911123212\",\n" +
+                "\t\t\t\"CARDTYPE\": \"0\",\n" +
+                "\t\t\t\"CATEGORY\": \"1\",\n" +
+                "\t\t\t\"DETAILS\": \"[{\\\"key\\\":\\\"执行法院\\\",\\\"value\\\":\\\"河南郑州中级人民法院\\\"},{\\\"key\\\":\\\"地区\\\",\\\"value\\\":\\\"河南\\\"},{\\\"key\\\":\\\"执行依据文号\\\",\\\"value\\\":\\\"(2013)市领导反馈及案例三等奖法律手段\\\"},{\\\"key\\\":\\\"做出执行依据单位\\\",\\\"value\\\":\\\"郑州市人民法院\\\"},{\\\"key\\\":\\\"生效法律文书确定的义务\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"履行情况\\\",\\\"value\\\":\\\"全部未履行\\\"},{\\\"key\\\":\\\"失信被执行人行为具体情形\\\",\\\"value\\\":\\\"其他有履行能力而拒不履行生效\\\"},{\\\"key\\\":\\\"登记时间\\\",\\\"value\\\":\\\"20131008\\\"},{\\\"key\\\":\\\"已履行\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"未履行\\\",\\\"value\\\":\\\"\\\"}]\"}]}}";
     }
 
 
@@ -378,28 +378,28 @@ public class H3cService {
     public String getEnterpriseSimple(String key) {
 
 
-        try {
-            return doGet(ses + key);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+//        try {
+//            return doGet(ses + key);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
 
 
-//        return "{\n" +
-//                "\t\"EntriesEnterpriseSimple\": {\n" +
-//                "\t\t\"EntryEnterpriseSimple\": [{\n" +
-//                "\t\t\t\"INAME\": \"郑州金力农产品公司\",\n" +
-//                "\t\t\t\"CARDNUM\": \"57962715-1\",\n" +
-//                "\t\t\t\"CATEGORY\": \"1\"\n" +
-//                "\t\t},\n" +
-//                "\t\t{\n" +
-//                "\t\t\t\"INAME\": \"郑州金力农产品公司\",\n" +
-//                "\t\t\t\"CARDNUM\": \"57962715-1\",\n" +
-//                "\t\t\t\"CATEGORY\": \"2\"\n" +
-//                "\t\t}]\n" +
-//                "\t}\n" +
-//                "}";
+        return "{\n" +
+                "\t\"EntriesEnterpriseSimple\": {\n" +
+                "\t\t\"EntryEnterpriseSimple\": [{\n" +
+                "\t\t\t\"INAME\": \"郑州金力农产品公司\",\n" +
+                "\t\t\t\"CARDNUM\": \"57962715-1\",\n" +
+                "\t\t\t\"CATEGORY\": \"1\"\n" +
+                "\t\t},\n" +
+                "\t\t{\n" +
+                "\t\t\t\"INAME\": \"郑州金力农产品公司\",\n" +
+                "\t\t\t\"CARDNUM\": \"57962715-1\",\n" +
+                "\t\t\t\"CATEGORY\": \"2\"\n" +
+                "\t\t}]\n" +
+                "\t}\n" +
+                "}";
     }
 
 
@@ -407,27 +407,27 @@ public class H3cService {
     public String getEnterpriseFull(String key) {
 
 
-        try {
-            return doGet(sef + key);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+//        try {
+//            return doGet(sef + key);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
 
 
-//        return "{\n" +
-//                "\t\"EntriesEnterpriseFull\": {\n" +
-//                "\t\t\"EntryEnterpriseFull\": [{\n" +
-//                "\t\t\t\"INAME\": \"郑州金力农产品公司\",\n" +
-//                "\t\t\t\"CARDNUM\": \"57962715-1\",\n" +
-//                "\t\t\t\"UNISCID\": null,\n" +
-//                "\t\t\t\"BUESINESSENTITY\": \"李四\",\n" +
-//                "\t\t\t\"TAXIDNUM\": null,\n" +
-//                "\t\t\t\"REGADD\": null,\n" +
-//                "\t\t\t\"BUESINESSENTITYTYPE\": null,\n" +
-//                "\t\t\t\"BUESINESSENTITYNUM\": null,\n" +
-//                "\t\t\t\"CATEGORY\": \"1\",\n" +
-//                "\t\t\t\"DETAILS\": \"[{\\\"key\\\":\\\"执行法院\\\",\\\"value\\\":\\\"河南高级级人民法院\\\"},{\\\"key\\\":\\\"地区\\\",\\\"value\\\":\\\"河南\\\"},{\\\"key\\\":\\\"执行依据文号\\\",\\\"value\\\":\\\"(2014)市领导反馈及案例三等奖法律手段\\\"},{\\\"key\\\":\\\"做出执行依据单位\\\",\\\"value\\\":\\\"郑州市人民法院\\\"},{\\\"key\\\":\\\"生效法律文书确定的义务\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"履行情况\\\",\\\"value\\\":\\\"全部未履行\\\"},{\\\"key\\\":\\\"失信被执行人行为具体情形\\\",\\\"value\\\":\\\"其他有履行能力而拒不履行生效\\\"},{\\\"key\\\":\\\"登记时间\\\",\\\"value\\\":\\\"20131008\\\"},{\\\"key\\\":\\\"已履行\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"未履行\\\",\\\"value\\\":\\\"\\\"}]\"},{\"INAME\": \"郑州金力农产品公司\",\"CARDNUM\": \"57962715-1\",\"UNISCID\": null,\"BUESINESSENTITY\": \"张有才\",\"TAXIDNUM\": \"211282318742709\",\"REGADD\": \"河南省郑州市花园路32号\",\"BUESINESSENTITYTYPE\": null,\"BUESINESSENTITYNUM\": \"410*********295751\",\"CATEGORY\": \"2\",\"DETAILS\":\"[{\\\"key\\\":\\\"直接财务负责人姓名\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"财务负责人证件类型\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"财务负责人证件号码\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"中介机构从业人员情况\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"案件性质\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"主要违法事实\\\",\\\"value\\\":\\\"偷税漏税\\\"},{\\\"key\\\":\\\"法律依据和处罚情况\\\",\\\"value\\\":\\\"经过河南省郑州市税务局确认收到了福建省领导看风景圣诞快乐副书记的分类考试\\\"}]\"}]}}";
+        return "{\n" +
+                "\t\"EntriesEnterpriseFull\": {\n" +
+                "\t\t\"EntryEnterpriseFull\": [{\n" +
+                "\t\t\t\"INAME\": \"郑州金力农产品公司\",\n" +
+                "\t\t\t\"CARDNUM\": \"57962715-1\",\n" +
+                "\t\t\t\"UNISCID\": null,\n" +
+                "\t\t\t\"BUESINESSENTITY\": \"李四\",\n" +
+                "\t\t\t\"TAXIDNUM\": null,\n" +
+                "\t\t\t\"REGADD\": null,\n" +
+                "\t\t\t\"BUESINESSENTITYTYPE\": null,\n" +
+                "\t\t\t\"BUESINESSENTITYNUM\": null,\n" +
+                "\t\t\t\"CATEGORY\": \"1\",\n" +
+                "\t\t\t\"DETAILS\": \"[{\\\"key\\\":\\\"执行法院\\\",\\\"value\\\":\\\"河南高级级人民法院\\\"},{\\\"key\\\":\\\"地区\\\",\\\"value\\\":\\\"河南\\\"},{\\\"key\\\":\\\"执行依据文号\\\",\\\"value\\\":\\\"(2014)市领导反馈及案例三等奖法律手段\\\"},{\\\"key\\\":\\\"做出执行依据单位\\\",\\\"value\\\":\\\"郑州市人民法院\\\"},{\\\"key\\\":\\\"生效法律文书确定的义务\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"履行情况\\\",\\\"value\\\":\\\"全部未履行\\\"},{\\\"key\\\":\\\"失信被执行人行为具体情形\\\",\\\"value\\\":\\\"其他有履行能力而拒不履行生效\\\"},{\\\"key\\\":\\\"登记时间\\\",\\\"value\\\":\\\"20131008\\\"},{\\\"key\\\":\\\"已履行\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"未履行\\\",\\\"value\\\":\\\"\\\"}]\"},{\"INAME\": \"郑州金力农产品公司\",\"CARDNUM\": \"57962715-1\",\"UNISCID\": null,\"BUESINESSENTITY\": \"张有才\",\"TAXIDNUM\": \"211282318742709\",\"REGADD\": \"河南省郑州市花园路32号\",\"BUESINESSENTITYTYPE\": null,\"BUESINESSENTITYNUM\": \"410*********295751\",\"CATEGORY\": \"2\",\"DETAILS\":\"[{\\\"key\\\":\\\"直接财务负责人姓名\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"财务负责人证件类型\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"财务负责人证件号码\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"中介机构从业人员情况\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"案件性质\\\",\\\"value\\\":\\\"\\\"},{\\\"key\\\":\\\"主要违法事实\\\",\\\"value\\\":\\\"偷税漏税\\\"},{\\\"key\\\":\\\"法律依据和处罚情况\\\",\\\"value\\\":\\\"经过河南省郑州市税务局确认收到了福建省领导看风景圣诞快乐副书记的分类考试\\\"}]\"}]}}";
     }
 
 
